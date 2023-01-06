@@ -17,27 +17,36 @@
           suscipit sapien. Nulla iaculis eros a elit pharetra egestas.
         </p>
         <form>
-          <div class="grid">
+          <div class="mealPlan">
             <input
-              type="text"
-              name="firstname"
-              placeholder="First name"
-              aria-label="First name"
+              type="meal"
+              name="meal"
+              placeholder="Meal"
+              aria-label="Meal"
               required
             />
             <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              aria-label="Email address"
+              type="ingredients"
+              name="ingredients"
+              placeholder="Ingredients"
+              aria-label="Ingredients "
               required
             />
-            <button type="submit">Subscribe</button>
+            <button type="generate">Generate</button>
           </div>
           <div>
+            <h3>Go To:</h3>
+            <div class="">
+              <button class="pantry-butn">Pantry</button>
+              <button class="shopping-list-btn">Shopping List</button>
+              <button class="recipieBox">Shopping List</button>
+            </div>
+    
+            </div>
             <section id="accordions">
               <h2>Accordions</h2>
               <details>
+               <!-- <details open> -->
                 <summary>Accordion 1</summary>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
