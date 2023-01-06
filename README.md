@@ -7,6 +7,8 @@ SO WANT I can shop more efficiently and not over/under buy
 ```
 
 ## ## Minimum Viable Product
+
+![Mock up](assets/images/the-pantry-mock-up.png)
 Meal Planner - checks your ingredients in pantry, shows grey if you are missing an ingredient
 
 Shopping List - lists items you need, 
