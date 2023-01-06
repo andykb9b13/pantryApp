@@ -1,13 +1,12 @@
-# Meal Planner App
+# The Pantry
 
 ```
 AS A Busy Dad/soon to be dad, 
 I WANT a meal planner that keeps track of my ingredients in my house
-SO WANT I can shop more efficiently and not over/under buy
+SO I can shop more efficiently and not over/under buy
 ```
 
-## ## Minimum Viable Product
-
+## Minimum Viable Product
 Meal Planner - checks your ingredients in pantry, shows grey if you are missing an ingredient
 
 Shopping List - lists items you need, 
