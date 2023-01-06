@@ -13,6 +13,8 @@ Shopping List - lists items you need,
 
 Pantry - stores a list of ingredients that you currently have
 
+Recipe Box - stores a list of favorite recipes with details about them
+
 ## APIs
 Spoonacular
 
