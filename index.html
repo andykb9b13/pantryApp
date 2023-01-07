@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="stylesheet" href="assets/css/style.css>
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="container">
+      <!-- Pantry -->
+      <section id="Pantry">
+        <h2>Meal Planner Pantry</h2>
+        <p>
+          Sed ultricies dolor non ante vulputate hendrerit. Vivamus sit amet
+          suscipit sapien. Nulla iaculis eros a elit pharetra egestas.
+        </p>
+        <form>
+          <div class="mealPlan">
+            <input
+              type="meal"
+              name="meal"
+              placeholder="Meal"
+              aria-label="Meal"
+              required
+            />
+            <input
+              type="ingredients"
+              name="ingredients"
+              placeholder="Ingredients"
+              aria-label="Ingredients "
+              required
+            />
+            <button type="generate">Generate</button>
+          </div>
+          <div>
+            <h3>Go To:</h3>
+            <div class="">
+              <button class="pantry-butn">Pantry</button>
+              <button class="shopping-list-btn">Shopping List</button>
+              <button class="recipieBox">Shopping List</button>
+            </div>
+    
+            </div>
+            <section id="accordions">
+              <h2>Accordions</h2>
+              <details>
+               <!-- <details open> -->
+                <summary>Accordion 1</summary>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Pellentesque urna diam, tincidunt nec porta sed, auctor id
+                  velit. Etiam venenatis nisl ut orci consequat, vitae tempus
+                  quam commodo. Nulla non mauris ipsum. Aliquam eu posuere orci.
+                  Nulla convallis lectus rutrum quam hendrerit, in facilisis
+                  elit sollicitudin. Mauris pulvinar pulvinar mi, dictum
+                  tristique elit auctor quis. Maecenas ac ipsum ultrices, porta
+                  turpis sit amet, congue turpis.
+                </p>
+              </details>
+              <details open>
+                <summary>Accordion 2</summary>
+                <ul>
+                  <li>Vestibulum id elit quis massa interdum sodales.</li>
+                  <li>
+                    Nunc quis eros vel odio pretium tincidunt nec quis neque.
+                  </li>
+                  <li>Quisque sed eros non eros ornare elementum.</li>
+                  <li>
+                    Cras sed libero aliquet, porta dolor quis, dapibus ipsum.
+                  </li>
+                </ul>
+              </details>
+            </section>
+          </div>
+        </form>
+      </section>
+      <!-- ./ Pantry -->
+    </main>
+  </body>
+</html>
