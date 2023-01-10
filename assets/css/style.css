@@ -1,8 +1,46 @@
-body {
-  text-align: center;
+#titleBox {
+    text-align: center;
 }
-.recipiesBox,
-.pantry,
-.shopping-list-butn {
-  padding: 12px 28px;
+#recipeContainer{
+    text-align: center;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px black;
+    padding: 20px;
+    width: 20%;
+}
+.dayOfWeek {
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#userWeek{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px black;   
+}
+#thePantry {
+    border: 2px solid black;
+    width: 20%;
+    box-shadow: 5px 5px 5px black;
+    text-align: center;
+    
+}
+.weekDay {
+    text-align: center;
+}
+#shoppingListTitle {
+    text-align: center;
+}
+#theShoppingListDiv{
+    border: 2px solid black;
+    box-shadow: 5px 5px 5px black;
+    padding: 20px;
+    margin: 10px;
 }

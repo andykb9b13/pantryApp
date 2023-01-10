@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets\css\style.css">
+    <title>The Pantry</title>
+</head>
+<body>
+    <header id="titleBox">
+        <h1>Weekly Meal Plan</h1>
+        <h4>Today is <span id="dateinput">Date</span></h4>
+    </header>
+    <main>
+        <div id="recipeContainer">
+            <div>
+                <header>
+                    <h2>Recipe</h2>
+                </header>
+                <div id="recipeSearchDiv">
+                    <input type="text" id="recipeSearchInput">
+                </div>
+            </div>
+            <div id="recipeDayofWeek">
+                <header>
+                    <h3>Day of the Week</h3>
+                </header>
+                <label for="days">Days of Week:</label>
+                <form action="" id="dayofWeekForm">
+                    <select name="days" id="dayDropDown">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                    <input type="submit" name="Submit" id="daysSubmit">
+                </form>
+            </div>
+            <div id="mealsPerDayDiv">
+                <header>
+                    <h3>Meals</h3>
+                </header>
+                <label for="meals">Meals per Day:</label>
+                <form action="">
+                    <select name="meals" id="mealsPerDay">
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                    </select>
+                    <input type="submit" name="Submit" id="mealSubmit">
+                </form>
+            </div>
+        </div>
+        <div id="userWeek">
+            <div class="dayOfWeek" id="mondayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Monday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dayOfWeek" id="tuesdayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Tuesday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dayOfWeek" id="wednesdayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Wednesday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dayOfWeek" id="thursdayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Thursday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dayOfWeek" id="fridayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Friday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dayOfWeek" id="saturdayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Saturday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dayOfWeek" id="sundayDiv">
+                <div class="weekDay">
+                    <header>
+                        <h2>Sunday</h2>
+                    </header>
+                </div>
+                <div class="threeSquareMeals">
+                    <ul>
+                        <li>Breakfast: <span></span></li>
+                        <li>Lunch: <span></span></li>
+                        <li>Dinner: <span></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="theShoppingListDiv">
+                <div>
+                    <header id="shoppingListTitle">
+                        <h2>The Shopping List</h2>
+                    </header>
+                    <div>
+                        <ul id="shoppingListList">
+                            <li>______</li>
+                            <li>______</li>
+                            <li>______</li>
+                            <li>______</li>
+                            <li>______</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="thePantry">
+            <header>
+                <h2>The Pantry</h2>
+            </header>
+        </div>
+    </main>
+    
+</body>
+</html>
