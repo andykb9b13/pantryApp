@@ -1,0 +1,8 @@
+body {
+  text-align: center;
+}
+.recipiesBox,
+.pantry,
+.shopping-list-butn {
+  padding: 12px 28px;
+}
