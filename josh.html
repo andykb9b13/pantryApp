@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="assets\css\style.css">
     <title>The Pantry</title>
 </head>
+
 <body>
     <header id="titleBox">
         <h1>Weekly Meal Plan</h1>
@@ -20,6 +22,10 @@
                 </header>
                 <div id="recipeSearchDiv">
                     <input type="text" id="recipeSearchInput">
+                    <!-- added search button (AK)-->
+                    <button id="recipeSearchButton">Search</button>
+                    <!-- added recipe box ul (AK) -->
+                    <ul id="recipeBoxUl"></ul>
                 </div>
             </div>
             <div id="recipeDayofWeek">
@@ -38,7 +44,6 @@
                         <option value="Sunday">Sunday</option>
                     </select>
                     <input type="submit" name="Submit" id="daysSubmit">
-                </form>
             </div>
             <div id="mealsPerDayDiv">
                 <header>
@@ -175,9 +180,17 @@
         <div id="thePantry">
             <header>
                 <h2>The Pantry</h2>
+                <!-- added pantry input (AK)-->
+                <input id="pantryInput" type="text">
+                <!-- added pantry ul (AK)-->
+                <ul id="myPantryUl"></ul>
+                <!-- added pantry button (AK) -->
+                <button id="myPantryButton">Add to Pantry</button>
             </header>
         </div>
     </main>
-    
+    <!-- Added script (AK) -->
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>
