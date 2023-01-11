@@ -70,6 +70,8 @@ function getRecipeIngredients(e) {
             for (let i = 0; i < data.extendedIngredients.length; i++) {
                 let ingredientName = data.extendedIngredients[i].name;
                 let ingredientItem = document.createElement("li");
+                ingredientItem.setAttribute("class", "shoppingListItem");
+
                 ingredientArray.push(ingredientName);
                 ingredientItem.textContent = ingredientArray[i];
                 shoppingListUl.appendChild(ingredientItem);
@@ -77,14 +79,19 @@ function getRecipeIngredients(e) {
                 let foodImgName = data.extendedIngredients[i].image;
                 foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
                 ingredientItem.appendChild(foodImg);
+                ingredientItem.addEventListener("click", function () {
+                    myPantryUl.appendChild(ingredientItem);
+                })
             }
         })
+    getShoppingListItems();
 }
 
 let pantryStorage = [];
 
 function addPantryItem() {
-    let newPantryItem = document.createElement('li')
+    let newPantryItem = document.createElement('li');
+    newPantryItem.setAttribute("class", "pantryItem");
     let newPantryItemText = pantryInput.value;
     newPantryItem.innerText = newPantryItemText;
     myPantryUl.appendChild(newPantryItem);
@@ -101,6 +108,23 @@ $(function () {
         placeholder: "sortable-placeholder"
     });
 })
+
+function getShoppingListItems() {
+    let shoppingListItems = document.querySelectorAll(".shoppingListItem");
+    return shoppingListItems
+}
+
+// $('body').on('click', 'li', function () {
+//     $(this).toggleClass('selected');
+// });
+
+// $('li').click(function () {
+//     $('#shoppingListList').append($('#myPantryUl .selected').removeClass('selected'));
+// });
+
+// $('#move_right').click(function () {
+//     $('.list2').append($('.list1 .selected').removeClass('selected'));
+// });
 
 
 // ******************************************************
