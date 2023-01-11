@@ -1,14 +1,14 @@
 // Spoonacular API key 86559794390c4f9c8a3c8bba07f2d054
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
 
-const shoppingListButton = document.getElementById("shoppingListButton");
-const shoppingListUl = document.getElementById("shoppingListUl");
+
+// const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
-const pantryInput = document.getElementById("pantryInput");
-const myPantryButton = document.getElementById("myPantryButton");
-const recipeSearchButton = document.getElementById("recipeSearchButton");
-const recipeBoxUl = document.getElementById("recipeBoxUl");
-const myPantryUl = document.getElementById("myPantryUl");
+// const pantryInput = document.getElementById("pantryInput");
+// const myPantryButton = document.getElementById("myPantryButton");
+// const recipeSearchButton = document.getElementById("recipeSearchButton");
+// const recipeBoxUl = document.getElementById("recipeBoxUl");
+// const myPantryUl = document.getElementById("myPantryUl");
 
 // *****************************************
 
