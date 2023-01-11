@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="assets\css\style.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <title>The Pantry</title>
+    <script>
+        function dragstart_handler(ev) {
+            // Add the target element's id to the data transfer object
+            ev.dataTransfer.setData("text/plain", ev.target.id);
+            ev.dataTransfer.dropEffect = "move";
+        }
+
+        document.addEventListener("change", () => {
+            // Get the element by id
+            let recipeListItems = document.getElementsByClassName("searchedRecipes");
+            // Add the ondragstart event listener
+            for (let recipe of recipeListItems) {
+                recipe.addEventListener("dragstart", dragstart_handler);
+            }
+        });
+
+        function onDrop(event) {
+            const data = event.dataTransfer.getData("text/plain");
+            event.target.textContent = data;
+            event.preventDefault();
+        }
+    </script>
 </head>
 
 <body>
@@ -27,7 +49,7 @@
                     <!-- added search button (AK)-->
                     <button id="recipeSearchButton">Search</button>
                     <!-- added recipe box ul (AK) -->
-                    <ul id="recipeBoxUl"></ul>
+                    <ul id="recipeBoxUl" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
                 </div>
             </div>
             <div id="recipeDayofWeek">
@@ -73,7 +95,9 @@
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
+                        <li id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">Breakfast:
+                            <span></span>
+                        </li>
                         <li>Lunch: <span></span></li>
                         <li>Dinner: <span></span></li>
                     </ul>

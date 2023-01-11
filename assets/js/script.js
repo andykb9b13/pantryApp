@@ -1,5 +1,4 @@
 
-
 // Spoonacular API key 86559794390c4f9c8a3c8bba07f2d054
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
 
@@ -36,6 +35,7 @@ function recipeSearch() {
         .then(function (data) {
             for (let i = 0; i < data.results.length; i++) {
                 let recipeListEl = document.createElement('li');
+                recipeListEl.setAttribute("draggable", true);
                 recipeListEl.innerText = data.results[i].title;
                 recipeBoxUl.appendChild(recipeListEl);
                 recipeListEl.setAttribute("id", data.results[i].id);
@@ -81,6 +81,8 @@ function getRecipeIngredients(e) {
                 ingredientItem.appendChild(foodImg);
                 ingredientItem.addEventListener("click", function () {
                     myPantryUl.appendChild(ingredientItem);
+                    ingredientItem.setAttribute("class", "pantryItem");
+                    ingredientItem.removeAttribute("class", "shoppingListItem");
                 })
             }
         })
