@@ -1,3 +1,5 @@
+
+
 // Spoonacular API key 86559794390c4f9c8a3c8bba07f2d054
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
 
@@ -8,12 +10,10 @@ const myPantryButton = document.getElementById("myPantryButton");
 const recipeSearchButton = document.getElementById("recipeSearchButton");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
+let searchedRecipes = [];
+let pantryArr = [];
 
 // *****************************************
-
-// TODO start by trying to create links for the items in the recipe box
-
-let searchedRecipes = [];
 
 function makeEventListeners() {
     for (let i = 0; i < searchedRecipes.length; i++) {
@@ -54,10 +54,6 @@ function recipeSearch() {
 
 recipeSearchButton.addEventListener("click", recipeSearch)
 
-// *****************************************
-
-let pantryArr = [];
-
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
     let mealName = document.createElement('li');
@@ -80,21 +76,53 @@ function getRecipeIngredients(e) {
                 let foodImg = document.createElement('img');
                 let foodImgName = data.extendedIngredients[i].image;
                 foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
-                shoppingListUl.appendChild(foodImg);
+                ingredientItem.appendChild(foodImg);
             }
         })
 }
 
-// let pantryItem = document.createElement("li");
-// pantryItem.textContent = ingredientArray[i];
-// myPantryUl.appendChild(pantryItem);
+let pantryStorage = [];
 
-function showFoodImg() {
-
+function addPantryItem() {
+    let newPantryItem = document.createElement('li')
+    let newPantryItemText = pantryInput.value;
+    newPantryItem.innerText = newPantryItemText;
+    myPantryUl.appendChild(newPantryItem);
+    pantryStorage.push(newPantryItemText);
+    localStorage.setItem("pantry", JSON.stringify(pantryStorage));
 }
 
+myPantryButton.addEventListener("click", addPantryItem)
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
+
+$(function () {
+    $("#shoppingListList").sortable({
+        placeholder: "sortable-placeholder"
+    });
+})
+
+
+// ******************************************************
+// GENERAL LIST OF THINGS TO DO
+// TODO clear the input field after entering item
+// TODO get Local Storage for pantry items to display on load
+// TODO Add values & units for 
+// TODO create areas to increase units or delete items from pantry
+
+/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
+data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
+the value (i.e. cups, tbsp, etc.).*/
+
+/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
+
+/* TODO be able to grab items from one area and drag them to another area? */
+
+/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
+then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
+
+// TODO need to be able to access the recipe with instructions from the meal plan section
+
 
 // ***************************************
 // function getIngredients() {
@@ -131,35 +159,3 @@ function showFoodImg() {
 // shoppingListButton.addEventListener("click", getIngredients)
 
 // ******************************************
-// TODO clear the input field after entering item
-// TODO get Local Storage for pantry items to display on load
-// TODO Add values & units for 
-// TODO create areas to increase units or delete items from pantry
-let pantryStorage = [];
-
-function addPantryItem() {
-    let newPantryItem = document.createElement('li')
-    let newPantryItemText = pantryInput.value;
-    newPantryItem.innerText = newPantryItemText;
-    myPantryUl.appendChild(newPantryItem);
-    pantryStorage.push(newPantryItemText);
-    localStorage.setItem("pantry", JSON.stringify(pantryStorage));
-}
-
-myPantryButton.addEventListener("click", addPantryItem)
-
-
-// ******************************************************
-// GENERAL LIST OF THINGS TO DO
-/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
-data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
-the value (i.e. cups, tbsp, etc.).*/
-
-/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
-
-/* TODO be able to grab items from one area and drag them to another area? */
-
-/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
-then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
-
-// TODO need to be able to access the recipe with instructions from the meal plan section
