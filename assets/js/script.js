@@ -1,8 +1,7 @@
 // Spoonacular API key 86559794390c4f9c8a3c8bba07f2d054
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
 
-const shoppingListButton = document.getElementById("shoppingListButton");
-const shoppingListUl = document.getElementById("shoppingListUl");
+const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
 const pantryInput = document.getElementById("pantryInput");
 const myPantryButton = document.getElementById("myPantryButton");
@@ -28,7 +27,7 @@ function makeEventListeners() {
 }
 
 function recipeSearch() {
-    let searchInput = document.getElementById("recipeSearch").value;
+    let searchInput = document.getElementById("recipeSearchInput").value;
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
         .then(function (response) {
@@ -44,6 +43,7 @@ function recipeSearch() {
 
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
+                recipeImg.style.width = "75%";
                 recipeBoxUl.appendChild(recipeImg);
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
@@ -62,7 +62,7 @@ function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
     let mealName = document.createElement('li');
     mealName.innerText = e.target.innerText;
-    mealPlanUl.appendChild(mealName);
+    // mealPlanUl.appendChild(mealName);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
