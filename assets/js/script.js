@@ -105,28 +105,7 @@ myPantryButton.addEventListener("click", addPantryItem)
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
-$(function () {
-    $("#shoppingListList").sortable({
-        placeholder: "sortable-placeholder"
-    });
-})
 
-function getShoppingListItems() {
-    let shoppingListItems = document.querySelectorAll(".shoppingListItem");
-    return shoppingListItems
-}
-
-// $('body').on('click', 'li', function () {
-//     $(this).toggleClass('selected');
-// });
-
-// $('li').click(function () {
-//     $('#shoppingListList').append($('#myPantryUl .selected').removeClass('selected'));
-// });
-
-// $('#move_right').click(function () {
-//     $('.list2').append($('.list1 .selected').removeClass('selected'));
-// });
 
 
 // ******************************************************
