@@ -9,6 +9,7 @@ const myPantryButton = document.getElementById("myPantryButton");
 const recipeSearchButton = document.getElementById("recipeSearchButton");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
+const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 let searchedRecipes = [];
 let pantryArr = [];
 
@@ -37,6 +38,7 @@ function makeEventListeners() {
 }
 
 function getRecipeInstructions(e) {
+    recipeInstructionsUl.innerHTML = "";
     let chosenRecipe = e.target.id
     console.log(chosenRecipe);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
@@ -45,11 +47,17 @@ function getRecipeInstructions(e) {
             return response.json()
         })
         .then(function (data) {
-            console.log("I am recipe ingredients", data.analyzedInstructions[0].steps)
+            console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
+            for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
+                let instructionStep = document.createElement("li");
+                instructionStep.innerText = data.analyzedInstructions[0].steps[i].step;
+                recipeInstructionsUl.appendChild(instructionStep)
+            }
         })
 }
 
 function recipeSearch() {
+    recipeBoxUl.innerHTML = "";
     let searchInput = document.getElementById("recipeSearchInput").value;
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
@@ -97,7 +105,6 @@ function getRecipeIngredients(e) {
                 let ingredientName = data.extendedIngredients[i].name;
                 let ingredientItem = document.createElement("li");
                 ingredientItem.setAttribute("class", "shoppingListItem");
-
                 ingredientArray.push(ingredientName);
                 ingredientItem.textContent = ingredientArray[i];
                 shoppingListUl.appendChild(ingredientItem);
