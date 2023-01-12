@@ -6,26 +6,26 @@
     --brown: #413738;
     font-family: 'Inconsolata', monospace;
     font-family: 'Shadows Into Light', cursive;
-}
+  }
 
-body {
+  body{
     background-color: var(--lightblue);
-}
+  }
 
-h1 {
+  h1{
     font-family: 'Inconsolata', monospace;
-}
+  }
 
-h2 {
+  h2{
     color: var(--darkblue);
-}
+  }
 
 #titleBox {
     text-align: center;
     color: var(--brown);
 }
 
-#recipeContainer {
+#recipeContainer{
     text-align: center;
     border: 2px solid var(--brown);
     box-shadow: 5px 5px 5px var(--brown);
@@ -33,33 +33,24 @@ h2 {
     width: 20%;
     background-color: var(--white);
 }
-
-#recipeInstructionDisplay {
-    border: 2px solid var(--brown);
-    width: 90%;
-}
-
 .dayOfWeek {
     border: 2px solid var(--brown);
     margin: 20px;
     padding: 20px;
 }
-
 main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-
-#userWeek {
+#userWeek{
     display: flex;
     flex-direction: column;
     width: 30%;
     border: 2px solid var(--brown);
     box-shadow: 5px 5px 5px var(--brown);
-    background-color: var(--white);
+    background-color: var(--white);   
 }
-
 #thePantry {
     border: 2px solid var(--brown);
     width: 20%;
@@ -67,77 +58,74 @@ main {
     text-align: center;
     background-color: var(--white);
 }
-
 .weekDay {
     text-align: center;
 }
-
 #shoppingListTitle {
     text-align: center;
 }
-
-#theShoppingListDiv {
+#theShoppingListDiv{
     border: 2px solid var(--brown);
     box-shadow: 5px 5px 5px var(--brown);
     padding: 20px;
     margin: 10px;
 }
 
-button {
+button{
     background-color: var(--brown);
     color: var(--lightblue);
     font-family: 'Inconsolata', monospace;
 }
 
-#daysSubmit {
+#daysSubmit{
     background-color: var(--brown);
     color: var(--lightblue);
 }
 
-#mealSubmit {
+#mealSubmit{
     background-color: var(--brown);
     color: var(--lightblue);
 }
 
-input {
+input{
     background-color: var(--yellow);
     color: var(--darkblue);
     font-family: 'Inconsolata', monospace;
 }
 
-select {
+select{
     background-color: var(--yellow);
     color: var(--darkblue);
 }
 
-#mondayDiv {
+#mondayDiv{
     background-color: var(--yellow);
 }
 
-#tuesdayDiv {
+#tuesdayDiv{
     background-color: var(--yellow);
 }
 
-#wednesdayDiv {
+#wednesdayDiv{
     background-color: var(--yellow);
 }
 
-#thursdayDiv {
+#thursdayDiv{
     background-color: var(--yellow);
 }
 
-#fridayDiv {
+#fridayDiv{
     background-color: var(--yellow);
 }
 
-#saturdayDiv {
+#saturdayDiv{
     background-color: var(--yellow);
 }
 
-#sundayDiv {
+#sundayDiv{
     background-color: var(--yellow);
 }
 
-#theShoppingListDiv {
+#theShoppingListDiv{
     background-color: var(--yellow);
 }
