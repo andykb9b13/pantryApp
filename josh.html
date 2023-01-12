@@ -15,6 +15,7 @@
         <h4>Today is <span id="dateinput">Date</span></h4>
     </header>
     <main>
+        <!-- <section name="recipe-section"> -->
         <div id="recipeContainer">
             <div>
                 <header>
@@ -25,7 +26,7 @@
                     <!-- added search button (AK)-->
                     <button id="recipeSearchButton">Search</button>
                     <!-- added recipe box ul (AK) -->
-                    <ul id="recipeBoxUl"></ul>
+                    <ul id="recipeBoxUl" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
                 </div>
             </div>
             <div id="recipeDayofWeek">
@@ -60,6 +61,8 @@
                 </form>
             </div>
         </div>
+        <!-- </section>
+        <section name="weekly-plan-section"> -->
         <div id="userWeek">
             <div class="dayOfWeek" id="mondayDiv">
                 <div class="weekDay">
@@ -69,7 +72,9 @@
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
+                        <li id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">Breakfast:
+                            <span></span>
+                        </li>
                         <li>Lunch: <span></span></li>
                         <li>Dinner: <span></span></li>
                     </ul>
@@ -159,6 +164,8 @@
                     </ul>
                 </div>
             </div>
+            <!-- </section>
+        <section name="shopping-list-section"> -->
             <div id="theShoppingListDiv">
                 <div>
                     <header id="shoppingListTitle">
@@ -166,17 +173,14 @@
                     </header>
                     <div>
                         <ul id="shoppingListList">
-                            <li>______</li>
-                            <li>______</li>
-                            <li>______</li>
-                            <li>______</li>
-                            <li>______</li>
                         </ul>
                     </div>
                 </div>
 
             </div>
         </div>
+        <!-- </section>
+        <section name="pantry-section"> -->
         <div id="thePantry">
             <header>
                 <h2>The Pantry</h2>
@@ -188,6 +192,7 @@
                 <button id="myPantryButton">Add to Pantry</button>
             </header>
         </div>
+        <!-- </section> -->
     </main>
     <!-- Added script (AK) -->
     <script src="assets/js/script.js"></script>
