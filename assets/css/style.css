@@ -1,46 +1,49 @@
 #titleBox {
-    text-align: center;
+  text-align: center;
 }
-#recipeContainer{
-    text-align: center;
-    border: 2px solid black;
-    box-shadow: 5px 5px 5px black;
-    padding: 20px;
-    width: 20%;
+#recipeContainer {
+  text-align: center;
+  border: 2px solid black;
+  box-shadow: 5px 5px 5px black;
+  padding: 20px;
+  width: 20%;
 }
 .dayOfWeek {
-    border: 2px solid black;
-    margin: 20px;
-    padding: 20px;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
 }
 main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-#userWeek{
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    border: 2px solid black;
-    box-shadow: 5px 5px 5px black;   
+#userWeek {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border: 2px solid black;
+  box-shadow: 5px 5px 5px black;
 }
 #thePantry {
-    border: 2px solid black;
-    width: 20%;
-    box-shadow: 5px 5px 5px black;
-    text-align: center;
-    
+  border: 2px solid black;
+  width: 20%;
+  box-shadow: 5px 5px 5px black;
+  text-align: center;
+}
+.dailyWeather {
+  font-size: medium;
+  font-display: bold;
 }
 .weekDay {
-    text-align: center;
+  text-align: center;
 }
 #shoppingListTitle {
-    text-align: center;
+  text-align: center;
 }
-#theShoppingListDiv{
-    border: 2px solid black;
-    box-shadow: 5px 5px 5px black;
-    padding: 20px;
-    margin: 10px;
+#theShoppingListDiv {
+  border: 2px solid black;
+  box-shadow: 5px 5px 5px black;
+  padding: 20px;
+  margin: 10px;
 }

@@ -13,6 +13,8 @@
     <header id="titleBox">
         <h1>Weekly Meal Plan</h1>
         <h4>Today is <span id="dateinput">Date</span></h4>
+        <!-- DailyWeather (BB) -->
+        <div id="todayWeather" class= dailyWeather>Todays Weather:</div>
     </header>
     <main>
         <div id="recipeContainer">
@@ -49,13 +51,6 @@
                 <header>
                     <h3>Meals</h3>
                 </header>
-                <label for="meals">Meals per Day:</label>
-                <form action="">
-                    <select name="meals" id="mealsPerDay">
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                    </select>
                     <input type="submit" name="Submit" id="mealSubmit">
                 </form>
             </div>
@@ -66,11 +61,12 @@
                     <header>
                         <h2>Monday</h2>
                     </header>
+                     <!-- Mondays's Weather (BB) -->
+                    <div id="mondayWeather" class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                       
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -80,11 +76,12 @@
                     <header>
                         <h2>Tuesday</h2>
                     </header>
+                    <!-- Tuesdays's Weather (BB) -->
+                    <div id="tuesdayWeather" class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                      
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -94,11 +91,12 @@
                     <header>
                         <h2>Wednesday</h2>
                     </header>
+                    <!-- Wednesdays's Weather(BB) -->
+                    <div id="wednesdayWeather" class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                       
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -108,11 +106,11 @@
                     <header>
                         <h2>Thursday</h2>
                     </header>
+                    <div id="thursdayWeather" class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                        
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -122,11 +120,12 @@
                     <header>
                         <h2>Friday</h2>
                     </header>
+                    <!-- Fridays's Weather (BB) -->
+                    <div id="fridayWeather" class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                       
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -136,11 +135,12 @@
                     <header>
                         <h2>Saturday</h2>
                     </header>
+                    <!-- Saturdays's Weather (BB) -->
+                    <div id="saturdayWeather"class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                       
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -150,11 +150,12 @@
                     <header>
                         <h2>Sunday</h2>
                     </header>
+                    <!-- Sundays's Weather (BB) -->
+                    <div id="sundayWeather" class= dailyWeather>Weather:</div>
                 </div>
                 <div class="threeSquareMeals">
                     <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
+                        
                         <li>Dinner: <span></span></li>
                     </ul>
                 </div>
@@ -180,12 +181,19 @@
         <div id="thePantry">
             <header>
                 <h2>The Pantry</h2>
-                <!-- added pantry input (AK)-->
+                <!-- added pantry input (AK) -->
                 <input id="pantryInput" type="text">
                 <!-- added pantry ul (AK)-->
                 <ul id="myPantryUl"></ul>
                 <!-- added pantry button (AK) -->
                 <button id="myPantryButton">Add to Pantry</button>
+                <h3>Snacks and Staples</h3>
+                  <!-- added snacks input (BB) -->
+                <input id="snacksInput" type="text">
+                <!-- added pantry ul (BB) -->
+                <ul id="mySnacksUl"></ul>
+                <!-- added pantry button (BB) -->
+                <button id="mySnacksButton">Add to Snacks and Staples</button>
             </header>
         </div>
     </main>
