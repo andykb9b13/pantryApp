@@ -25,6 +25,19 @@ function makeEventListeners() {
     }
 }
 
+function getRecipeInstructions(e) {
+    let chosenRecipe = e.target.id
+    console.log(chosenRecipe);
+    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log("I am recipe ingredients", data.analyzedInstructions[0].steps)
+        })
+}
+
 function recipeSearch() {
     let searchInput = document.getElementById("recipeSearchInput").value;
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
