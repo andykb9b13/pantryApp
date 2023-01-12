@@ -14,17 +14,6 @@ let pantryArr = [];
 
 // *****************************************
 
-function makeIngredientEventListeners() {
-    for (let i = 0; i < searchedRecipes.length; i++) {
-        console.log("recipe ", i + 1, searchedRecipes[i])
-        searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeInstructions(e)
-            // console.log(e.target)
-        })
-
-    }
-}
-
 function makeEventListeners() {
     for (let i = 0; i < searchedRecipes.length; i++) {
         console.log("recipe ", i + 1, searchedRecipes[i])
@@ -36,19 +25,6 @@ function makeEventListeners() {
     }
 }
 
-function getRecipeInstructions(e) {
-    let chosenRecipe = e.target.id
-    console.log(chosenRecipe);
-    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
-    fetch(requestUrl)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (data) {
-            console.log("I am recipe ingredients", data.analyzedInstructions[0].steps)
-        })
-}
-
 function recipeSearch() {
     let searchInput = document.getElementById("recipeSearchInput").value;
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
@@ -57,7 +33,6 @@ function recipeSearch() {
             return response.json()
         })
         .then(function (data) {
-            console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let recipeListEl = document.createElement('li');
                 recipeListEl.setAttribute("draggable", true);
@@ -74,7 +49,6 @@ function recipeSearch() {
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
             makeEventListeners()
-            makeIngredientEventListeners()
         })
 }
 
@@ -112,7 +86,7 @@ function getRecipeIngredients(e) {
                 })
             }
         })
-
+    getShoppingListItems();
 }
 
 let pantryStorage = [];
@@ -130,9 +104,6 @@ function addPantryItem() {
 myPantryButton.addEventListener("click", addPantryItem)
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
-
-
-
 
 
 
