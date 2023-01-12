@@ -1,3 +1,25 @@
+:root {
+  --yellow: #f7e59b;
+  --white: #eae4d9;
+  --darkblue: #36579a;
+  --lightblue: #83b3e4;
+  --brown: #413738;
+  font-family: "Inconsolata", monospace;
+  font-family: "Shadows Into Light", cursive;
+}
+
+body {
+  background-color: var(--lightblue);
+}
+
+h1 {
+  font-family: "Inconsolata", monospace;
+}
+
+h2 {
+  color: var(--darkblue);
+}
+
 #titleBox {
   text-align: center;
 }
@@ -10,6 +32,22 @@
 }
 .dayOfWeek {
   border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  color: var(--brown);
+}
+
+#recipeContainer {
+  text-align: center;
+  border: 2px solid var(--brown);
+  box-shadow: 5px 5px 5px var(--brown);
+  padding: 20px;
+  width: 20%;
+  background-color: var(--white);
+}
+.dayOfWeek {
+  border: 2px solid var(--brown);
   margin: 20px;
   padding: 20px;
 }
@@ -35,6 +73,21 @@ main {
   font-size: medium;
   font-display: bold;
 }
+#userWeek {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border: 2px solid var(--brown);
+  box-shadow: 5px 5px 5px var(--brown);
+  background-color: var(--white);
+}
+#thePantry {
+  border: 2px solid var(--brown);
+  width: 20%;
+  box-shadow: 5px 5px 5px var(--brown);
+  text-align: center;
+  background-color: var(--white);
+}
 .weekDay {
   text-align: center;
 }
@@ -46,4 +99,69 @@ main {
   box-shadow: 5px 5px 5px black;
   padding: 20px;
   margin: 10px;
+}
+#theShoppingListDiv {
+  border: 2px solid var(--brown);
+  box-shadow: 5px 5px 5px var(--brown);
+  padding: 20px;
+  margin: 10px;
+}
+
+button {
+  background-color: var(--brown);
+  color: var(--lightblue);
+  font-family: "Inconsolata", monospace;
+}
+
+#daysSubmit {
+  background-color: var(--brown);
+  color: var(--lightblue);
+}
+
+#mealSubmit {
+  background-color: var(--brown);
+  color: var(--lightblue);
+}
+
+input {
+  background-color: var(--yellow);
+  color: var(--darkblue);
+  font-family: "Inconsolata", monospace;
+}
+
+select {
+  background-color: var(--yellow);
+  color: var(--darkblue);
+}
+
+#mondayDiv {
+  background-color: var(--yellow);
+}
+
+#tuesdayDiv {
+  background-color: var(--yellow);
+}
+
+#wednesdayDiv {
+  background-color: var(--yellow);
+}
+
+#thursdayDiv {
+  background-color: var(--yellow);
+}
+
+#fridayDiv {
+  background-color: var(--yellow);
+}
+
+#saturdayDiv {
+  background-color: var(--yellow);
+}
+
+#sundayDiv {
+  background-color: var(--yellow);
+}
+
+#theShoppingListDiv {
+  background-color: var(--yellow);
 }
