@@ -26,18 +26,18 @@ var modal = document.getElementById("myModal");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-  
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
     modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
     if (event.target == modal) {
-      modal.style.display = "none";
+        modal.style.display = "none";
     }
-  }
+}
 
 // *****************************************
 
@@ -153,7 +153,7 @@ function getRecipeIngredients(e) {
         })
 }
 
-let pantryStorage = [];
+
 
 function addPantryItem() {
     let newPantryItem = document.createElement('li');
@@ -192,43 +192,6 @@ then it will allow you to either go back or select it and put it in your meal pl
 
 // TODO need to be able to access the recipe with instructions from the meal plan section
 
-
-// ***************************************
-// function getIngredients() {
-//     let requestUrl = "https://api.spoonacular.com/recipes/716429/information?apiKey=86559794390c4f9c8a3c8bba07f2d054&includeNutrition=false"
-//     fetch(requestUrl)
-//         .then(function (response) {
-//             return response.json();
-//         })
-//         .then(function (data) {
-//             console.log(data)
-//             let mealName = document.createElement('li');
-//             mealName.innerText = data.title;
-//             mealPlanUl.appendChild(mealName);
-//             let ingredientArray = [];
-//             for (let i = 0; i < data.extendedIngredients.length; i++) {
-//                 // need to create arrays for the Pantry and the shopping list so that I can compare values in each array. After they are compared, they are then pushed to the Ul as items
-//                 let ingredientName = data.extendedIngredients[i].name;
-//                 ingredientArray.push(ingredientName);
-//                 // appending the ingredient to the HTML
-//                 let ingredientItem = document.createElement("li");
-//                 ingredientItem.textContent = ingredientArray[i];
-//                 shoppingListUl.appendChild(ingredientItem);
-
-//                 // This should be changed to be on click on the ingredient item
-//                 let foodImg = document.createElement('img');
-//                 let foodImgName = data.extendedIngredients[i].image;
-//                 foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
-//                 shoppingListUl.appendChild(foodImg);
-
-//             }
-//         })
-// }
-
-// shoppingListButton.addEventListener("click", getIngredients)
-
-// ******************************************
-// ******************************************
 // TODO clear the input field after entering item
 // TODO get Local Storage for pantry items to display on load
 // TODO Add values & units for 
