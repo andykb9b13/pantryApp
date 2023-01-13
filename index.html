@@ -20,7 +20,7 @@
         <div id="weatherButtonDiv">
             <h3><span id="weatherTextDisplay"></span></h3>
             <input type="text" id="locationSearch">
-            <a href="#" role="button" id="locationSearchButton" class="contrast outline">Location</a>
+            <button role="button" id="locationSearchButton" class="contrast outline">Location</button>
         </div>
     </header>
     <main>
@@ -32,43 +32,13 @@
                 </header>
                 <div id="recipeSearchDiv">
                     <input type="text" id="recipeSearchInput">
-                    <!-- added search button (AK)-->
-                    <a href="#" role="button" id="recipeSearchButton" class="contrast outline">Search</a>
-                    <!-- added recipe box ul (AK) -->
-                    <ul id="recipeBoxUl" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+
+                    <button role="button" id="recipeSearchButton" class="contrast outline">Search</button>
+
+
                 </div>
             </div>
-            <!-- <div id="recipeDayofWeek">
-                <header>
-                    <h3>Day of the Week</h3>
-                </header>
-                <label for="days">Days of Week:</label>
-                <form action="" id="dayofWeekForm">
-                    <select name="days" id="dayDropDown">
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                    </select>
-                    <input type="submit" name="Submit" id="daysSubmit">
-            </div>
-            <div id="mealsPerDayDiv">
-                <header>
-                    <h3>Meals</h3>
-                </header>
-                <label for="meals">Meals per Day:</label>
-                <form action="">
-                    <select name="meals" id="mealsPerDay">
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                    </select>
-                    <input type="submit" name="Submit" id="mealSubmit">
-                </form>
-            </div> -->
+
             <div id="recipeInstructions">
                 <h2>Recipe Instructions</h2>
                 <ul id="recipeInstructionsUl"></ul>
@@ -156,7 +126,7 @@
                     <!-- added pantry ul (AK)-->
                     <ul id="myPantryUl"></ul>
                     <!-- added pantry button (AK) -->
-                    <a href="#" role="button" id="myPantryButton" class="outline contrast">Add to Pantry</a>
+                    <button role="button" id="myPantryButton" class="contrast outline">Add to Pantry</button>
                 </header>
             </div>
             <div id="theShoppingListDiv">

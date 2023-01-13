@@ -35,6 +35,10 @@ h2 {
     width: 30%;
 }
 
+#locationSearchButton {
+    width: 30%;
+}
+
 #titleBox {
     text-align: center;
     color: var(--brown);
