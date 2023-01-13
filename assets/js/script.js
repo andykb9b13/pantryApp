@@ -198,18 +198,6 @@ then it will allow you to either go back or select it and put it in your meal pl
 // TODO create areas to increase units or delete items from pantry
 // let pantryStorage = [];
 
-// function addPantryItem() {
-//     let newPantryItem = document.createElement('li')
-//     let newPantryItemText = pantryInput.value;
-//     newPantryItem.innerText = newPantryItemText;
-//     myPantryUl.appendChild(newPantryItem);
-//     pantryStorage.push(newPantryItemText);
-//     localStorage.setItem("pantry", JSON.stringify(pantryStorage));
-// }
-
-// myPantryButton.addEventListener("click", addPantryItem)
-
-
 // ******************************************************
 // GENERAL LIST OF THINGS TO DO
 /* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
