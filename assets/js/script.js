@@ -229,7 +229,7 @@ function fireModal() {
 
 function getLocation() {
     let locationSearch = document.getElementById("locationSearch").value;
-    let requestLocationURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" +locationSearch+ "&alias=NC HTTP/1.1";
+    let requestLocationURL = "https://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" +locationSearch+ "&alias=NC HTTP/1.1";
     fetch(requestLocationURL)
         .then(function (response) {
             return response.json()
@@ -245,10 +245,11 @@ function getLocation() {
         })
 }
 
+
 function getWeather(k) {
     var localekey = k;
     console.log("Local Key: ", localekey)
-    var requestWeatherURL = "http://dataservice.accuweather.com/currentconditions/v1/"+localekey+"?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true HTTP/1.1";
+    var requestWeatherURL = "https://dataservice.accuweather.com/currentconditions/v1/"+localekey+"?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true HTTP/1.1";
     fetch(requestWeatherURL)
         .then(function (response) {
             return response.json()
