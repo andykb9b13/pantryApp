@@ -24,10 +24,10 @@
         </div>
     </header>
     <main>
-        <div id="main-recipe-container">
+        <div id="main-pantry-container">
             <section id="pantry-shopping-section">
                 <div id="pantryAndList">
-                    <div id="thePantry">
+                    <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <header>
                             <h2>The Pantry</h2>
                             <!-- added pantry input (AK)-->
@@ -51,10 +51,6 @@
                     </div>
             </section>
         </div>
-
-
-
-
         <div id="main-plan-container">
             <section name="recipe-section">
                 <div id="recipeContainer">
@@ -76,7 +72,6 @@
                 </div>
             </section>
             <section id="weekly-plan-section">
-
                 <div id="userWeek">
                     <h2>Weekly Plan</h2>
                     <div class="dayOfWeek" id="mondayDiv">
@@ -145,8 +140,6 @@
                     </div>
                 </div>
             </section>
-
-
         </div>
     </main>
     <!-- The Modal -->

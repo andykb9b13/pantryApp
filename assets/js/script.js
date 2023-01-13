@@ -78,6 +78,7 @@ function getRecipeInstructions(e) {
             for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
                 console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
                 let instructionStep = document.createElement("li");
+                instructionStep.style.listStyle = "none";
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
                 recipeInstructionsUl.appendChild(instructionStep);
                 recipeInstructionsUl.style.listStyle = "none";
@@ -141,13 +142,16 @@ function getRecipeIngredients(e) {
 
                 ingredientArray.push(ingredientName);
                 ingredientItem.textContent = ingredientArray[i];
+                ingredientItem.style.listStyle = "none";
+                ingredientItem.setAttribute("draggable", true);
+                ingredientItem.setAttribute("ondragstart", "drag(event)")
                 shoppingListUl.appendChild(ingredientItem);
-                let foodImg = document.createElement('img');
-                let foodImgName = data.extendedIngredients[i].image;
-                foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
-                ingredientItem.appendChild(foodImg);
+                // let foodImg = document.createElement('img');
+                // let foodImgName = data.extendedIngredients[i].image;
+                // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
+                // ingredientItem.appendChild(foodImg);
                 ingredientItem.addEventListener("click", function () {
-                    myPantryUl.appendChild(ingredientItem);
+                    // myPantryUl.appendChild(ingredientItem);
                     ingredientItem.setAttribute("class", "pantryItem");
                     ingredientItem.removeAttribute("class", "shoppingListItem");
                 })
