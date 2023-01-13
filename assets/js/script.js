@@ -104,11 +104,10 @@ function recipeSearch() {
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
 
-
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
                 recipeImg.style.width = "75%";
-                recipeBoxUl.appendChild(recipeImg);
+                recipeListEl.appendChild(recipeImg);
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);

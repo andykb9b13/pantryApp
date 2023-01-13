@@ -6,16 +6,30 @@
     --brown: #332822;
     --border-radius: 15px;
     --font-family: 'Shadows Into Light', cursive;
-    /* font-family: 'Inconsolata', monospace; */
-    /* font-family: 'Shadows Into Light', cursive; */
+    --box-shadow: 1px 1px 20px 6px var(--brown);
+    --text-shadow: 1px 1px 5px var(--brown);
+    --border:
+        /* font-family: 'Inconsolata', monospace; */
+        /* font-family: 'Shadows Into Light', cursive; */
 }
 
 body {
     background-image: url("https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-    text-shadow: 1px 1px 5px var(--brown);
+    text-shadow: var(--text-shadow);
     background-size: 100%;
     background-repeat: repeat-y;
     font-family: var(--font-family);
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#titleBox {
+    text-align: center;
+    color: var(--brown);
 }
 
 h1 {
@@ -23,12 +37,19 @@ h1 {
     color: var(--brown);
     font-size: 5em;
     color: var(--white);
-    text-shadow: 1px 1px 5px var(--brown);
+    text-shadow: var(--text-shadow)
 }
 
 h2 {
     color: var(--white);
     font-size: 2em;
+}
+
+input {
+    background-color: var(--yellow);
+    color: var(--white);
+    font-family: 'Inconsolata', monospace;
+    text-shadow: var(--text-shadow);
 }
 
 #locationSearch {
@@ -39,33 +60,43 @@ h2 {
     width: 30%;
 }
 
-#titleBox {
-    text-align: center;
-    color: var(--brown);
-}
-
-p {
-    color: var(--red);
-}
-
 li,
-p {
+p,
+button {
     font-size: 1.3em;
+}
+
+button {
+    background-color: var(--brown);
+    color: var(--lightblue);
+    font-family: 'Inconsolata', monospace;
+    margin-bottom: 15px;
+    width: 80%;
 }
 
 #recipeContainer {
     text-align: center;
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
+    border: var(--border);
+    box-shadow: var(--box-shadow);
     padding: 20px;
-    width: 30%;
+    /* width: 30%; */
     height: 50%;
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
 }
 
+#userWeek {
+    display: flex;
+    flex-direction: column;
+    /* width: 30%; */
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    background-color: var(--lightblue);
+    border-radius: var(--border-radius);
+}
+
 .dayOfWeek {
-    border: 2px solid var(--brown);
+    border: var(--border);
     margin: 20px;
     padding: 20px;
     background-color: var(--yellow);
@@ -73,60 +104,31 @@ p {
 
 }
 
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.weekDay {
+    text-align: center;
 }
 
-#userWeek {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
-    background-color: var(--lightblue);
-    border-radius: var(--border-radius);
-}
-
-#pantryAndList {
+/* #pantryAndList {
     width: auto;
-}
+} */
 
 #thePantry,
 #theShoppingListDiv {
-    border: 2px solid var(--brown);
+    border: var(--border);
     height: 50%;
-    box-shadow: 5px 5px 5px var(--brown);
+    box-shadow: var(--box-shadow);
     text-align: center;
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
+    margin-bottom: 20px;
 }
 
 #pantryInput {
     width: 80%;
 }
 
-.weekDay {
-    text-align: center;
-}
-
 #shoppingListTitle {
     text-align: center;
-}
-
-/* #theShoppingListDiv {
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
-    padding: 20px;
-    margin: 10px;
-} */
-
-a {
-    background-color: var(--brown);
-    color: var(--lightblue);
-    font-family: 'Inconsolata', monospace;
-    margin-bottom: 15px;
 }
 
 #daysSubmit,
@@ -135,19 +137,9 @@ a {
     color: var(--lightblue);
 }
 
-input {
-    background-color: var(--yellow);
-    color: var(--white);
-    font-family: 'Inconsolata', monospace;
-}
-
 select {
     background-color: var(--yellow);
     color: var(--red);
-}
-
-#theShoppingListDiv {
-    background-color: var(--yellow);
 }
 
 /* The Modal (background) */
