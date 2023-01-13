@@ -14,8 +14,10 @@ const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 let searchedRecipes = [];
 let pantryArr = [];
 const scheduledMeal = document.getElementById("selectedMealSpot");
-const dayOfWeekBtn = document.getElementById("daysSubmit")
-const locationSearchButton = document.getElementById("")
+const dayOfWeekBtn = document.getElementById("daysSubmit");
+const locationSearchButton = document.getElementById("locationSearchButton");
+const displayWeatherText = document.getElementById("weatherTextDisplay");
+
 
 // ****************************************************************
 
@@ -194,19 +196,7 @@ then it will allow you to either go back or select it and put it in your meal pl
 // TODO get Local Storage for pantry items to display on load
 // TODO Add values & units for 
 // TODO create areas to increase units or delete items from pantry
-let pantryStorage = [];
-
-function addPantryItem() {
-    let newPantryItem = document.createElement('li')
-    let newPantryItemText = pantryInput.value;
-    newPantryItem.innerText = newPantryItemText;
-    myPantryUl.appendChild(newPantryItem);
-    pantryStorage.push(newPantryItemText);
-    localStorage.setItem("pantry", JSON.stringify(pantryStorage));
-}
-
-myPantryButton.addEventListener("click", addPantryItem)
-
+// let pantryStorage = [];
 
 // ******************************************************
 // GENERAL LIST OF THINGS TO DO
@@ -238,16 +228,41 @@ function fireModal() {
 }
 
 function getLocation() {
-    let locationSearch = getElementById("locationSearch").value;
-    let requestLocationURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" + locationSearch + "&alias=NC HTTP/1.1";
+    let locationSearch = document.getElementById("locationSearch").value;
+    let requestLocationURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" +locationSearch+ "&alias=NC HTTP/1.1";
     fetch(requestLocationURL)
         .then(function (response) {
             return response.json()
         })
-        .then(function (data) {
-            console.log(data);
+        .then(function(data){
+            console.log("Location: ", data);
+            var weatherData = data;
+            var weatherDataObject = weatherData[0];
+            var weatherDataKey = weatherDataObject.Key;
+            console.log(weatherDataKey);
+            var locationKey = weatherDataKey;
+            getWeather(locationKey);
         })
-
-
-
 }
+
+function getWeather(k) {
+    var localekey = k;
+    console.log("Local Key: ", localekey)
+    var requestWeatherURL = "http://dataservice.accuweather.com/currentconditions/v1/"+localekey+"?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true HTTP/1.1";
+    fetch(requestWeatherURL)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function(data){
+            console.log("Weather: ", data);
+            var weatherData1 = data[0];
+            console.log(weatherData1);
+            var weatherText = weatherData1.WeatherText;
+            console.log(weatherText);
+            displayWeatherText.textContent = weatherText;
+
+        })
+}
+
+locationSearchButton.addEventListener("click", getLocation);
+
