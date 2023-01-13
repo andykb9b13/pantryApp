@@ -102,7 +102,7 @@ button {
     border: var(--border);
     box-shadow: var(--box-shadow);
     padding: 20px;
-    width: 60vw;
+    width: 40vw;
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
 }
@@ -144,7 +144,7 @@ button {
 #theShoppingListDiv {
     border: var(--border);
     height: 50%;
-    width: 40vw;
+    width: 60vw;
     box-shadow: var(--box-shadow);
     text-align: center;
     background-color: var(--lightblue);
