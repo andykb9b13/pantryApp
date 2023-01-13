@@ -61,9 +61,9 @@ h2:nth-of-type(1) {
 
 input {
     background-color: var(--yellow);
-    color: var(--white);
+    color: var(--red);
     font-family: 'Inconsolata', monospace;
-    text-shadow: var(--text-shadow);
+    text-shadow: 1px 1px 1px var(--brown);
 }
 
 #locationSearch,
@@ -119,6 +119,7 @@ button {
 
 #userWeek h2 {
     text-align: center;
+    text-shadow: var(--text-shadow)
 }
 
 .dayOfWeek {

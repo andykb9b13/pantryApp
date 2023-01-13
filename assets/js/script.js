@@ -98,16 +98,19 @@ function recipeSearch() {
             for (let i = 0; i < data.results.length; i++) {
                 let recipeListEl = document.createElement('li');
                 recipeListEl.setAttribute("draggable", true);
+                recipeListEl.setAttribute("ondragstart", "drag(event)")
                 recipeListEl.innerText = data.results[i].title;
+                // recipeListEl.style.color = "var(--red)";
                 recipeBoxUl.appendChild(recipeListEl);
-                recipeBoxUl.style.listStyle = "none";
+                recipeListEl.style.listStyle = "none";
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
 
-                let recipeImg = document.createElement('img');
-                recipeImg.src = data.results[i].image;
-                recipeImg.style.width = "75%";
-                recipeListEl.appendChild(recipeImg);
+                // let recipeImg = document.createElement('img');
+                // recipeImg.src = data.results[i].image;
+                // recipeImg.style.width = "50%";
+                // recipeImg.style.marginLeft = "5%"
+                // recipeListEl.appendChild(recipeImg);
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
@@ -168,7 +171,19 @@ myPantryButton.addEventListener("click", addPantryItem)
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
 
 
 // ******************************************************
@@ -212,19 +227,19 @@ then it will allow you to either go back or select it and put it in your meal pl
 
 // TODO need to be able to access the recipe with instructions from the meal plan section
 
-function scheduleRecipe(e) {
-    fireModal();
-    var selectedRecipe = e.target;
-    var recipeName = document.createElement('li');
-    recipeName.innerText = selectedRecipe.innerText;
-    scheduledMeal.appendChild(recipeName);
+// function scheduleRecipe(e) {
+//     fireModal();
+//     var selectedRecipe = e.target;
+//     var recipeName = document.createElement('li');
+//     recipeName.innerText = selectedRecipe.innerText;
+//     scheduledMeal.appendChild(recipeName);
 
 
-}
+// }
 
-function fireModal() {
-    modal.style.display = "block";
-}
+// function fireModal() {
+//     modal.style.display = "block";
+// }
 
 function getLocation() {
     let locationSearch = document.getElementById("locationSearch").value;
