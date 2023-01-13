@@ -1,23 +1,24 @@
 :root {
-  --yellow: #f7e59b;
-  --white: #eae4d9;
-  --darkblue: #36579a;
-  --lightblue: #83b3e4;
-  --brown: #413738;
+  --yellow: #bd8c55;
+  --white: #fff8eb;
+  --red: #a92a2c;
+  --lightblue: #587b85;
+  --brown: #332822;
   font-family: "Inconsolata", monospace;
   font-family: "Shadows Into Light", cursive;
 }
 
 body {
-  background-color: var(--lightblue);
+  background-image: url("https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
 }
 
 h1 {
   font-family: "Inconsolata", monospace;
+  color: var(--brown);
 }
 
 h2 {
-  color: var(--darkblue);
+  color: var(--red);
 }
 
 #titleBox {
@@ -38,6 +39,10 @@ h2 {
   color: var(--brown);
 }
 
+p {
+  color: var(--red);
+}
+
 #recipeContainer {
   text-align: center;
   border: 2px solid var(--brown);
@@ -50,6 +55,7 @@ h2 {
   border: 2px solid var(--brown);
   margin: 20px;
   padding: 20px;
+  background-color: var(--yellow);
 }
 main {
   display: flex;
@@ -113,11 +119,7 @@ button {
   font-family: "Inconsolata", monospace;
 }
 
-#daysSubmit {
-  background-color: var(--brown);
-  color: var(--lightblue);
-}
-
+#daysSubmit,
 #mealSubmit {
   background-color: var(--brown);
   color: var(--lightblue);
@@ -125,43 +127,53 @@ button {
 
 input {
   background-color: var(--yellow);
-  color: var(--darkblue);
+  color: var(--red);
   font-family: "Inconsolata", monospace;
 }
 
 select {
   background-color: var(--yellow);
-  color: var(--darkblue);
-}
-
-#mondayDiv {
-  background-color: var(--yellow);
-}
-
-#tuesdayDiv {
-  background-color: var(--yellow);
-}
-
-#wednesdayDiv {
-  background-color: var(--yellow);
-}
-
-#thursdayDiv {
-  background-color: var(--yellow);
-}
-
-#fridayDiv {
-  background-color: var(--yellow);
-}
-
-#saturdayDiv {
-  background-color: var(--yellow);
-}
-
-#sundayDiv {
-  background-color: var(--yellow);
+  color: var(--red);
 }
 
 #theShoppingListDiv {
   background-color: var(--yellow);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

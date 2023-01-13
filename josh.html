@@ -13,8 +13,10 @@
     <header id="titleBox">
         <h1>Weekly Meal Plan</h1>
         <h4>Today is <span id="dateinput">Date</span></h4>
-        <!-- DailyWeather (BB) -->
-        <div id="todayWeather" class= dailyWeather>Todays Weather:</div>
+        <div id="weatherButtonDiv">
+            <input type="text" id="locationSearch">
+            <button id="locationSearchButton">Location</button>
+        </div>
     </header>
     <main>
         <div id="recipeContainer">
@@ -72,6 +74,7 @@
                     <ul>
                        
                         <li>Dinner: <span></span></li>
+                    <span id="Monday"></span>
                     </ul>
                 </div>
             </div>
@@ -202,8 +205,35 @@
             </header>
         </div>
     </main>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="recipeDayofWeek">
+            <header>
+                <h3>Day of the Week</h3>
+            </header>
+            <label for="days">Days of Week:</label>
+            <form action="" id="dayofWeekForm">
+                <select name="days" id="dayDropDown">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                <input type="submit" name="Submit" id="daysSubmit">
+        </div>
+    </div>
+
+    </div>
     <!-- Added script (AK) -->
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/script2.js"></script>
 </body>
 
 </html>
