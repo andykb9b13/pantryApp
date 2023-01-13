@@ -1,5 +1,6 @@
 // Spoonacular API key 86559794390c4f9c8a3c8bba07f2d054
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
+//Accuweather API Key VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER
 
 const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
@@ -8,6 +9,29 @@ const myPantryButton = document.getElementById("myPantryButton");
 const recipeSearchButton = document.getElementById("recipeSearchButton");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
+const scheduledMeal = document.getElementById("selectedMealSpot");
+const dayOfWeekBtn = document.getElementById("daysSubmit")
+const locationSearchButton = document.getElementById("")
+
+// ****************************************************************
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 
 // *****************************************
 
@@ -20,6 +44,7 @@ function makeEventListeners() {
         console.log("recipe ", i + 1, searchedRecipes[i])
         searchedRecipes[i].addEventListener("click", function (e) {
             getRecipeIngredients(e)
+            scheduleRecipe(e)
             // console.log(e.target)
         })
 
@@ -163,3 +188,32 @@ the value (i.e. cups, tbsp, etc.).*/
 then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
 
 // TODO need to be able to access the recipe with instructions from the meal plan section
+
+function scheduleRecipe(e) {
+    fireModal();
+    var selectedRecipe = e.target;
+    var recipeName = document.createElement('li');
+    recipeName.innerText = selectedRecipe.innerText;
+    scheduledMeal.appendChild(recipeName);
+
+
+}
+
+function fireModal() {
+    modal.style.display = "block";
+}
+
+function getLocation() {
+    let locationSearch = getElementById("locationSearch").value;
+    let requestLocationURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" +locationSearch+ "&alias=NC HTTP/1.1";
+    fetch(requestLocationURL)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function(data){
+            console.log(data);
+        })
+
+
+
+}
