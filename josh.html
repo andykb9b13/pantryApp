@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets\css\style.css">
     <title>The Pantry</title>
 </head>
@@ -12,10 +16,10 @@
 <body>
     <header id="titleBox">
         <h1>Weekly Meal Plan</h1>
-        <h4>Today is <span id="dateinput">Date</span></h4>
+        <h2>Today is <span id="dateinput">Date</span></h2>
         <div id="weatherButtonDiv">
             <input type="text" id="locationSearch">
-            <button id="locationSearchButton">Location</button>
+            <a href="#" role="button" id="locationSearchButton" class="contrast outline">Location</a>
         </div>
     </header>
     <main>
@@ -28,12 +32,12 @@
                 <div id="recipeSearchDiv">
                     <input type="text" id="recipeSearchInput">
                     <!-- added search button (AK)-->
-                    <button id="recipeSearchButton">Search</button>
+                    <a href="#" role="button" id="recipeSearchButton" class="contrast outline">Search</a>
                     <!-- added recipe box ul (AK) -->
                     <ul id="recipeBoxUl" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
                 </div>
             </div>
-            <div id="recipeDayofWeek">
+            <!-- <div id="recipeDayofWeek">
                 <header>
                     <h3>Day of the Week</h3>
                 </header>
@@ -63,7 +67,7 @@
                     </select>
                     <input type="submit" name="Submit" id="mealSubmit">
                 </form>
-            </div>
+            </div> -->
             <div id="recipeInstructions">
                 <h2>Recipe Instructions</h2>
                 <ul id="recipeInstructionsUl"></ul>
@@ -79,14 +83,7 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">Breakfast:
-                            <span></span>
-                        </li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    <span id="Monday"></span>
-                    </ul>
+
                 </div>
             </div>
             <div class="dayOfWeek" id="tuesdayDiv">
@@ -96,11 +93,6 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    </ul>
                 </div>
             </div>
             <div class="dayOfWeek" id="wednesdayDiv">
@@ -110,11 +102,6 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    </ul>
                 </div>
             </div>
             <div class="dayOfWeek" id="thursdayDiv">
@@ -124,11 +111,6 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    </ul>
                 </div>
             </div>
             <div class="dayOfWeek" id="fridayDiv">
@@ -138,11 +120,6 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    </ul>
                 </div>
             </div>
             <div class="dayOfWeek" id="saturdayDiv">
@@ -152,11 +129,6 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    </ul>
                 </div>
             </div>
             <div class="dayOfWeek" id="sundayDiv">
@@ -166,15 +138,26 @@
                     </header>
                 </div>
                 <div class="threeSquareMeals">
-                    <ul>
-                        <li>Breakfast: <span></span></li>
-                        <li>Lunch: <span></span></li>
-                        <li>Dinner: <span></span></li>
-                    </ul>
                 </div>
             </div>
-            <!-- </section>
-        <section name="shopping-list-section"> -->
+
+
+        </div>
+        </div>
+        <!-- </section>
+        <section name="pantry-section"> -->
+        <div id="pantryAndList">
+            <div id="thePantry">
+                <header>
+                    <h2>The Pantry</h2>
+                    <!-- added pantry input (AK)-->
+                    <input id="pantryInput" type="text">
+                    <!-- added pantry ul (AK)-->
+                    <ul id="myPantryUl"></ul>
+                    <!-- added pantry button (AK) -->
+                    <a href="#" role="button" id="myPantryButton" class="outline contrast">Add to Pantry</a>
+                </header>
+            </div>
             <div id="theShoppingListDiv">
                 <div>
                     <header id="shoppingListTitle">
@@ -185,48 +168,33 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
-        </div>
-        <!-- </section>
-        <section name="pantry-section"> -->
-        <div id="thePantry">
-            <header>
-                <h2>The Pantry</h2>
-                <!-- added pantry input (AK)-->
-                <input id="pantryInput" type="text">
-                <!-- added pantry ul (AK)-->
-                <ul id="myPantryUl"></ul>
-                <!-- added pantry button (AK) -->
-                <button id="myPantryButton">Add to Pantry</button>
-            </header>
-        </div>
-        <!-- </section> -->
+            <!-- </section> -->
     </main>
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="recipeDayofWeek">
-            <header>
-                <h3>Day of the Week</h3>
-            </header>
-            <label for="days">Days of Week:</label>
-            <form action="" id="dayofWeekForm">
-                <select name="days" id="dayDropDown">
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                    <option value="Saturday">Saturday</option>
-                    <option value="Sunday">Sunday</option>
-                </select>
-                <input type="submit" name="Submit" id="daysSubmit">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="recipeDayofWeek">
+                <header>
+                    <h3>Day of the Week</h3>
+                </header>
+                <label for="days">Days of Week:</label>
+                <form action="" id="dayofWeekForm">
+                    <select name="days" id="dayDropDown">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                    <input type="submit" name="Submit" id="daysSubmit">
+            </div>
         </div>
-    </div>
 
     </div>
     <!-- Added script (AK) -->
