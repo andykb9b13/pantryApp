@@ -9,23 +9,56 @@ const myPantryButton = document.getElementById("myPantryButton");
 const recipeSearchButton = document.getElementById("recipeSearchButton");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
+const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 let searchedRecipes = [];
 let pantryArr = [];
 
 // *****************************************
 
-function makeEventListeners() {
+function makeIngredientEventListeners() {
     for (let i = 0; i < searchedRecipes.length; i++) {
         console.log("recipe ", i + 1, searchedRecipes[i])
         searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeIngredients(e)
-            // console.log(e.target)
+            getRecipeIngredients(e);
         })
 
     }
 }
 
+function makeInstructonEventListeners() {
+    for (let i = 0; i < searchedRecipes.length; i++) {
+        searchedRecipes[i].addEventListener("click", function (e) {
+            getRecipeInstructions(e);
+        })
+
+    }
+}
+
+
+function getRecipeInstructions(e) {
+    recipeInstructionsUl.innerHTML = "";
+    let chosenRecipe = e.target.id
+    console.log(chosenRecipe);
+    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
+            for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
+                console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
+                let instructionStep = document.createElement("li");
+                instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
+                recipeInstructionsUl.appendChild(instructionStep);
+                recipeInstructionsUl.style.listStyle = "none";
+            }
+        })
+}
+
 function recipeSearch() {
+    recipeInstructionsUl.innerHTML = "";
+    recipeBoxUl.innerHTML = ""
     let searchInput = document.getElementById("recipeSearchInput").value;
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
@@ -38,8 +71,10 @@ function recipeSearch() {
                 recipeListEl.setAttribute("draggable", true);
                 recipeListEl.innerText = data.results[i].title;
                 recipeBoxUl.appendChild(recipeListEl);
+                recipeBoxUl.style.listStyle = "none";
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
+
 
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
@@ -48,7 +83,8 @@ function recipeSearch() {
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
-            makeEventListeners()
+            makeIngredientEventListeners();
+            makeInstructonEventListeners();
         })
 }
 
@@ -86,7 +122,6 @@ function getRecipeIngredients(e) {
                 })
             }
         })
-    getShoppingListItems();
 }
 
 let pantryStorage = [];
