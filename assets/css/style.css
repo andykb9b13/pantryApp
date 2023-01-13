@@ -110,11 +110,15 @@ button {
 #userWeek {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 40vw;
     border: var(--border);
     box-shadow: var(--box-shadow);
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
+}
+
+#userWeek h2 {
+    text-align: center;
 }
 
 .dayOfWeek {
@@ -134,11 +138,12 @@ button {
     width: auto;
 } */
 
+
 #thePantry,
 #theShoppingListDiv {
     border: var(--border);
     height: 50%;
-    width: 300px;
+    width: 40vw;
     box-shadow: var(--box-shadow);
     text-align: center;
     background-color: var(--lightblue);
