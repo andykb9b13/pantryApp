@@ -87,7 +87,7 @@ function getRecipeInstructions(e) {
 
 function recipeSearch() {
     recipeInstructionsUl.innerHTML = "";
-    recipeBoxUl.innerHTML = ""
+    recipeBoxUl.innerHTML = "";
     let searchInput = document.getElementById("recipeSearchInput").value;
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
@@ -229,12 +229,12 @@ function fireModal() {
 
 function getLocation() {
     let locationSearch = document.getElementById("locationSearch").value;
-    let requestLocationURL = "https://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" +locationSearch+ "&alias=NC HTTP/1.1";
+    let requestLocationURL = "https://dataservice.accuweather.com/locations/v1/cities/search?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&q=" + locationSearch + "&alias=NC HTTP/1.1";
     fetch(requestLocationURL)
         .then(function (response) {
             return response.json()
         })
-        .then(function(data){
+        .then(function (data) {
             console.log("Location: ", data);
             var weatherData = data;
             var weatherDataObject = weatherData[0];
@@ -249,12 +249,12 @@ function getLocation() {
 function getWeather(k) {
     var localekey = k;
     console.log("Local Key: ", localekey)
-    var requestWeatherURL = "https://dataservice.accuweather.com/currentconditions/v1/"+localekey+"?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true HTTP/1.1";
+    var requestWeatherURL = "https://dataservice.accuweather.com/currentconditions/v1/" + localekey + "?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true HTTP/1.1";
     fetch(requestWeatherURL)
         .then(function (response) {
             return response.json()
         })
-        .then(function(data){
+        .then(function (data) {
             console.log("Weather: ", data);
             var weatherData1 = data[0];
             console.log(weatherData1);
