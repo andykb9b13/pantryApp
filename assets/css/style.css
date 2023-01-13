@@ -23,13 +23,16 @@ body {
 
 main {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    padding-top: 0px;
 }
 
 #titleBox {
     text-align: center;
     color: var(--brown);
+    padding-bottom: 0px;
 }
 
 h1 {
@@ -37,12 +40,23 @@ h1 {
     color: var(--brown);
     font-size: 5em;
     color: var(--white);
-    text-shadow: var(--text-shadow)
+    text-shadow: var(--text-shadow);
+    margin-bottom: 0px;
 }
 
 h2 {
     color: var(--white);
     font-size: 2em;
+}
+
+h2:nth-of-type(1) {
+    margin-bottom: 0px;
+}
+
+#weatherButtonDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input {
@@ -52,12 +66,9 @@ input {
     text-shadow: var(--text-shadow);
 }
 
-#locationSearch {
-    width: 30%;
-}
-
+#locationSearch,
 #locationSearchButton {
-    width: 30%;
+    width: 60%;
 }
 
 li,
@@ -74,13 +85,24 @@ button {
     width: 80%;
 }
 
+#main-recipe-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+#main-plan-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 #recipeContainer {
     text-align: center;
     border: var(--border);
     box-shadow: var(--box-shadow);
     padding: 20px;
-    /* width: 30%; */
-    height: 50%;
+    width: 60vw;
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
 }
@@ -88,7 +110,7 @@ button {
 #userWeek {
     display: flex;
     flex-direction: column;
-    /* width: 30%; */
+    width: 400px;
     border: var(--border);
     box-shadow: var(--box-shadow);
     background-color: var(--lightblue);
@@ -116,6 +138,7 @@ button {
 #theShoppingListDiv {
     border: var(--border);
     height: 50%;
+    width: 300px;
     box-shadow: var(--box-shadow);
     text-align: center;
     background-color: var(--lightblue);
@@ -195,4 +218,12 @@ select {
 }
 
 /* *********** Responsive Design **************** */
-/* @media screen and (max-width: ) */
+@media screen and (max-width: 720px) {
+
+    #userWeek,
+    #recipeContainer,
+    #thePantry,
+    #theShoppingListDiv {
+        width: 80vw;
+    }
+}
