@@ -29,7 +29,7 @@ h2 {
   border: 2px solid black;
   box-shadow: 5px 5px 5px black;
   padding: 20px;
-  width: 20%;
+  /* width: 20%; */
 }
 .dayOfWeek {
   border: 2px solid black;
@@ -48,7 +48,7 @@ p {
   border: 2px solid var(--brown);
   box-shadow: 5px 5px 5px var(--brown);
   padding: 20px;
-  width: 20%;
+  /* width: 20%; */
   background-color: var(--white);
 }
 .dayOfWeek {
@@ -65,13 +65,13 @@ main {
 #userWeek {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  /* width: 30%; */
   border: 2px solid black;
   box-shadow: 5px 5px 5px black;
 }
 #thePantry {
   border: 2px solid black;
-  width: 20%;
+  /* width: 20%; */
   box-shadow: 5px 5px 5px black;
   text-align: center;
 }
@@ -82,14 +82,14 @@ main {
 #userWeek {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  /* width: 30%; */
   border: 2px solid var(--brown);
   box-shadow: 5px 5px 5px var(--brown);
   background-color: var(--white);
 }
 #thePantry {
   border: 2px solid var(--brown);
-  width: 20%;
+  /* width: 20%; */
   box-shadow: 5px 5px 5px var(--brown);
   text-align: center;
   background-color: var(--white);

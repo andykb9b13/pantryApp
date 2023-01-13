@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="assets\css\style.css">
     <title>The Pantry</title>
 </head>
@@ -19,7 +20,8 @@
         </div>
     </header>
     <main>
-        <div id="recipeContainer">
+        <div class="row">
+        <div class= "col s3 " id="recipeContainer">
             <div>
                 <header>
                     <h2>Recipe</h2>
@@ -61,7 +63,7 @@
                 <ul id="recipeInstructionsUl"></ul>
             </div>
         </div>
-        <div id="userWeek">
+        <div class= "col s6" id="userWeek">
             <div class="dayOfWeek" id="mondayDiv">
                 <div class="weekDay">
                     <header>
@@ -186,7 +188,7 @@
 
             </div>
         </div>
-        <div id="thePantry">
+        <div class= "col s3" id="thePantry">
             <header>
                 <h2>The Pantry</h2>
                 <!-- added pantry input (AK) -->
@@ -203,6 +205,7 @@
                 <!-- added pantry button (BB) -->
                 <button id="mySnacksButton">Add to Snacks and Staples</button>
             </header>
+        </div>
         </div>
     </main>
     <!-- The Modal -->
