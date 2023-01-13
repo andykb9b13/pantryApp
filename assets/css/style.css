@@ -1,28 +1,33 @@
 :root {
-    --yellow: #F7E59B;
-    --white: #eae4d9;
-    --darkblue: #36579A;
-    --lightblue: #83B3E4;
-    --brown: #413738;
+    --yellow: #BD8C55;
+    --white: #FFF8EB;
+    --red: #A92A2C;
+    --lightblue: #587B85;
+    --brown: #332822;
     font-family: 'Inconsolata', monospace;
     font-family: 'Shadows Into Light', cursive;
   }
 
   body{
-    background-color: var(--lightblue);
+    background-image: url("https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
   }
 
   h1{
     font-family: 'Inconsolata', monospace;
+    color: var(--brown);
   }
 
   h2{
-    color: var(--darkblue);
+    color: var(--red);
   }
 
 #titleBox {
     text-align: center;
     color: var(--brown);
+}
+
+p{
+    color: var(--red);
 }
 
 #recipeContainer{
@@ -37,6 +42,7 @@
     border: 2px solid var(--brown);
     margin: 20px;
     padding: 20px;
+    background-color: var(--yellow);
 }
 main {
     display: flex;
@@ -77,11 +83,7 @@ button{
     font-family: 'Inconsolata', monospace;
 }
 
-#daysSubmit{
-    background-color: var(--brown);
-    color: var(--lightblue);
-}
-
+#daysSubmit, 
 #mealSubmit{
     background-color: var(--brown);
     color: var(--lightblue);
@@ -89,43 +91,16 @@ button{
 
 input{
     background-color: var(--yellow);
-    color: var(--darkblue);
-    font-family: 'Inconsolata', monospace;
+    color: var(--red);
+        font-family: 'Inconsolata', monospace; 
 }
 
 select{
     background-color: var(--yellow);
-    color: var(--darkblue);
-}
-
-#mondayDiv{
-    background-color: var(--yellow);
-}
-
-#tuesdayDiv{
-    background-color: var(--yellow);
-}
-
-#wednesdayDiv{
-    background-color: var(--yellow);
-}
-
-#thursdayDiv{
-    background-color: var(--yellow);
-}
-
-#fridayDiv{
-    background-color: var(--yellow);
-}
-
-#saturdayDiv{
-    background-color: var(--yellow);
-}
-
-#sundayDiv{
-    background-color: var(--yellow);
+    color: var(--red);
 }
 
 #theShoppingListDiv{
     background-color: var(--yellow);
 }
+
