@@ -48,7 +48,8 @@ p {
     color: var(--red);
 }
 
-li {
+li,
+p {
     font-size: 1.3em;
 }
 
@@ -200,3 +201,6 @@ select {
 #weatherButtonDiv {
     padding: 25px;
 }
+
+/* *********** Responsive Design **************** */
+/* @media screen and (max-width: ) */
