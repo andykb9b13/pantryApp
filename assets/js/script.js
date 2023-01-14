@@ -34,6 +34,8 @@ const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 let searchedRecipes = [];
 let pantryArr = [];
+let shoppingList = [];
+let ingredientList = [];
 const scheduledMeal = document.getElementById("selectedMealSpot");
 const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
@@ -154,16 +156,23 @@ function getRecipeIngredients(e) {
                 ingredientItem.style.listStyle = "none";
                 ingredientItem.setAttribute("draggable", true);
                 ingredientItem.setAttribute("ondragstart", "drag(event)")
-                shoppingListUl.appendChild(ingredientItem);
+                // ingredientItem.addEventListener("click", function () {
+                //     myPantryUl.appendChild(ingredientItem);
+                //     ingredientItem.setAttribute("class", "pantryItem");
+                //     ingredientItem.removeAttribute("class", "shoppingListItem");
+                // })
+
+                ingredientList.push(ingredientName);
+                if (!pantryArr.includes(ingredientName)) {
+                    shoppingList.push(ingredientName)
+                    shoppingListUl.appendChild(ingredientItem);
+                }
+
                 // let foodImg = document.createElement('img');
                 // let foodImgName = data.extendedIngredients[i].image;
                 // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
                 // ingredientItem.appendChild(foodImg);
-                ingredientItem.addEventListener("click", function () {
-                    myPantryUl.appendChild(ingredientItem);
-                    ingredientItem.setAttribute("class", "pantryItem");
-                    ingredientItem.removeAttribute("class", "shoppingListItem");
-                })
+
             }
         })
 }
