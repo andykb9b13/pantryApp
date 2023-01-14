@@ -42,8 +42,19 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
-pantryArr = JSON.parse(localStorage.getItem("pantry"));
-setPantryDisplay()
+
+function checkPantry() {
+    pantryArr = JSON.parse(localStorage.getItem("pantry"));
+    if (pantryArr === null) {
+        pantryArr = [];
+        localStorage.setItem("pantry", JSON.stringify(pantryArr))
+    } else {
+        setPantryDisplay()
+    }
+}
+checkPantry()
+
+
 
 // ****************************************************************
 
