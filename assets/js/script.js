@@ -3,21 +3,47 @@
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
 //Accuweather API Key VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER
 
+// ******************************************************
+// GENERAL LIST OF THINGS TO DO
+// TODO clear the input field after entering item
+
+// TODO get Local Storage for pantry items to display on load
+
+// TODO Add values & units for 
+
+// TODO create areas to increase units or delete items from pantry
+
+/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
+data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
+the value (i.e. cups, tbsp, etc.).*/
+
+/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
+
+/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
+then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
+
+// TODO need to be able to access the recipe with instructions from the meal plan section
 const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
 const pantryInput = document.getElementById("pantryInput");
 const myPantryButton = document.getElementById("myPantryButton");
 const recipeSearchButton = document.getElementById("recipeSearchButton");
+const recipeSearchInput = document.getElementById("recipeSearchInput");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 let searchedRecipes = [];
 let pantryArr = [];
+let shoppingList = [];
+let ingredientList = [];
+let weeklyPlan = [];
 const scheduledMeal = document.getElementById("selectedMealSpot");
 const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
-
+const makeListButton = document.getElementById("makeListButton");
+pantryArr = JSON.parse(localStorage.getItem("pantry"));
+setPantryDisplay()
 
 // ****************************************************************
 
@@ -41,55 +67,32 @@ window.onclick = function (event) {
 
 // *****************************************
 
-function makeIngredientEventListeners() {
-    for (let i = 0; i < searchedRecipes.length; i++) {
-        console.log("recipe ", i + 1, searchedRecipes[i])
-        searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeIngredients(e);
-            getRecipeIngredients(e)
-            scheduleRecipe(e)
-            // console.log(e.target)
-        })
+// function makeEventListeners() {
+//     for (let i = 0; i < searchedRecipes.length; i++) {
+//         searchedRecipes[i].addEventListener("click", function (e) {
+//             getRecipeIngredients(e);
+//             // scheduleRecipe(e)
+//         })
+//         searchedRecipes[i].addEventListener("click", function (e) {
+//             getRecipeSteps(e);
+//         })
 
-    }
-}
+//     }
+// }
 
-function makeInstructonEventListeners() {
-    for (let i = 0; i < searchedRecipes.length; i++) {
-        searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeInstructions(e);
-        })
-
-    }
-}
-
-
-function getRecipeInstructions(e) {
-    recipeInstructionsUl.innerHTML = "";
-    let chosenRecipe = e.target.id
-    console.log(chosenRecipe);
-    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
-    fetch(requestUrl)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (data) {
-            console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
-            for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
-                console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
-                let instructionStep = document.createElement("li");
-                instructionStep.style.listStyle = "none";
-                instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
-                recipeInstructionsUl.appendChild(instructionStep);
-                recipeInstructionsUl.style.listStyle = "none";
-            }
-        })
+let dayDivs = document.querySelectorAll(".dayOfWeek");
+for (let day of dayDivs) {
+    day.addEventListener("click", function (e) {
+        getRecipeIngredients(e);
+        getRecipeSteps(e);
+    })
 }
 
 function recipeSearch() {
     recipeInstructionsUl.innerHTML = "";
     recipeBoxUl.innerHTML = "";
     let searchInput = document.getElementById("recipeSearchInput").value;
+    recipeSearchInput.value = "";
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
         .then(function (response) {
@@ -101,6 +104,7 @@ function recipeSearch() {
                 let recipeListEl = document.createElement('li');
                 recipeListEl.setAttribute("draggable", true);
                 recipeListEl.setAttribute("ondragstart", "drag(event)")
+                recipeListEl.setAttribute("data", "inSearch")
                 recipeListEl.innerText = data.results[i].title;
                 // recipeListEl.style.color = "var(--red)";
                 recipeBoxUl.appendChild(recipeListEl);
@@ -109,6 +113,9 @@ function recipeSearch() {
                 recipeListEl.style.color = "var(--white)"
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
+                recipeListEl.addEventListener("drop", function () {
+                    recipeListEl.setAttribute("data", "onDay")
+                })
 
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
@@ -120,19 +127,23 @@ function recipeSearch() {
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
-            makeIngredientEventListeners();
-            makeInstructonEventListeners();
+            // makeEventListeners();
         })
 }
 
 recipeSearchButton.addEventListener("click", recipeSearch)
+recipeSearchButton.addEventListener("keyup", function (event) {
 
-
+    if (event.code === "Enter") {
+        event.preventDefault();
+        recipeSearch
+    }
+})
 
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
-    let mealName = document.createElement('li');
-    mealName.innerText = e.target.innerText;
+    // let mealName = document.createElement('li');
+    // mealName.innerText = e.target.innerText;
     // mealPlanUl.appendChild(mealName);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
@@ -152,36 +163,98 @@ function getRecipeIngredients(e) {
                 ingredientItem.style.listStyle = "none";
                 ingredientItem.setAttribute("draggable", true);
                 ingredientItem.setAttribute("ondragstart", "drag(event)")
-                shoppingListUl.appendChild(ingredientItem);
+                ingredientItem.addEventListener("click", function () {
+                    pantryArr.push(ingredientName);
+                    myPantryUl.appendChild(ingredientItem);
+                    ingredientItem.setAttribute("class", "pantryItem");
+                    ingredientItem.removeAttribute("class", "shoppingListItem");
+                    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+                })
+
+                ingredientList.push(ingredientName);
+                if (!pantryArr.includes(ingredientName)) {
+                    shoppingList.push(ingredientName)
+                    shoppingListUl.appendChild(ingredientItem);
+                }
+
                 // let foodImg = document.createElement('img');
                 // let foodImgName = data.extendedIngredients[i].image;
                 // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
                 // ingredientItem.appendChild(foodImg);
-                ingredientItem.addEventListener("click", function () {
-                    myPantryUl.appendChild(ingredientItem);
-                    ingredientItem.setAttribute("class", "pantryItem");
-                    ingredientItem.removeAttribute("class", "shoppingListItem");
-                })
+
+            }
+        })
+}
+
+function getRecipeSteps(e) {
+    recipeInstructionsUl.innerHTML = "";
+    let chosenRecipe = e.target.id
+    console.log(chosenRecipe);
+    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            // console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
+            for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
+                let instructionStep = document.createElement("li");
+                instructionStep.style.listStyle = "none";
+                instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
+                recipeInstructionsUl.appendChild(instructionStep);
+                recipeInstructionsUl.style.listStyle = "none";
             }
         })
 }
 
 
+function setPantryDisplay() {
+    for (let item of pantryArr) {
+        let pantryItem = document.createElement('li');
+        pantryItem.setAttribute("class", "pantryItem");
+        pantryItem.setAttribute("id", item)
+        pantryItem.style.listStyle = "none";
+        pantryItem.innerText = item;
+        pantryItem.addEventListener("click", removePantryItem)
+        myPantryUl.appendChild(pantryItem);
+    }
+}
 
 function addPantryItem() {
     let newPantryItem = document.createElement('li');
     newPantryItem.setAttribute("class", "pantryItem");
+    newPantryItem.style.listStyle = "none";
     let newPantryItemText = pantryInput.value;
     newPantryItem.innerText = newPantryItemText;
     myPantryUl.appendChild(newPantryItem);
-    pantryStorage.push(newPantryItemText);
-    localStorage.setItem("pantry", JSON.stringify(pantryStorage));
+    pantryArr.push(newPantryItemText);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    newPantryItem.addEventListener("click", removePantryItem)
+    pantryInput.value = "";
 }
 
 myPantryButton.addEventListener("click", addPantryItem)
+pantryInput.addEventListener("keyup", function (event) {
+    if (event.code === "Enter") {
+        event.preventDefault();
+        addPantryItem()
+    }
+})
+
+function removePantryItem(e) {
+    console.log(e.target.id);
+    console.log(e);
+    let item = e.target.id;
+    let index = pantryArr.indexOf(item);
+    pantryArr.splice(index, 1);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    myPantryUl.removeChild(e.target);
+}
+
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
+// ************ Drag and Drop ********************
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
@@ -195,48 +268,6 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
 }
-
-
-// ******************************************************
-// GENERAL LIST OF THINGS TO DO
-// TODO clear the input field after entering item
-// TODO get Local Storage for pantry items to display on load
-// TODO Add values & units for 
-// TODO create areas to increase units or delete items from pantry
-
-/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
-data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
-the value (i.e. cups, tbsp, etc.).*/
-
-/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
-
-/* TODO be able to grab items from one area and drag them to another area? */
-
-/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
-then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
-
-// TODO need to be able to access the recipe with instructions from the meal plan section
-
-// TODO clear the input field after entering item
-// TODO get Local Storage for pantry items to display on load
-// TODO Add values & units for 
-// TODO create areas to increase units or delete items from pantry
-// let pantryStorage = [];
-
-// ******************************************************
-// GENERAL LIST OF THINGS TO DO
-/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
-data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
-the value (i.e. cups, tbsp, etc.).*/
-
-/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
-
-/* TODO be able to grab items from one area and drag them to another area? */
-
-/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
-then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
-
-// TODO need to be able to access the recipe with instructions from the meal plan section
 
 // function scheduleRecipe(e) {
 //     fireModal();
@@ -286,6 +317,10 @@ function getWeather(k) {
             var weatherText = weatherData1.WeatherText;
             console.log(weatherText);
             displayWeatherText.textContent = weatherText;
+            let icon = data[0].WeatherIcon;
+            let iconImg = document.createElement("img");
+            iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
+            displayWeatherText.appendChild(iconImg);
 
         })
 }
