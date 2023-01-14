@@ -78,6 +78,7 @@ function getRecipeInstructions(e) {
             for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
                 console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
                 let instructionStep = document.createElement("li");
+                instructionStep.style.listStyle = "none";
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
                 recipeInstructionsUl.appendChild(instructionStep);
                 recipeInstructionsUl.style.listStyle = "none";
@@ -95,20 +96,27 @@ function recipeSearch() {
             return response.json()
         })
         .then(function (data) {
+            console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let recipeListEl = document.createElement('li');
                 recipeListEl.setAttribute("draggable", true);
+                recipeListEl.setAttribute("ondragstart", "drag(event)")
                 recipeListEl.innerText = data.results[i].title;
+                // recipeListEl.style.color = "var(--red)";
                 recipeBoxUl.appendChild(recipeListEl);
-                recipeBoxUl.style.listStyle = "none";
+                recipeListEl.style.listStyle = "none";
+                recipeListEl.style.width = "85%"
+                recipeListEl.style.color = "var(--white)"
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
 
-
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
-                recipeImg.style.width = "75%";
-                recipeBoxUl.appendChild(recipeImg);
+                recipeImg.style.width = "30%";
+                recipeImg.style.marginLeft = "5%"
+                recipeImg.style.boxShadow = "1px 1px 1px 1px black"
+                recipeImg.style.borderRadius = "var(--border-radius)"
+                recipeListEl.appendChild(recipeImg);
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
@@ -118,6 +126,8 @@ function recipeSearch() {
 }
 
 recipeSearchButton.addEventListener("click", recipeSearch)
+
+
 
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
@@ -139,11 +149,14 @@ function getRecipeIngredients(e) {
 
                 ingredientArray.push(ingredientName);
                 ingredientItem.textContent = ingredientArray[i];
+                ingredientItem.style.listStyle = "none";
+                ingredientItem.setAttribute("draggable", true);
+                ingredientItem.setAttribute("ondragstart", "drag(event)")
                 shoppingListUl.appendChild(ingredientItem);
-                let foodImg = document.createElement('img');
-                let foodImgName = data.extendedIngredients[i].image;
-                foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
-                ingredientItem.appendChild(foodImg);
+                // let foodImg = document.createElement('img');
+                // let foodImgName = data.extendedIngredients[i].image;
+                // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
+                // ingredientItem.appendChild(foodImg);
                 ingredientItem.addEventListener("click", function () {
                     myPantryUl.appendChild(ingredientItem);
                     ingredientItem.setAttribute("class", "pantryItem");
@@ -169,7 +182,19 @@ myPantryButton.addEventListener("click", addPantryItem)
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
 
 
 // ******************************************************
@@ -213,19 +238,19 @@ then it will allow you to either go back or select it and put it in your meal pl
 
 // TODO need to be able to access the recipe with instructions from the meal plan section
 
-function scheduleRecipe(e) {
-    fireModal();
-    var selectedRecipe = e.target;
-    var recipeName = document.createElement('li');
-    recipeName.innerText = selectedRecipe.innerText;
-    scheduledMeal.appendChild(recipeName);
+// function scheduleRecipe(e) {
+//     fireModal();
+//     var selectedRecipe = e.target;
+//     var recipeName = document.createElement('li');
+//     recipeName.innerText = selectedRecipe.innerText;
+//     scheduledMeal.appendChild(recipeName);
 
 
-}
+// }
 
-function fireModal() {
-    modal.style.display = "block";
-}
+// function fireModal() {
+//     modal.style.display = "block";
+// }
 
 function getLocation() {
     let locationSearch = document.getElementById("locationSearch").value;

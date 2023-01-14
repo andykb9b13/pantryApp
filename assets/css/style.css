@@ -6,16 +6,33 @@
     --brown: #332822;
     --border-radius: 15px;
     --font-family: 'Shadows Into Light', cursive;
+    --box-shadow: 1px 1px 20px 6px var(--brown);
+    --text-shadow: 1px 1px 2px black;
+    --border: 1px solid var(--brown);
     /* font-family: 'Inconsolata', monospace; */
     /* font-family: 'Shadows Into Light', cursive; */
 }
 
 body {
     background-image: url("https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-    text-shadow: 1px 1px 5px var(--brown);
+    text-shadow: var(--text-shadow);
     background-size: 100%;
     background-repeat: repeat-y;
     font-family: var(--font-family);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 0px;
+}
+
+#titleBox {
+    text-align: center;
+    color: var(--brown);
+    padding-bottom: 0px;
 }
 
 h1 {
@@ -23,7 +40,8 @@ h1 {
     color: var(--brown);
     font-size: 5em;
     color: var(--white);
-    text-shadow: 1px 1px 5px var(--brown);
+    text-shadow: var(--text-shadow);
+    margin-bottom: 0px;
 }
 
 h2 {
@@ -31,40 +49,81 @@ h2 {
     font-size: 2em;
 }
 
-#locationSearch {
-    width: 30%;
+h2:nth-of-type(1) {
+    margin-bottom: 0px;
 }
 
-#locationSearchButton {
-    width: 30%;
+#weatherButtonDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#titleBox {
-    text-align: center;
-    color: var(--brown);
-}
-
-p {
+input {
+    background-color: var(--yellow);
     color: var(--red);
+    font-family: 'Inconsolata', monospace;
+    text-shadow: 1px 1px 1px var(--brown);
 }
 
-li {
+#locationSearch,
+#locationSearchButton {
+    width: 60%;
+}
+
+li,
+p,
+button {
     font-size: 1.3em;
+}
+
+button {
+    background-color: var(--brown);
+    color: var(--lightblue);
+    font-family: 'Inconsolata', monospace;
+    margin-bottom: 15px;
+    width: 80%;
+}
+
+#main-pantry-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+#main-plan-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #recipeContainer {
     text-align: center;
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
+    border: var(--border);
+    box-shadow: var(--box-shadow);
     padding: 20px;
-    width: 30%;
-    height: 50%;
+    width: 40vw;
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
 }
 
+#userWeek {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    background-color: var(--lightblue);
+    border-radius: var(--border-radius);
+}
+
+#userWeek h2 {
+    text-align: center;
+    text-shadow: var(--text-shadow)
+}
+
 .dayOfWeek {
-    border: 2px solid var(--brown);
+    border: var(--border);
     margin: 20px;
     padding: 20px;
     background-color: var(--yellow);
@@ -72,60 +131,33 @@ li {
 
 }
 
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.weekDay {
+    text-align: center;
 }
 
-#userWeek {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
-    background-color: var(--lightblue);
-    border-radius: var(--border-radius);
-}
-
-#pantryAndList {
+/* #pantryAndList {
     width: auto;
-}
+} */
+
 
 #thePantry,
 #theShoppingListDiv {
-    border: 2px solid var(--brown);
+    border: var(--border);
     height: 50%;
-    box-shadow: 5px 5px 5px var(--brown);
+    width: 60vw;
+    box-shadow: var(--box-shadow);
     text-align: center;
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
+    margin-bottom: 20px;
 }
 
 #pantryInput {
     width: 80%;
 }
 
-.weekDay {
-    text-align: center;
-}
-
 #shoppingListTitle {
     text-align: center;
-}
-
-/* #theShoppingListDiv {
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
-    padding: 20px;
-    margin: 10px;
-} */
-
-a {
-    background-color: var(--brown);
-    color: var(--lightblue);
-    font-family: 'Inconsolata', monospace;
-    margin-bottom: 15px;
 }
 
 #daysSubmit,
@@ -134,19 +166,9 @@ a {
     color: var(--lightblue);
 }
 
-input {
-    background-color: var(--yellow);
-    color: var(--white);
-    font-family: 'Inconsolata', monospace;
-}
-
 select {
     background-color: var(--yellow);
     color: var(--red);
-}
-
-#theShoppingListDiv {
-    background-color: var(--yellow);
 }
 
 /* The Modal (background) */
@@ -199,4 +221,15 @@ select {
 
 #weatherButtonDiv {
     padding: 25px;
+}
+
+/* *********** Responsive Design **************** */
+@media screen and (max-width: 720px) {
+
+    #userWeek,
+    #recipeContainer,
+    #thePantry,
+    #theShoppingListDiv {
+        width: 80vw;
+    }
 }
