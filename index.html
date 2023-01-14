@@ -28,25 +28,40 @@
             <section id="pantry-shopping-section">
                 <div id="pantryAndList">
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <!-- Pantry Accordion -->
                         <header>
-                            <h2>The Pantry</h2>
-                            <!-- added pantry input (AK)-->
-                            <input id="pantryInput" type="text">
-                            <!-- added pantry ul (AK)-->
-                            <ul id="myPantryUl"></ul>
-                            <!-- added pantry button (AK) -->
-                            <button role="button" id="myPantryButton" class="contrast outline">Add to Pantry</button>
+                            <details>
+                                <summary>
+                                    <h2>The Pantry</h2>
+                                </summary>
+                                <!-- added pantry input (AK)-->
+                                <input id="pantryInput" type="text">
+                                <!-- added pantry ul (AK)-->
+                                <ul id="myPantryUl"></ul>
+                                <!-- added pantry button (AK) -->
+                                <button role="button" id="myPantryButton" class="contrast outline">Add to
+                                    Pantry</button>
+                            </details>
                         </header>
                     </div>
                     <div id="theShoppingListDiv">
                         <div>
-                            <header id="shoppingListTitle">
-                                <h2>The Shopping List</h2>
-                            </header>
-                            <div>
+
+
+                            <!-- <header id="shoppingListTitle"> -->
+                            <!-- Shopping List Accordion -->
+                            <details>
+                                <summary>
+                                    <h2>The Shopping List</h2>
+                                </summary>
                                 <ul id="shoppingListList">
                                 </ul>
-                            </div>
+
+                            </details>
+                            <!-- </header> -->
+
+
+
                         </div>
                     </div>
             </section>
@@ -64,10 +79,14 @@
                             <ul id="recipeBoxUl"></ul>
                         </div>
                     </div>
-
+                    <!-- Recipe Accordion -->
                     <div id="recipeInstructions">
-                        <h2>Recipe Instructions</h2>
-                        <ul id="recipeInstructionsUl"></ul>
+                        <details>
+                            <summary>
+                                <h2>Recipe Instructions</h2>
+                            </summary>
+                            <ul id="recipeInstructionsUl"></ul>
+                        </details>
                     </div>
                 </div>
             </section>
