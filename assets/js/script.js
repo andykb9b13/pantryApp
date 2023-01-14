@@ -317,6 +317,10 @@ function getWeather(k) {
             var weatherText = weatherData1.WeatherText;
             console.log(weatherText);
             displayWeatherText.textContent = weatherText;
+            let icon = data[0].WeatherIcon;
+            let iconImg = document.createElement("img");
+            iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
+            displayWeatherText.appendChild(iconImg);
 
         })
 }
