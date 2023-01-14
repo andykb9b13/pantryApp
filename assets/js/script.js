@@ -40,7 +40,8 @@ const scheduledMeal = document.getElementById("selectedMealSpot");
 const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
-
+pantryArr = JSON.parse(localStorage.getItem("pantry"));
+setPantryDisplay()
 
 // ****************************************************************
 
@@ -102,6 +103,7 @@ function recipeSearch() {
                 let recipeListEl = document.createElement('li');
                 recipeListEl.setAttribute("draggable", true);
                 recipeListEl.setAttribute("ondragstart", "drag(event)")
+                recipeListEl.setAttribute("data", "inSearch")
                 recipeListEl.innerText = data.results[i].title;
                 // recipeListEl.style.color = "var(--red)";
                 recipeBoxUl.appendChild(recipeListEl);
@@ -110,6 +112,9 @@ function recipeSearch() {
                 recipeListEl.style.color = "var(--white)"
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
+                recipeListEl.addEventListener("drop", function () {
+                    recipeListEl.setAttribute("data", "onDay")
+                })
 
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
@@ -118,14 +123,10 @@ function recipeSearch() {
                 recipeImg.style.boxShadow = "1px 1px 1px 1px black"
                 recipeImg.style.borderRadius = "var(--border-radius)"
                 recipeListEl.appendChild(recipeImg);
-
-
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
             makeEventListeners();
-
-
         })
 }
 
@@ -204,7 +205,6 @@ function getRecipeSteps(e) {
         })
 }
 
-pantryArr = JSON.parse(localStorage.getItem("pantry"));
 
 function setPantryDisplay() {
     for (let item of pantryArr) {
@@ -218,16 +218,7 @@ function setPantryDisplay() {
     }
 }
 
-function removePantryItem(e) {
-    console.log(e.target.id)
-    let item = e.target.id;
-    let index = pantryArr.indexOf(item);
-    pantryArr.splice(index, 1);
-    localStorage.setItem("pantry", JSON.stringify(pantryArr));
-    // item.innerText = "";
-}
 
-setPantryDisplay()
 
 function addPantryItem() {
     let newPantryItem = document.createElement('li');
@@ -249,6 +240,16 @@ pantryInput.addEventListener("keyup", function (event) {
         addPantryItem()
     }
 })
+
+function removePantryItem(e) {
+    console.log(e.target.id);
+    console.log(e);
+    let item = e.target.id;
+    let index = pantryArr.indexOf(item);
+    pantryArr.splice(index, 1);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    myPantryUl.removeChild(e.target);
+}
 
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
