@@ -64,6 +64,7 @@ input {
     color: var(--red);
     font-family: 'Inconsolata', monospace;
     text-shadow: 1px 1px 1px var(--brown);
+    box-shadow: 1px 1px 3px 1px black;
 }
 
 #locationSearch,
@@ -138,7 +139,13 @@ button {
     background-color: var(--yellow);
     border-radius: var(--border-radius);
     width: 80%;
+    box-shadow: 1px 1px 3px 1px black;
+    transition: 0.2s
+}
 
+.dayOfWeek:hover {
+    transform: translate(-5px, -5px);
+    box-shadow: 2px 2px 8px 1px black;
 }
 
 .weekDay {
