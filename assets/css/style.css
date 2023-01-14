@@ -36,7 +36,6 @@ main {
 }
 
 h1 {
-    /* font-family: 'Inconsolata', monospace; */
     color: var(--brown);
     font-size: 5em;
     color: var(--white);
@@ -64,7 +63,6 @@ input {
     color: var(--red);
     font-family: 'Inconsolata', monospace;
     text-shadow: 1px 1px 1px var(--brown);
-    box-shadow: 1px 1px 3px 1px black;
 }
 
 #locationSearch,
@@ -112,6 +110,14 @@ button {
     width: 80%;
 }
 
+.searchedRecipes {
+    transition: 0.2s;
+}
+
+.searchedRecipes:hover {
+    transform: translate(-5px, -5px);
+}
+
 #userWeek {
     display: flex;
     flex-direction: column;
@@ -140,13 +146,13 @@ button {
     border-radius: var(--border-radius);
     width: 80%;
     box-shadow: 1px 1px 3px 1px black;
-    transition: 0.2s
+    /* transition: 0.2s */
 }
 
-.dayOfWeek:hover {
+/* .dayOfWeek:hover {
     transform: translate(-5px, -5px);
     box-shadow: 2px 2px 8px 1px black;
-}
+} */
 
 .weekDay {
     text-align: center;
@@ -167,6 +173,11 @@ button {
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
     margin-bottom: 20px;
+}
+
+#thePantry li:hover,
+#theShoppingListDiv li:hover {
+    color: var(--red);
 }
 
 #pantryInput {
