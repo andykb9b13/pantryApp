@@ -3,11 +3,32 @@
 // Need to include ?apiKey=86559794390c4f9c8a3c8bba07f2d054
 //Accuweather API Key VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER
 
+// ******************************************************
+// GENERAL LIST OF THINGS TO DO
+// TODO clear the input field after entering item
+
+// TODO get Local Storage for pantry items to display on load
+
+// TODO Add values & units for 
+
+// TODO create areas to increase units or delete items from pantry
+
+/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
+data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
+the value (i.e. cups, tbsp, etc.).*/
+
+/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
+
+/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
+then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
+
+// TODO need to be able to access the recipe with instructions from the meal plan section
 const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
 const pantryInput = document.getElementById("pantryInput");
 const myPantryButton = document.getElementById("myPantryButton");
 const recipeSearchButton = document.getElementById("recipeSearchButton");
+const recipeSearchInput = document.getElementById("recipeSearchInput");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
@@ -41,55 +62,35 @@ window.onclick = function (event) {
 
 // *****************************************
 
-function makeIngredientEventListeners() {
+function makeEventListeners() {
     for (let i = 0; i < searchedRecipes.length; i++) {
         console.log("recipe ", i + 1, searchedRecipes[i])
         searchedRecipes[i].addEventListener("click", function (e) {
             getRecipeIngredients(e);
-            getRecipeIngredients(e)
-            scheduleRecipe(e)
+            // scheduleRecipe(e)
             // console.log(e.target)
         })
-
-    }
-}
-
-function makeInstructonEventListeners() {
-    for (let i = 0; i < searchedRecipes.length; i++) {
         searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeInstructions(e);
+            getRecipeSteps(e);
         })
 
     }
 }
 
+// function makeStepsEventListeners() {
+//     for (let i = 0; i < searchedRecipes.length; i++) {
+//         searchedRecipes[i].addEventListener("click", function (e) {
+//             getRecipeSteps(e);
+//         })
 
-function getRecipeInstructions(e) {
-    recipeInstructionsUl.innerHTML = "";
-    let chosenRecipe = e.target.id
-    console.log(chosenRecipe);
-    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
-    fetch(requestUrl)
-        .then(function (response) {
-            return response.json()
-        })
-        .then(function (data) {
-            console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
-            for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
-                console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
-                let instructionStep = document.createElement("li");
-                instructionStep.style.listStyle = "none";
-                instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
-                recipeInstructionsUl.appendChild(instructionStep);
-                recipeInstructionsUl.style.listStyle = "none";
-            }
-        })
-}
+//     }
+// }
 
 function recipeSearch() {
     recipeInstructionsUl.innerHTML = "";
     recipeBoxUl.innerHTML = "";
     let searchInput = document.getElementById("recipeSearchInput").value;
+    recipeSearchInput.value = "";
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
         .then(function (response) {
@@ -117,22 +118,23 @@ function recipeSearch() {
                 recipeImg.style.boxShadow = "1px 1px 1px 1px black"
                 recipeImg.style.borderRadius = "var(--border-radius)"
                 recipeListEl.appendChild(recipeImg);
+
+
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
-            makeIngredientEventListeners();
-            makeInstructonEventListeners();
+            makeEventListeners();
+
+
         })
 }
 
 recipeSearchButton.addEventListener("click", recipeSearch)
 
-
-
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
-    let mealName = document.createElement('li');
-    mealName.innerText = e.target.innerText;
+    // let mealName = document.createElement('li');
+    // mealName.innerText = e.target.innerText;
     // mealPlanUl.appendChild(mealName);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
@@ -166,22 +168,58 @@ function getRecipeIngredients(e) {
         })
 }
 
+function getRecipeSteps(e) {
+    recipeInstructionsUl.innerHTML = "";
+    let chosenRecipe = e.target.id
+    console.log(chosenRecipe);
+    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
+            for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
+                console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
+                let instructionStep = document.createElement("li");
+                instructionStep.style.listStyle = "none";
+                instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
+                recipeInstructionsUl.appendChild(instructionStep);
+                recipeInstructionsUl.style.listStyle = "none";
+            }
+        })
+}
 
+pantryArr = JSON.parse(localStorage.getItem("pantry"));
+
+function setPantryDisplay() {
+    for (let item of pantryArr) {
+        let pantryItem = document.createElement('li');
+        pantryItem.setAttribute("class", "pantryItem");
+        pantryItem.style.listStyle = "none";
+        pantryItem.innerText = item;
+        myPantryUl.appendChild(pantryItem);
+    }
+}
+
+setPantryDisplay()
 
 function addPantryItem() {
     let newPantryItem = document.createElement('li');
     newPantryItem.setAttribute("class", "pantryItem");
+    newPantryItem.style.listStyle = "none";
     let newPantryItemText = pantryInput.value;
     newPantryItem.innerText = newPantryItemText;
     myPantryUl.appendChild(newPantryItem);
-    pantryStorage.push(newPantryItemText);
-    localStorage.setItem("pantry", JSON.stringify(pantryStorage));
+    pantryArr.push(newPantryItemText);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
 }
 
 myPantryButton.addEventListener("click", addPantryItem)
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
+// ************ Drag and Drop ********************
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
@@ -195,48 +233,6 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
 }
-
-
-// ******************************************************
-// GENERAL LIST OF THINGS TO DO
-// TODO clear the input field after entering item
-// TODO get Local Storage for pantry items to display on load
-// TODO Add values & units for 
-// TODO create areas to increase units or delete items from pantry
-
-/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
-data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
-the value (i.e. cups, tbsp, etc.).*/
-
-/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
-
-/* TODO be able to grab items from one area and drag them to another area? */
-
-/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
-then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
-
-// TODO need to be able to access the recipe with instructions from the meal plan section
-
-// TODO clear the input field after entering item
-// TODO get Local Storage for pantry items to display on load
-// TODO Add values & units for 
-// TODO create areas to increase units or delete items from pantry
-// let pantryStorage = [];
-
-// ******************************************************
-// GENERAL LIST OF THINGS TO DO
-/* TODO Need to get the amounts of each ingredient. In the API, the returned data has a "measures" value.
-data.extendedIngredients.measures.us.amount for the number and data.extendedIngredients.measures.us.unitShort for
-the value (i.e. cups, tbsp, etc.).*/
-
-/* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
-
-/* TODO be able to grab items from one area and drag them to another area? */
-
-/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
-then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
-
-// TODO need to be able to access the recipe with instructions from the meal plan section
 
 // function scheduleRecipe(e) {
 //     fireModal();
