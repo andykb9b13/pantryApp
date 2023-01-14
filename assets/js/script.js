@@ -309,6 +309,7 @@ function getLocation() {
             console.log(weatherDataKey);
             var locationKey = weatherDataKey;
             getWeather(locationKey);
+            getForecast(locationKey);
         })
 }
 
@@ -337,4 +338,42 @@ function getWeather(k) {
 }
 
 locationSearchButton.addEventListener("click", getLocation);
+
+function getForecast(key) {
+    let localeKey = key;
+    let requestUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + localeKey + "?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true";
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log("this is the 5day forecast", data)
+            let dayNames = document.querySelectorAll(".dayNames")
+            for (let i = 0; i < dayNames.length; i++) {
+                let epoch = data.DailyForecasts[i].EpochDate;
+                let date = new Date(epoch * 1000);
+                let year = date.getFullYear();
+                let month = date.getMonth();
+                let day = date.getDate();
+
+                console.log("the date", date);
+                console.log("year", year);
+                console.log("month", month);
+                console.log("day", day);
+                // let dateDisplay = document.createElement('p');
+                // dateDisplay.innerText = date;
+                // weekDay[i].appendChild(dateDisplay);
+                dayNames[i].innerText = (month + 1) + "/" + day + "/" + year;
+                // dayNames[i].innerText = date;
+                let icon = data.DailyForecasts[i].Day.Icon;
+                let iconImg = document.createElement("img");
+                iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
+                dayNames[i].appendChild(iconImg);
+
+            }
+
+        })
+}
+
+
 
