@@ -96,6 +96,7 @@ function recipeSearch() {
             return response.json()
         })
         .then(function (data) {
+            console.log(data)
             for (let i = 0; i < data.results.length; i++) {
                 let recipeListEl = document.createElement('li');
                 recipeListEl.setAttribute("draggable", true);
@@ -104,14 +105,18 @@ function recipeSearch() {
                 // recipeListEl.style.color = "var(--red)";
                 recipeBoxUl.appendChild(recipeListEl);
                 recipeListEl.style.listStyle = "none";
+                recipeListEl.style.width = "85%"
+                recipeListEl.style.color = "var(--white)"
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
 
-                // let recipeImg = document.createElement('img');
-                // recipeImg.src = data.results[i].image;
-                // recipeImg.style.width = "50%";
-                // recipeImg.style.marginLeft = "5%"
-                // recipeListEl.appendChild(recipeImg);
+                let recipeImg = document.createElement('img');
+                recipeImg.src = data.results[i].image;
+                recipeImg.style.width = "30%";
+                recipeImg.style.marginLeft = "5%"
+                recipeImg.style.boxShadow = "1px 1px 1px 1px black"
+                recipeImg.style.borderRadius = "var(--border-radius)"
+                recipeListEl.appendChild(recipeImg);
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
@@ -121,6 +126,8 @@ function recipeSearch() {
 }
 
 recipeSearchButton.addEventListener("click", recipeSearch)
+
+
 
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
@@ -151,7 +158,7 @@ function getRecipeIngredients(e) {
                 // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
                 // ingredientItem.appendChild(foodImg);
                 ingredientItem.addEventListener("click", function () {
-                    // myPantryUl.appendChild(ingredientItem);
+                    myPantryUl.appendChild(ingredientItem);
                     ingredientItem.setAttribute("class", "pantryItem");
                     ingredientItem.removeAttribute("class", "shoppingListItem");
                 })

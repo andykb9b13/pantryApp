@@ -7,10 +7,10 @@
     --border-radius: 15px;
     --font-family: 'Shadows Into Light', cursive;
     --box-shadow: 1px 1px 20px 6px var(--brown);
-    --text-shadow: 1px 1px 5px var(--brown);
-    --border:
-        /* font-family: 'Inconsolata', monospace; */
-        /* font-family: 'Shadows Into Light', cursive; */
+    --text-shadow: 1px 1px 2px black;
+    --border: 1px solid var(--brown);
+    /* font-family: 'Inconsolata', monospace; */
+    /* font-family: 'Shadows Into Light', cursive; */
 }
 
 body {
