@@ -66,11 +66,9 @@ window.onclick = function (event) {
 
 function makeEventListeners() {
     for (let i = 0; i < searchedRecipes.length; i++) {
-        console.log("recipe ", i + 1, searchedRecipes[i])
         searchedRecipes[i].addEventListener("click", function (e) {
             getRecipeIngredients(e);
             // scheduleRecipe(e)
-            // console.log(e.target)
         })
         searchedRecipes[i].addEventListener("click", function (e) {
             getRecipeSteps(e);
@@ -132,6 +130,13 @@ function recipeSearch() {
 }
 
 recipeSearchButton.addEventListener("click", recipeSearch)
+recipeSearchButton.addEventListener("keyup", function (event) {
+
+    if (event.code === "Enter") {
+        event.preventDefault();
+        recipeSearch
+    }
+})
 
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
@@ -156,11 +161,12 @@ function getRecipeIngredients(e) {
                 ingredientItem.style.listStyle = "none";
                 ingredientItem.setAttribute("draggable", true);
                 ingredientItem.setAttribute("ondragstart", "drag(event)")
-                // ingredientItem.addEventListener("click", function () {
-                //     myPantryUl.appendChild(ingredientItem);
-                //     ingredientItem.setAttribute("class", "pantryItem");
-                //     ingredientItem.removeAttribute("class", "shoppingListItem");
-                // })
+                ingredientItem.addEventListener("click", function () {
+                    pantryArr.push(ingredientName);
+                    myPantryUl.appendChild(ingredientItem);
+                    ingredientItem.setAttribute("class", "pantryItem");
+                    ingredientItem.removeAttribute("class", "shoppingListItem");
+                })
 
                 ingredientList.push(ingredientName);
                 if (!pantryArr.includes(ingredientName)) {
@@ -187,9 +193,8 @@ function getRecipeSteps(e) {
             return response.json()
         })
         .then(function (data) {
-            console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
+            // console.log("I am recipe instructions", data.analyzedInstructions[0].steps)
             for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
-                console.log("i am each instruction", data.analyzedInstructions[0].steps[i].step)
                 let instructionStep = document.createElement("li");
                 instructionStep.style.listStyle = "none";
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
@@ -205,10 +210,21 @@ function setPantryDisplay() {
     for (let item of pantryArr) {
         let pantryItem = document.createElement('li');
         pantryItem.setAttribute("class", "pantryItem");
+        pantryItem.setAttribute("id", item)
         pantryItem.style.listStyle = "none";
         pantryItem.innerText = item;
+        pantryItem.addEventListener("click", removePantryItem)
         myPantryUl.appendChild(pantryItem);
     }
+}
+
+function removePantryItem(e) {
+    console.log(e.target.id)
+    let item = e.target.id;
+    let index = pantryArr.indexOf(item);
+    pantryArr.splice(index, 1);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    // item.innerText = "";
 }
 
 setPantryDisplay()
@@ -222,9 +238,18 @@ function addPantryItem() {
     myPantryUl.appendChild(newPantryItem);
     pantryArr.push(newPantryItemText);
     localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    newPantryItem.addEventListener("click", removePantryItem)
+    pantryInput.value = "";
 }
 
 myPantryButton.addEventListener("click", addPantryItem)
+pantryInput.addEventListener("keyup", function (event) {
+    if (event.code === "Enter") {
+        event.preventDefault();
+        addPantryItem()
+    }
+})
+
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
