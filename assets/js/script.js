@@ -36,10 +36,12 @@ let searchedRecipes = [];
 let pantryArr = [];
 let shoppingList = [];
 let ingredientList = [];
+let weeklyPlan = [];
 const scheduledMeal = document.getElementById("selectedMealSpot");
 const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
+const makeListButton = document.getElementById("makeListButton");
 pantryArr = JSON.parse(localStorage.getItem("pantry"));
 setPantryDisplay()
 
@@ -65,27 +67,26 @@ window.onclick = function (event) {
 
 // *****************************************
 
-function makeEventListeners() {
-    for (let i = 0; i < searchedRecipes.length; i++) {
-        searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeIngredients(e);
-            // scheduleRecipe(e)
-        })
-        searchedRecipes[i].addEventListener("click", function (e) {
-            getRecipeSteps(e);
-        })
-
-    }
-}
-
-// function makeStepsEventListeners() {
+// function makeEventListeners() {
 //     for (let i = 0; i < searchedRecipes.length; i++) {
+//         searchedRecipes[i].addEventListener("click", function (e) {
+//             getRecipeIngredients(e);
+//             // scheduleRecipe(e)
+//         })
 //         searchedRecipes[i].addEventListener("click", function (e) {
 //             getRecipeSteps(e);
 //         })
 
 //     }
 // }
+
+let dayDivs = document.querySelectorAll(".dayOfWeek");
+for (let day of dayDivs) {
+    day.addEventListener("click", function (e) {
+        getRecipeIngredients(e);
+        getRecipeSteps(e);
+    })
+}
 
 function recipeSearch() {
     recipeInstructionsUl.innerHTML = "";
@@ -126,7 +127,7 @@ function recipeSearch() {
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
-            makeEventListeners();
+            // makeEventListeners();
         })
 }
 
@@ -167,6 +168,7 @@ function getRecipeIngredients(e) {
                     myPantryUl.appendChild(ingredientItem);
                     ingredientItem.setAttribute("class", "pantryItem");
                     ingredientItem.removeAttribute("class", "shoppingListItem");
+                    localStorage.setItem("pantry", JSON.stringify(pantryArr));
                 })
 
                 ingredientList.push(ingredientName);
@@ -217,8 +219,6 @@ function setPantryDisplay() {
         myPantryUl.appendChild(pantryItem);
     }
 }
-
-
 
 function addPantryItem() {
     let newPantryItem = document.createElement('li');

@@ -107,6 +107,10 @@ button {
     border-radius: var(--border-radius);
 }
 
+#recipeSearchInput {
+    width: 80%;
+}
+
 #userWeek {
     display: flex;
     flex-direction: column;
@@ -115,6 +119,11 @@ button {
     box-shadow: var(--box-shadow);
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
+    align-items: center;
+}
+
+#userWeek button {
+    align-items: center;
 }
 
 #userWeek h2 {
@@ -128,6 +137,7 @@ button {
     padding: 20px;
     background-color: var(--yellow);
     border-radius: var(--border-radius);
+    width: 80%;
 
 }
 
