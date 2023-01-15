@@ -5,9 +5,6 @@
 
 // ******************************************************
 // GENERAL LIST OF THINGS TO DO
-// TODO clear the input field after entering item
-
-// TODO get Local Storage for pantry items to display on load
 
 // TODO Add values & units for 
 
@@ -42,8 +39,20 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
-pantryArr = JSON.parse(localStorage.getItem("pantry"));
-setPantryDisplay()
+
+
+function checkPantry() {
+    pantryArr = JSON.parse(localStorage.getItem("pantry"));
+    if (pantryArr === null) {
+        pantryArr = [];
+        localStorage.setItem("pantry", JSON.stringify(pantryArr))
+    } else {
+        setPantryDisplay()
+    }
+}
+checkPantry()
+
+
 
 // ****************************************************************
 
@@ -298,6 +307,7 @@ function getLocation() {
             console.log(weatherDataKey);
             var locationKey = weatherDataKey;
             getWeather(locationKey);
+            getForecast(locationKey);
         })
 }
 
@@ -317,13 +327,50 @@ function getWeather(k) {
             var weatherText = weatherData1.WeatherText;
             console.log(weatherText);
             displayWeatherText.textContent = weatherText;
+            displayWeatherText.style.fontSize = "2em";
             let icon = data[0].WeatherIcon;
             let iconImg = document.createElement("img");
             iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
             displayWeatherText.appendChild(iconImg);
-
         })
 }
 
 locationSearchButton.addEventListener("click", getLocation);
+
+function getForecast(key) {
+    let localeKey = key;
+    let requestUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + localeKey + "?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true";
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log("this is the 5day forecast", data)
+            let dayNames = document.querySelectorAll(".dayNames")
+            let highLowTemp = document.querySelectorAll(".highLowTemp");
+            for (let i = 0; i < 5; i++) {
+                let epoch = data.DailyForecasts[i].EpochDate;
+                let date = new Date(epoch * 1000);
+                let year = date.getFullYear();
+                let month = date.getMonth();
+                let day = date.getDate();
+                // let dateDisplay = document.createElement('p');
+                // dateDisplay.innerText = date;
+                // weekDay[i].appendChild(dateDisplay);
+                dayNames[i].innerText = (month + 1) + "/" + day + "/" + year;
+                // dayNames[i].innerText = date;
+                let icon = data.DailyForecasts[i].Day.Icon;
+                let iconImg = document.createElement("img");
+                iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
+                dayNames[i].appendChild(iconImg);
+                highLowTemp[i].innerText = "Hi: " + data.DailyForecasts[i].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[i].Temperature.Minimum.Value + "°";
+
+            }
+            let todayTemp = document.createElement("span");
+            todayTemp.innerText = "Hi: " + data.DailyForecasts[0].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[0].Temperature.Minimum.Value + "°";
+            displayWeatherText.appendChild(todayTemp);
+        })
+}
+
+
 
