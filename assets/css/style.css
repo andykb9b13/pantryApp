@@ -233,6 +233,13 @@ select {
     font-weight: bold;
 }
 
+/* Override Accordion Pico CSS */
+details {
+    border-bottom: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
 .close:hover,
 .close:focus {
     color: black;
