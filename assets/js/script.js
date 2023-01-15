@@ -332,7 +332,6 @@ function getWeather(k) {
             let iconImg = document.createElement("img");
             iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
             displayWeatherText.appendChild(iconImg);
-
         })
 }
 
@@ -349,7 +348,7 @@ function getForecast(key) {
             console.log("this is the 5day forecast", data)
             let dayNames = document.querySelectorAll(".dayNames")
             let highLowTemp = document.querySelectorAll(".highLowTemp");
-            for (let i = 0; i < dayNames.length; i++) {
+            for (let i = 0; i < 5; i++) {
                 let epoch = data.DailyForecasts[i].EpochDate;
                 let date = new Date(epoch * 1000);
                 let year = date.getFullYear();
@@ -365,8 +364,11 @@ function getForecast(key) {
                 iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
                 dayNames[i].appendChild(iconImg);
                 highLowTemp[i].innerText = "Hi: " + data.DailyForecasts[i].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[i].Temperature.Minimum.Value + "°";
-            }
 
+            }
+            let todayTemp = document.createElement("span");
+            todayTemp.innerText = "Hi: " + data.DailyForecasts[0].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[0].Temperature.Minimum.Value + "°";
+            displayWeatherText.appendChild(todayTemp);
         })
 }
 
