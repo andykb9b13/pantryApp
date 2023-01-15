@@ -240,6 +240,11 @@ details {
     margin-top: 20px;
 }
 
+/* Remove Accordion Arrows */
+details summary::after {
+    background-image: none;
+}
+
 .close:hover,
 .close:focus {
     color: black;
