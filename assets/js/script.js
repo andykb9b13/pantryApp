@@ -5,9 +5,6 @@
 
 // ******************************************************
 // GENERAL LIST OF THINGS TO DO
-// TODO clear the input field after entering item
-
-// TODO get Local Storage for pantry items to display on load
 
 // TODO Add values & units for 
 
@@ -42,6 +39,7 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
+
 
 function checkPantry() {
     pantryArr = JSON.parse(localStorage.getItem("pantry"));
@@ -329,6 +327,7 @@ function getWeather(k) {
             var weatherText = weatherData1.WeatherText;
             console.log(weatherText);
             displayWeatherText.textContent = weatherText;
+            displayWeatherText.style.fontSize = "2em";
             let icon = data[0].WeatherIcon;
             let iconImg = document.createElement("img");
             iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
@@ -341,7 +340,7 @@ locationSearchButton.addEventListener("click", getLocation);
 
 function getForecast(key) {
     let localeKey = key;
-    let requestUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/" + localeKey + "?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true";
+    let requestUrl = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" + localeKey + "?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true";
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
@@ -349,17 +348,13 @@ function getForecast(key) {
         .then(function (data) {
             console.log("this is the 5day forecast", data)
             let dayNames = document.querySelectorAll(".dayNames")
+            let highLowTemp = document.querySelectorAll(".highLowTemp");
             for (let i = 0; i < dayNames.length; i++) {
                 let epoch = data.DailyForecasts[i].EpochDate;
                 let date = new Date(epoch * 1000);
                 let year = date.getFullYear();
                 let month = date.getMonth();
                 let day = date.getDate();
-
-                console.log("the date", date);
-                console.log("year", year);
-                console.log("month", month);
-                console.log("day", day);
                 // let dateDisplay = document.createElement('p');
                 // dateDisplay.innerText = date;
                 // weekDay[i].appendChild(dateDisplay);
@@ -369,7 +364,7 @@ function getForecast(key) {
                 let iconImg = document.createElement("img");
                 iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
                 dayNames[i].appendChild(iconImg);
-
+                highLowTemp[i].innerText = "Hi: " + data.DailyForecasts[i].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[i].Temperature.Minimum.Value + "°";
             }
 
         })
