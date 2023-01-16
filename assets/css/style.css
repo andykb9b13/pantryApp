@@ -40,7 +40,8 @@ h1 {
     font-size: 5em;
     color: var(--white);
     text-shadow: var(--text-shadow);
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 h2 {
@@ -74,6 +75,17 @@ li,
 p,
 button {
     font-size: 1.3em;
+}
+
+p{
+    color: var(--white);
+    text-align: center;
+    font-size: x-large;
+    background: var(--lightblue);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    border: var(--border);
+    padding: 10px;
 }
 
 button {
@@ -258,7 +270,8 @@ select {
     #userWeek,
     #recipeContainer,
     #thePantry,
-    #theShoppingListDiv {
+    #theShoppingListDiv,
+    #pantry {
         width: 80vw;
     }
 }
