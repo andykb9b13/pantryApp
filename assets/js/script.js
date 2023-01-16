@@ -31,11 +31,13 @@ const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 const ingredientsUl = document.getElementById("ingredientsUl");
+const clearPlanButton = document.getElementById("clearMealPlan");
 let searchedRecipes = [];
 let pantryArr = [];
 let shoppingList = [];
 let ingredientList = [];
 let weeklyPlan = [];
+let dropZone = document.querySelectorAll(".dropZone");
 const scheduledMeal = document.getElementById("selectedMealSpot");
 const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
@@ -260,9 +262,6 @@ function setWeeklyPlan() {
     }
 }
 
-let dropZone = document.querySelectorAll(".dropZone");
-
-
 function recalledRecipeSearch() {
     recipeBoxArr = JSON.parse(localStorage.getItem("weeklyPlan"));
     for (let i = 0; i < recipeBoxArr.length; i++) {
@@ -300,6 +299,16 @@ function recalledRecipeSearch() {
 }
 
 recalledRecipeSearch();
+
+function clearRecipeList() {
+    for (let i = 0; i < dropZone.length; i++) {
+        dropZone[i].innerHTML = "(drop recipe here)";
+    }
+    recipeBoxArr = [];
+    localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+}
+
+clearPlanButton.addEventListener("click", clearRecipeList)
 
 // I could save the id of the recipe and then research it when the page loads
 
