@@ -41,6 +41,7 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
+const weatherButtonDiv = document.getElementById("weatherButtonDiv");
 
 
 function checkPantry() {
@@ -82,6 +83,7 @@ for (let day of dayDivs) {
     day.addEventListener("click", function (e) {
         getRecipeIngredients(e);
         getRecipeSteps(e);
+        weeklyPlan.push(e.target);
     })
 }
 
@@ -110,13 +112,10 @@ function recipeSearch() {
                 recipeListEl.style.color = "var(--white)"
                 recipeListEl.setAttribute("id", data.results[i].id);
                 recipeListEl.setAttribute("class", "searchedRecipes")
-                recipeListEl.addEventListener("drop", function () {
-                    recipeListEl.setAttribute("data", "onDay")
-                })
 
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.results[i].image;
-                recipeImg.style.width = "30%";
+                recipeImg.style.width = "40%";
                 recipeImg.style.marginLeft = "5%"
                 recipeImg.style.boxShadow = "1px 1px 1px 1px black"
                 recipeImg.style.borderRadius = "var(--border-radius)"
@@ -247,6 +246,23 @@ function removePantryItem(e) {
     myPantryUl.removeChild(e.target);
 }
 
+
+
+
+function setWeeklyPlan() {
+    let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
+    for (let i = 0; i < mealPlan.length; i++) {
+        let mealPlanId = mealPlan[i].getAttribute("id");
+        recipeBoxArr.push(mealPlanId);
+        console.log("mealPlan", mealPlan)
+        console.log("mealPlanId", mealPlanId);
+        localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+    }
+}
+
+// I could save the id of the recipe and then research it when the page loads
+
+makeListButton.addEventListener("click", setWeeklyPlan);
 // addIngredientsButton.addEventListener("click", getRecipeIngredients);
 // searchedRecipes.addEventListener("click", getRecipeIngredients)
 
@@ -263,7 +279,14 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
+    let droppedRecipe = document.getElementById(data);
+    console.log("this is the element from the drop", droppedRecipe)
+    if (droppedRecipe.getAttribute("data") === "inSearch") {
+        droppedRecipe.setAttribute("data", "inWeeklyPlan")
+    }
 }
+
+// ********************************
 
 // function scheduleRecipe(e) {
 //     fireModal();
@@ -357,8 +380,9 @@ function getForecast(key) {
             }
             let todayTemp = document.createElement("span");
             todayTemp.style.color = "var(--white)"
+            todayTemp.style.fontSize = "1.5em";
             todayTemp.innerText = "Hi: " + data.DailyForecasts[0].Temperature.Maximum.Value + "°" + " Lo: " + data.DailyForecasts[0].Temperature.Minimum.Value + "°";
-            displayWeatherText.appendChild(todayTemp);
+            weatherButtonDiv.prepend(todayTemp);
         })
 }
 

@@ -159,13 +159,17 @@ button {
 
 .highLowTemp {
     width: 60px;
-    height: 100px;
+    /* height: 60px; */
     /* border: 1px solid black; */
     position: relative;
     top: -50px;
     color: var(--white);
     text-shadow: var(--text-shadow);
     font-size: 1em;
+}
+
+.dropZone {
+    height: 40%;
 }
 
 #thePantry,
