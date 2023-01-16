@@ -74,6 +74,7 @@ li,
 p,
 button {
     font-size: 1.3em;
+    color: var(--white);
 }
 
 button {
@@ -162,6 +163,9 @@ button {
     /* border: 1px solid black; */
     position: relative;
     top: -50px;
+    color: var(--white);
+    text-shadow: var(--text-shadow);
+    font-size: 1em;
 }
 
 #thePantry,

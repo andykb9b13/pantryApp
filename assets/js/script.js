@@ -16,10 +16,11 @@ the value (i.e. cups, tbsp, etc.).*/
 
 /* TODO  be able to show pictures of the ingredients when it is clicked on in the shopping list*/
 
-/* TODO be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
+/* TODO JOSH - be able to click on a recipe in the recipe box and have it open up a modal that will display the ingredients
 then it will allow you to either go back or select it and put it in your meal plan and shopping list*/
 
 // TODO need to be able to access the recipe with instructions from the meal plan section
+
 const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
 const pantryInput = document.getElementById("pantryInput");
@@ -29,6 +30,7 @@ const recipeSearchInput = document.getElementById("recipeSearchInput");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
+const ingredientsUl = document.getElementById("ingredientsUl");
 let searchedRecipes = [];
 let pantryArr = [];
 let shoppingList = [];
@@ -74,20 +76,6 @@ window.onclick = function (event) {
     }
 }
 
-// *****************************************
-
-// function makeEventListeners() {
-//     for (let i = 0; i < searchedRecipes.length; i++) {
-//         searchedRecipes[i].addEventListener("click", function (e) {
-//             getRecipeIngredients(e);
-//             // scheduleRecipe(e)
-//         })
-//         searchedRecipes[i].addEventListener("click", function (e) {
-//             getRecipeSteps(e);
-//         })
-
-//     }
-// }
 
 let dayDivs = document.querySelectorAll(".dayOfWeek");
 for (let day of dayDivs) {
@@ -140,29 +128,24 @@ function recipeSearch() {
         })
 }
 
-recipeSearchButton.addEventListener("click", recipeSearch)
-recipeSearchButton.addEventListener("keyup", function (event) {
+recipeSearchButton.addEventListener("click", recipeSearch);
 
-    if (event.code === "Enter") {
-        event.preventDefault();
-        recipeSearch
-    }
-})
+let recipeBoxArr = [];
 
 function getRecipeIngredients(e) {
     let chosenRecipe = e.target.id
-    // let mealName = document.createElement('li');
-    // mealName.innerText = e.target.innerText;
-    // mealPlanUl.appendChild(mealName);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            console.log("I am recipe ingredients", data)
+            recipeBoxArr.push(data);
+            localStorage.setItem("recipeBox", JSON.stringify(recipeBoxArr));
+            console.log("I am recipe ingredients", data);
             let ingredientArray = [];
             for (let i = 0; i < data.extendedIngredients.length; i++) {
+                // let ingredientName = data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].name;
                 let ingredientName = data.extendedIngredients[i].name;
                 let ingredientItem = document.createElement("li");
                 ingredientItem.setAttribute("class", "shoppingListItem");
@@ -179,24 +162,22 @@ function getRecipeIngredients(e) {
                     ingredientItem.removeAttribute("class", "shoppingListItem");
                     localStorage.setItem("pantry", JSON.stringify(pantryArr));
                 })
-
                 ingredientList.push(ingredientName);
                 if (!pantryArr.includes(ingredientName)) {
                     shoppingList.push(ingredientName)
                     shoppingListUl.appendChild(ingredientItem);
                 }
-
                 // let foodImg = document.createElement('img');
                 // let foodImgName = data.extendedIngredients[i].image;
                 // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
                 // ingredientItem.appendChild(foodImg);
-
             }
         })
 }
 
 function getRecipeSteps(e) {
     recipeInstructionsUl.innerHTML = "";
+    ingredientsUl.innerHTML = "";
     let chosenRecipe = e.target.id
     console.log(chosenRecipe);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
@@ -212,6 +193,12 @@ function getRecipeSteps(e) {
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
                 recipeInstructionsUl.appendChild(instructionStep);
                 recipeInstructionsUl.style.listStyle = "none";
+            }
+            for (let i = 0; i < data.extendedIngredients.length; i++) {
+                let ingredient = document.createElement("li");
+                ingredient.style.listStyle = "none";
+                ingredient.innerText = data.extendedIngredients[i].original;
+                ingredientsUl.appendChild(ingredient);
             }
         })
 }
@@ -354,20 +341,23 @@ function getForecast(key) {
                 let year = date.getFullYear();
                 let month = date.getMonth();
                 let day = date.getDate();
+                let dayOfWeek = date.getDay()
+                let dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+                let dayDisplay = dayArr[dayOfWeek];
                 // let dateDisplay = document.createElement('p');
                 // dateDisplay.innerText = date;
                 // weekDay[i].appendChild(dateDisplay);
-                dayNames[i].innerText = (month + 1) + "/" + day + "/" + year;
+                dayNames[i].innerText = dayDisplay + " " + (month + 1) + "/" + day;
                 // dayNames[i].innerText = date;
                 let icon = data.DailyForecasts[i].Day.Icon;
                 let iconImg = document.createElement("img");
                 iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
                 dayNames[i].appendChild(iconImg);
-                highLowTemp[i].innerText = "Hi: " + data.DailyForecasts[i].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[i].Temperature.Minimum.Value + "°";
-
+                highLowTemp[i].innerText = "Hi: " + data.DailyForecasts[i].Temperature.Maximum.Value + "°" + " Lo: " + data.DailyForecasts[i].Temperature.Minimum.Value + "°";
             }
             let todayTemp = document.createElement("span");
-            todayTemp.innerText = "Hi: " + data.DailyForecasts[0].Temperature.Maximum.Value + "°" + " Low: " + data.DailyForecasts[0].Temperature.Minimum.Value + "°";
+            todayTemp.style.color = "var(--white)"
+            todayTemp.innerText = "Hi: " + data.DailyForecasts[0].Temperature.Maximum.Value + "°" + " Lo: " + data.DailyForecasts[0].Temperature.Minimum.Value + "°";
             displayWeatherText.appendChild(todayTemp);
         })
 }
