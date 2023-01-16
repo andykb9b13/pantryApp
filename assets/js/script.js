@@ -251,14 +251,55 @@ function removePantryItem(e) {
 
 function setWeeklyPlan() {
     let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
+    console.log("mealPlan", mealPlan)
     for (let i = 0; i < mealPlan.length; i++) {
-        let mealPlanId = mealPlan[i].getAttribute("id");
+        let mealPlanId = mealPlan[i].id
         recipeBoxArr.push(mealPlanId);
-        console.log("mealPlan", mealPlan)
         console.log("mealPlanId", mealPlanId);
         localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
     }
 }
+
+let dropZone = document.querySelectorAll(".dropZone");
+
+
+function recalledRecipeSearch() {
+    recipeBoxArr = JSON.parse(localStorage.getItem("weeklyPlan"));
+    for (let i = 0; i < recipeBoxArr.length; i++) {
+        let requestUrl = "https://api.spoonacular.com/recipes/" + recipeBoxArr[i] + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
+        fetch(requestUrl)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                console.log("recalled Recipe Data", data)
+                let recipeListEl = document.createElement('li');
+                recipeListEl.setAttribute("draggable", true);
+                recipeListEl.setAttribute("ondragstart", "drag(event)")
+                recipeListEl.setAttribute("data", "inSearch")
+                recipeListEl.innerText = data.title;
+                dropZone[i].appendChild(recipeListEl)
+                // console.log(`this is dropZone${i}`, dropZone[i]);
+                // dropZone[i].appendChild(recipeListEl);
+                // console.log(`this is recipeList El ${i}`, recipeListEl)
+                recipeListEl.style.listStyle = "none";
+                recipeListEl.style.width = "85%"
+                recipeListEl.style.color = "var(--white)"
+                recipeListEl.setAttribute("id", data.id);
+
+                let recipeImg = document.createElement('img');
+                recipeImg.src = data.image;
+                recipeImg.style.width = "40%";
+                recipeImg.style.marginLeft = "5%"
+                recipeImg.style.boxShadow = "1px 1px 1px 1px black"
+                recipeImg.style.borderRadius = "var(--border-radius)"
+                recipeListEl.appendChild(recipeImg);
+            })
+    }
+
+}
+
+recalledRecipeSearch();
 
 // I could save the id of the recipe and then research it when the page loads
 
