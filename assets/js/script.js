@@ -30,8 +30,11 @@ const recipeSearchInput = document.getElementById("recipeSearchInput");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
+const modalInstructionsUl = document.getElementById("modalDisplay");
+const modalIngredientsUl = document.getElementById("modalIngredients");
 const ingredientsUl = document.getElementById("ingredientsUl");
 const clearPlanButton = document.getElementById("clearMealPlan");
+const saveShoppingListButton = document.getElementById("saveShoppingListButton");
 let searchedRecipes = [];
 let pantryArr = [];
 let shoppingList = [];
@@ -43,6 +46,9 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
+
+
+
 var dateEntry = document.getElementById("dateinput");
 var fullDate = dayjs().format('MM/DD/YYYY');
 dateEntry.textContent = fullDate; const weatherButtonDiv = document.getElementById("weatherButtonDiv");
@@ -57,7 +63,27 @@ function checkPantry() {
         setPantryDisplay()
     }
 }
-checkPantry()
+checkPantry();
+getShoppingList();
+
+function saveShoppingList() {
+    localStorage.setItem("Shopping List", JSON.stringify(shoppingList));
+}
+
+function getShoppingList() {
+    shoppingList = JSON.parse(localStorage.getItem("Shopping List")) || [];
+    for(let item of shoppingList) {
+        var shoppinglistitem = document.createElement('li');
+        shoppinglistitem.innerText = item;
+        shoppinglistitem.style.listStyle = "none";
+        shoppingListUl.appendChild(shoppinglistitem);
+    }
+}
+
+saveShoppingListButton.addEventListener('click', saveShoppingList);
+
+
+
 
 
 
@@ -136,7 +162,9 @@ recipeSearchButton.addEventListener("click", recipeSearch);
 let recipeBoxArr = [];
 
 function getRecipeIngredients(e) {
+    // selected recipe
     let chosenRecipe = e.target.id
+    console.log("I have been chosen: ", chosenRecipe);
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
@@ -180,9 +208,12 @@ function getRecipeIngredients(e) {
 
 function getRecipeSteps(e) {
     recipeInstructionsUl.innerHTML = "";
+    modalInstructionsUl.innerHTML = "";
     ingredientsUl.innerHTML = "";
+    modalIngredientsUl.innerHTML = "";
     let chosenRecipe = e.target.id
     console.log(chosenRecipe);
+    fireModal();
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
@@ -196,12 +227,14 @@ function getRecipeSteps(e) {
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
                 recipeInstructionsUl.appendChild(instructionStep);
                 recipeInstructionsUl.style.listStyle = "none";
+                modalInstructionsUl.appendChild(instructionStep);
             }
             for (let i = 0; i < data.extendedIngredients.length; i++) {
                 let ingredient = document.createElement("li");
                 ingredient.style.listStyle = "none";
                 ingredient.innerText = data.extendedIngredients[i].original;
                 ingredientsUl.appendChild(ingredient);
+                modalIngredientsUl.appendChild(ingredient);
             }
         })
 }
@@ -350,9 +383,9 @@ function drop(ev) {
 
 // }
 
-// function fireModal() {
-//     modal.style.display = "block";
-// }
+function fireModal() {
+    modal.style.display = "block";
+}
 
 function getLocation() {
     let locationSearch = document.getElementById("locationSearch").value;
@@ -437,6 +470,7 @@ function getForecast(key) {
             weatherButtonDiv.prepend(todayTemp);
         })
 }
+
 
 
 

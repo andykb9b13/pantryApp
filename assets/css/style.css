@@ -194,6 +194,7 @@ button {
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 #thePantry li:hover,
@@ -244,7 +245,8 @@ select {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: var(--lightblue);
+    border-radius: var(--border-radius);
     margin: 15% auto;
     /* 15% from the top and centered */
     padding: 20px;
@@ -307,4 +309,8 @@ details summary::after {
 
 #weatherh4 {
     color: var(--white);
+}
+#saveShoppingListButton {
+    margin: auto;
+    padding: 25px;
 }
