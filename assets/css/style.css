@@ -49,9 +49,7 @@ h2 {
     font-size: 2em;
 }
 
-h2:nth-of-type(1) {
-    margin-bottom: 0px;
-}
+
 
 #weatherButtonDiv {
     display: flex;
