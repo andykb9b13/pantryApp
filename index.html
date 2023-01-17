@@ -17,23 +17,14 @@
     <header id="titleBox">
         <h1>Weekly Meal Plan</h1>
         <h2>Today is <span id="dateinput">Date</span></h2>
-        <div id="weatherButtonDiv">
-            <h3><span id="weatherTextDisplay"></span></h3>
-            <input type="text" id="locationSearch">
-            <button role="button" id="locationSearchButton" class="contrast outline">Location</button>
-        </div>
     </header>
     <main>
         <div id="main-pantry-container">
             <section id="pantry-shopping-section">
                 <div id="pantryAndList">
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <!-- Pantry Accordion -->
-                        <details>
-                            <!-- <header> -->
-                            <summary>
-                                <h2>The Pantry</h2>
-                            </summary>
+                        <header>
+                            <h2>The Pantry</h2>
                             <p>(click ingredient to remove from pantry)</p>
                             <input id="pantryInput" type="text">
                             <ul id="myPantryUl">
@@ -44,75 +35,85 @@
                             </ul>
                             <button role="button" id="myPantryButton" class="contrast outline">Add to
                                 Pantry</button>
-                            <!-- </header> -->
-                        </details>
+                        </header>
                     </div>
                     <div id="theShoppingListDiv">
                         <div>
-                            <details id="shoppingListTitle">
-                                <!-- <header id="shoppingListTitle"> -->
-                                <!-- Shopping List Accordion -->
-
-                                <summary>
-                                    <h2>The Shopping List</h2>
-                                </summary>
+                            <header id="shoppingListTitle">
+                                <h2>The Shopping List</h2>
                                 <p>(click ingredient to add to pantry)</p>
 
-                                <!-- </header> -->
-                                <!-- <div> -->
+                            </header>
+                            <div>
                                 <ul id="shoppingListList">
                                 </ul>
 
-                                <!-- </div> -->
-                            </details>
+                            </div>
                         </div>
+                    </div>
+                    <div id="weatherButtonDiv">
+                        <h3><span id="weatherTextDisplay"></span></h3>
+                        <h4 id="weatherh4">Get the weekly forecast so you can better plan your meals</h4>
+                        <input type="text" id="locationSearch" placeholder="City ...">
+                        <button role="button" id="locationSearchButton" class="contrast outline">Get the
+                            Forecast</button>
+                    </div>
             </section>
         </div>
         <div id="main-plan-container">
             <section name="recipe-section">
                 <div id="recipeContainer">
-                    <!-- Recipe Accordion -->
-
                     <div>
-
-                        <!-- <header> -->
-                        <details>
-                            <summary>
-                                <h2>Find a Recipe</h2>
-                            </summary>
+                        <header>
+                            <h2>Find a Recipe</h2>
                             <p>(drag recipe to weekly plan)</p>
-
-                            <!-- </header> -->
-                            <div>
-                                <div id="recipeSearchDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                    <input type="text" id="recipeSearchInput">
-                                    <button role="button" id="recipeSearchButton"
-                                        class="contrast outline">Search</button>
-                                    <ul id="recipeBoxUl"></ul>
-                                </div>
+                        </header>
+                        <div>
+                            <div id="recipeSearchDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <input type="text" id="recipeSearchInput">
+                                <button role="button" id="recipeSearchButton" class="contrast outline">Search</button>
+                                <ul id="recipeBoxUl"></ul>
                             </div>
+                        </div>
+                        <div>
 
                             <div id="recipeInstructions">
+                                <details>
 
-                                <h2>Recipe Instructions</h2>
+                                    <summary>
+                                        <h2>Recipe Instructions</h2>
+                                    </summary>
 
-                                <ul id="recipeInstructionsUl"></ul>
+                                    <ul id="recipeInstructionsUl"></ul>
 
+                                </details>
                             </div>
+
+                        </div>
+
+                        <div>
+
+                            <div id="ingredients">
+                                <details>
+                                    <summary>
+                                        <h2>Ingredients</h2>
+                                    </summary>
+                                    <ul id="ingredientsUl"></ul>
+                                </details>
+                            </div>
+
                             <div id="ingredients">
                                 <h2>Ingredients</h2>
                                 <ul id="ingredientsUl"></ul>
                             </div>
                             <div id="ingredients">
                                 <h2>Ingredients</h2>
-                                <ul id="ingredientsUl"></ul>
                             </div>
-                            <div id="ingredients">
-                                <h2>Ingredients</h2>
-                            </div>
-                        </details>
-                        <ul id="ingredientsUl"></ul>
 
+                            <ul id="ingredientsUl"></ul>
+
+
+                        </div>
                     </div>
 
                 </div>
