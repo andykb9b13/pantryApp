@@ -265,7 +265,7 @@ function setWeeklyPlan() {
 }
 
 function recalledRecipeSearch() {
-    recipeBoxArr = JSON.parse(localStorage.getItem("weeklyPlan"));
+    recipeBoxArr = JSON.parse(localStorage.getItem("weeklyPlan")) || [];
     for (let i = 0; i < recipeBoxArr.length; i++) {
         let requestUrl = "https://api.spoonacular.com/recipes/" + recipeBoxArr[i] + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
         fetch(requestUrl)
