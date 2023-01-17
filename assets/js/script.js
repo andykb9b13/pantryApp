@@ -39,7 +39,9 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
-
+var dateEntry = document.getElementById("dateinput");
+var fullDate = dayjs().format('MM/DD/YYYY');
+dateEntry.textContent = fullDate;
 
 function checkPantry() {
     pantryArr = JSON.parse(localStorage.getItem("pantry"));
@@ -300,11 +302,11 @@ function getLocation() {
             return response.json()
         })
         .then(function (data) {
-            console.log("Location: ", data);
+            // console.log("Location: ", data);
             var weatherData = data;
             var weatherDataObject = weatherData[0];
             var weatherDataKey = weatherDataObject.Key;
-            console.log(weatherDataKey);
+            // console.log(weatherDataKey);
             var locationKey = weatherDataKey;
             getWeather(locationKey);
             getForecast(locationKey);
@@ -314,18 +316,18 @@ function getLocation() {
 
 function getWeather(k) {
     var localekey = k;
-    console.log("Local Key: ", localekey)
+    // console.log("Local Key: ", localekey)
     var requestWeatherURL = "https://dataservice.accuweather.com/currentconditions/v1/" + localekey + "?apikey=VXv1eVM6cMuAYleAbLgHg9jZKKIeDTER&details=true HTTP/1.1";
     fetch(requestWeatherURL)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            console.log("Weather: ", data);
+            // console.log("Weather: ", data);
             var weatherData1 = data[0];
-            console.log(weatherData1);
+            // console.log(weatherData1);
             var weatherText = weatherData1.WeatherText;
-            console.log(weatherText);
+            // console.log(weatherText);
             displayWeatherText.textContent = weatherText;
             displayWeatherText.style.fontSize = "2em";
             let icon = data[0].WeatherIcon;
