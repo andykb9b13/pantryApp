@@ -283,3 +283,16 @@ select {
         width: 80vw;
     }
 }
+
+#weatherButtonDiv{
+    background-color: var(--lightblue);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 10px 10px 10px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+}
+
+#weatherh4 {
+    color: var(--white);
+}
