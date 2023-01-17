@@ -268,9 +268,16 @@ details {
     margin-top: 20px;
 }
 
-/* Remove Accordion Arrows */
+/* Accordion arrow icon */
 details summary::after {
-    background-image: none;
+    transform: rotate(0deg);
+    transform: translate(0px, -15px);
+}
+
+/* Accordion arrow icon after being opened */
+details[open]>summary::after {
+    transform: rotate(180deg);
+    transform: translate(0px, -15px);
 }
 
 .close:hover,

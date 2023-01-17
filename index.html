@@ -24,26 +24,39 @@
                 <div id="pantryAndList">
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <header>
-                            <h2>The Pantry</h2>
-                            <p>(click ingredient to remove from pantry)</p>
-                            <input id="pantryInput" type="text">
-                            <ul id="myPantryUl">
-                                <ul id="produce">Produce</ul>
-                                <ul id="meat">Meat</ul>
-                                <ul id="dairy">Dairy</ul>
 
-                            </ul>
-                            <button role="button" id="myPantryButton" class="contrast outline">Add to
-                                Pantry</button>
+
+                            <h2>The Pantry</h2>
+
+                            <!-- added pantry input (AK)-->
+                            <details>
+                                <summary><input id="pantryInput" type="text"></summary>
+                                <!-- added pantry ul (AK)-->
+                                <ul id="myPantryUl"></ul>
+                                <!-- added pantry button (AK) -->
+                                <button role="button" id="myPantryButton" class="contrast outline">Add to
+                                    Pantry</button>
+                            </details>
                         </header>
                     </div>
                     <div id="theShoppingListDiv">
-                        <div>
-                            <header id="shoppingListTitle">
-                                <h2>The Shopping List</h2>
-                                <p>(click ingredient to add to pantry)</p>
+                        <div> <!-- <header id="shoppingListTitle"> -->
+                            <!-- Shopping List Accordion -->
 
-                            </header>
+                            <h2>The Shopping List</h2>
+
+                            <details id="shoppingListTitle">
+                                <summary>
+                                    <p>(click ingredient to add to pantry)</p>
+                                </summary>
+
+                                <ul id="shoppingListList">
+                                </ul>
+
+                            </details>
+                            <!-- </header> -->
+
+
                             <div>
                                 <ul id="shoppingListList">
                                 </ul>
@@ -78,6 +91,7 @@
                         <div>
 
                             <div id="recipeInstructions">
+                                <!-- Recipe Accordion -->
                                 <details>
 
                                     <summary>
@@ -94,6 +108,7 @@
                         <div>
 
                             <div id="ingredients">
+                                <!-- Ingredients Accordion -->
                                 <details>
                                     <summary>
                                         <h2>Ingredients</h2>
