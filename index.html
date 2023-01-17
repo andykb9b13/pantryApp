@@ -30,30 +30,25 @@
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <!-- Pantry Accordion -->
                         <header>
-                            <details>
-                                <summary>
-                                    <h2>The Pantry</h2>
-                                </summary>
-                                <!-- added pantry input (AK)-->
-                                <input id="pantryInput" type="text">
-                                <!-- added pantry ul (AK)-->
-                                <ul id="myPantryUl"></ul>
-                                <!-- added pantry button (AK) -->
-                                <button role="button" id="myPantryButton" class="contrast outline">Add to
-                                    Pantry</button>
-                            </details>
+                            <h2>The Pantry</h2>
+                            <p>(click ingredient to remove from pantry)</p>
+                            <input id="pantryInput" type="text">
+                            <ul id="myPantryUl">
+                                <ul id="produce">Produce</ul>
+                                <ul id="meat">Meat</ul>
+                                <ul id="dairy">Dairy</ul>
+
+                            </ul>
+                            <button role="button" id="myPantryButton" class="contrast outline">Add to Pantry</button>
                         </header>
                     </div>
                     <div id="theShoppingListDiv">
                         <div>
-
-
-                            <!-- <header id="shoppingListTitle"> -->
-                            <!-- Shopping List Accordion -->
-                            <details>
-                                <summary>
-                                    <h2>The Shopping List</h2>
-                                </summary>
+                            <header id="shoppingListTitle">
+                                <h2>The Shopping List</h2>
+                                <p>(click ingredient to add to pantry)</p>
+                            </header>
+                            <div>
                                 <ul id="shoppingListList">
                                 </ul>
 
@@ -71,7 +66,8 @@
                 <div id="recipeContainer">
                     <div>
                         <header>
-                            <h2>Recipe</h2>
+                            <h2>Find a Recipe</h2>
+                            <p>(drag recipe to weekly plan)</p>
                         </header>
                         <div id="recipeSearchDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
                             <input type="text" id="recipeSearchInput">
@@ -88,81 +84,94 @@
                             <ul id="recipeInstructionsUl"></ul>
                         </details>
                     </div>
+                    <div id="ingredients">
+                        <h2>Ingredients</h2>
+                        <ul id="ingredientsUl"></ul>
+                    </div>
+                    <div id="ingredients">
+                        <h2>Ingredients</h2>
+                        <ul id="ingredientsUl"></ul>
+                    </div>
+                    <div id="ingredients">
+                        <h2>Ingredients</h2>
+                        <ul id="ingredientsUl"></ul>
+                    </div>
                 </div>
             </section>
             <section id="weekly-plan-section">
                 <div id="userWeek">
                     <h2>Weekly Plan</h2>
-                    <button role="button" id="makeListButton" class="contrast outline">Make Shopping List</button>
+                    <p>(click recipe to add ingredients to shopping list)</p>
+                    <button role="button" id="makeListButton" class="contrast outline">Set Weekly Plan</button>
+                    <button role="button" id="clearMealPlan" class="contrast outline">Clear Meal Plan</button>
                     <div class="dayOfWeek" id="mondayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Monday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
-
                         </div>
                     </div>
                     <div class="dayOfWeek" id="tuesdayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Tuesday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
                         </div>
                     </div>
                     <div class="dayOfWeek" id="wednesdayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Wednesday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
                         </div>
                     </div>
                     <div class="dayOfWeek" id="thursdayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Thursday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
                         </div>
                     </div>
                     <div class="dayOfWeek" id="fridayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Friday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
                         </div>
                     </div>
                     <div class="dayOfWeek" id="saturdayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Saturday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
                         </div>
                     </div>
                     <div class="dayOfWeek" id="sundayDiv">
-                        <div class="weekDay" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div class="weekDay">
                             <header>
                                 <h2 class="dayNames">Sunday</h2>
                                 <div class="highLowTemp"></div>
+                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
+                                    here)</div>
                             </header>
-                        </div>
-                        <div class="threeSquareMeals">
                         </div>
                     </div>
                 </div>
