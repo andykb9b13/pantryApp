@@ -28,8 +28,12 @@
             <section id="pantry-shopping-section">
                 <div id="pantryAndList">
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <header>
-                            <h2>The Pantry</h2>
+                        <!-- Pantry Accordion -->
+                        <details>
+                            <!-- <header> -->
+                            <summary>
+                                <h2>The Pantry</h2>
+                            </summary>
                             <p>(click ingredient to remove from pantry)</p>
                             <input id="pantryInput" type="text">
                             <ul id="myPantryUl">
@@ -38,46 +42,79 @@
                                 <ul id="dairy">Dairy</ul>
 
                             </ul>
-                            <button role="button" id="myPantryButton" class="contrast outline">Add to Pantry</button>
-                        </header>
+                            <button role="button" id="myPantryButton" class="contrast outline">Add to
+                                Pantry</button>
+                            <!-- </header> -->
+                        </details>
                     </div>
                     <div id="theShoppingListDiv">
                         <div>
-                            <header id="shoppingListTitle">
-                                <h2>The Shopping List</h2>
+                            <details id="shoppingListTitle">
+                                <!-- <header id="shoppingListTitle"> -->
+                                <!-- Shopping List Accordion -->
+
+                                <summary>
+                                    <h2>The Shopping List</h2>
+                                </summary>
                                 <p>(click ingredient to add to pantry)</p>
-                            </header>
-                            <div>
+
+                                <!-- </header> -->
+                                <!-- <div> -->
                                 <ul id="shoppingListList">
                                 </ul>
-                            </div>
+
+                                <!-- </div> -->
+                            </details>
                         </div>
-                    </div>
             </section>
         </div>
         <div id="main-plan-container">
             <section name="recipe-section">
                 <div id="recipeContainer">
+                    <!-- Recipe Accordion -->
+
                     <div>
-                        <header>
-                            <h2>Find a Recipe</h2>
+
+                        <!-- <header> -->
+                        <details>
+                            <summary>
+                                <h2>Find a Recipe</h2>
+                            </summary>
                             <p>(drag recipe to weekly plan)</p>
-                        </header>
-                        <div id="recipeSearchDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <input type="text" id="recipeSearchInput">
-                            <button role="button" id="recipeSearchButton" class="contrast outline">Search</button>
-                            <ul id="recipeBoxUl"></ul>
-                        </div>
+
+                            <!-- </header> -->
+                            <div>
+                                <div id="recipeSearchDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                    <input type="text" id="recipeSearchInput">
+                                    <button role="button" id="recipeSearchButton"
+                                        class="contrast outline">Search</button>
+                                    <ul id="recipeBoxUl"></ul>
+                                </div>
+                            </div>
+
+                            <div id="recipeInstructions">
+
+                                <h2>Recipe Instructions</h2>
+
+                                <ul id="recipeInstructionsUl"></ul>
+
+                            </div>
+                            <div id="ingredients">
+                                <h2>Ingredients</h2>
+                                <ul id="ingredientsUl"></ul>
+                            </div>
+                            <div id="ingredients">
+                                <h2>Ingredients</h2>
+                                <ul id="ingredientsUl"></ul>
+                            </div>
+                            <div id="ingredients">
+                                <h2>Ingredients</h2>
+                            </div>
+                        </details>
+                        <ul id="ingredientsUl"></ul>
+
                     </div>
 
-                    <div id="recipeInstructions">
-                        <h2>Recipe Instructions</h2>
-                        <ul id="recipeInstructionsUl"></ul>
-                    </div>
-                    <div id="ingredients">
-                        <h2>Ingredients</h2>
-                        <ul id="ingredientsUl"></ul>
-                    </div>
                 </div>
             </section>
             <section id="weekly-plan-section">
@@ -186,11 +223,8 @@
         </div>
 
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
     <!-- Added script (AK) -->
     <script src="assets/js/script.js"></script>
 </body>
