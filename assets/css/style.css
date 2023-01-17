@@ -291,16 +291,18 @@ details {
 }
 
 /* Accordion arrow icon */
-details summary::after {
+details summary::after{
+    align-items: center;
     transform: rotate(0deg);
-    transform: translate(0px, -15px);
-}
+    display: flex;
+  }
 
 /* Accordion arrow icon after being opened */
 details[open]>summary::after {
     transform: rotate(180deg);
-    transform: translate(0px, -15px);
-}
+    display: flex;
+    align-items: center;
+   }
 
 .close:hover,
 .close:focus {
