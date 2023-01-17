@@ -71,6 +71,14 @@
                         <button role="button" id="locationSearchButton" class="contrast outline">Get the
                             Forecast</button>
                     </div>
+                        <button id="saveShoppingListButton">Save Shopping List</button>
+                    </div>
+                    <div id="weatherButtonDiv">
+                        <h3><span id="weatherTextDisplay"></span></h3>
+                        <h4 id="weatherh4">Get the weekly forecast so you can better plan your meals</h4>
+                        <input type="text" id="locationSearch" placeholder="City ...">
+                        <button role="button" id="locationSearchButton" class="contrast outline">Get the Forecast</button>
+                    </div>
             </section>
         </div>
         <div id="main-plan-container">
@@ -219,22 +227,17 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <div id="recipeDayofWeek">
-                <header>
-                    <h3>Day of the Week</h3>
-                </header>
-                <label for="days">Days of Week:</label>
-                <form action="" id="dayofWeekForm">
-                    <select name="days" id="dayDropDown">
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                    </select>
-                    <input type="submit" name="Submit" id="daysSubmit">
+            <div>
+                <h2>Recipe Instructions:</h2>
+                <ul id="modalDisplay">
+
+                </ul>
+                <hr>
+                <ul id="modalIngredients">
+
+                </ul>
+
+                
             </div>
         </div>
 

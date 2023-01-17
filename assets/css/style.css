@@ -194,6 +194,7 @@ button {
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 #thePantry li:hover,
@@ -244,7 +245,8 @@ select {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: var(--lightblue);
+    border-radius: var(--border-radius);
     margin: 15% auto;
     /* 15% from the top and centered */
     padding: 20px;
@@ -301,4 +303,21 @@ details[open]>summary::after {
     #pantry {
         width: 80vw;
     }
+}
+
+#weatherButtonDiv{
+    background-color: var(--lightblue);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 10px 10px 10px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+}
+
+#weatherh4 {
+    color: var(--white);
+}
+#saveShoppingListButton {
+    margin: auto;
+    padding: 25px;
 }
