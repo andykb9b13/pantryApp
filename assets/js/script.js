@@ -30,8 +30,11 @@ const recipeSearchInput = document.getElementById("recipeSearchInput");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
 const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
+const modalInstructionsUl = document.getElementById("modalDisplay");
+const modalIngredientsUl = document.getElementById("modalIngredients");
 const ingredientsUl = document.getElementById("ingredientsUl");
 const clearPlanButton = document.getElementById("clearMealPlan");
+const saveShoppingListButton = document.getElementById("saveShoppingListButton");
 let searchedRecipes = [];
 let pantryArr = [];
 let shoppingList = [];
@@ -43,6 +46,13 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
+const shoppingListLandingButton = document.getElementById("shoppingListLandingButton")
+const pantryLandingButton = document.getElementById("pantryLandingButton")
+
+shoppingListLandingButton.addEventListener("click", getShoppingList)
+
+pantryLandingButton.addEventListener("click", checkPantry)
+
 var dateEntry = document.getElementById("dateinput");
 var fullDate = dayjs().format('MM/DD/YYYY');
 dateEntry.textContent = fullDate; const weatherButtonDiv = document.getElementById("weatherButtonDiv");
@@ -57,7 +67,44 @@ function checkPantry() {
         setPantryDisplay()
     }
 }
-checkPantry()
+checkPantry();
+getShoppingList();
+
+function saveShoppingList() {
+    localStorage.setItem("Shopping List", JSON.stringify(shoppingList));
+}
+
+function getShoppingList() {
+    shoppingList = JSON.parse(localStorage.getItem("Shopping List")) || [];
+    console.log(shoppingList);
+    
+    for (let item of shoppingList) {
+        var shoppinglistitem = document.createElement('li');
+        shoppinglistitem.addEventListener("click", sendToPantry);
+        shoppinglistitem.innerText = item;
+        shoppinglistitem.style.listStyle = "none";
+        shoppingListUl.appendChild(shoppinglistitem);
+    }
+}
+
+function sendToPantry(e) {
+    console.log("This is E: ", e);
+    let targetIngredient = e.target.innerText;
+    console.log("This is the ingredient targeted: ", targetIngredient);
+    pantryArr.push(targetIngredient);
+    targetIngredientLi = document.createElement('li');
+    targetIngredientLi.style.listStyle = "none";
+    targetIngredientLi.innerText = targetIngredient;
+    myPantryUl.appendChild(targetIngredientLi);
+    shoppingListUl.removeChild(e.target);
+
+
+}
+
+saveShoppingListButton.addEventListener('click', saveShoppingList);
+
+
+
 
 
 
@@ -85,7 +132,6 @@ window.onclick = function (event) {
 let dayDivs = document.querySelectorAll(".dayOfWeek");
 for (let day of dayDivs) {
     day.addEventListener("click", function (e) {
-        getRecipeIngredients(e);
         getRecipeSteps(e);
         weeklyPlan.push(e.target);
     })
@@ -135,9 +181,10 @@ recipeSearchButton.addEventListener("click", recipeSearch);
 
 let recipeBoxArr = [];
 
-function getRecipeIngredients(e) {
-    let chosenRecipe = e.target.id
-    let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
+function getRecipeIngredients(recipe) {
+    // selected recipe
+    console.log("I have been chosen: ", recipe);
+    let requestUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
@@ -148,16 +195,12 @@ function getRecipeIngredients(e) {
             console.log("I am recipe ingredients", data);
             let ingredientArray = [];
             for (let i = 0; i < data.extendedIngredients.length; i++) {
-                // let ingredientName = data.extendedIngredients[i].amount + " " + data.extendedIngredients[i].unit + " " + data.extendedIngredients[i].name;
                 let ingredientName = data.extendedIngredients[i].name;
                 let ingredientItem = document.createElement("li");
                 ingredientItem.setAttribute("class", "shoppingListItem");
-
                 ingredientArray.push(ingredientName);
                 ingredientItem.textContent = ingredientArray[i];
                 ingredientItem.style.listStyle = "none";
-                ingredientItem.setAttribute("draggable", true);
-                ingredientItem.setAttribute("ondragstart", "drag(event)")
                 ingredientItem.addEventListener("click", function () {
                     pantryArr.push(ingredientName);
                     myPantryUl.appendChild(ingredientItem);
@@ -170,19 +213,18 @@ function getRecipeIngredients(e) {
                     shoppingList.push(ingredientName)
                     shoppingListUl.appendChild(ingredientItem);
                 }
-                // let foodImg = document.createElement('img');
-                // let foodImgName = data.extendedIngredients[i].image;
-                // foodImg.src = "https://spoonacular.com/cdn/ingredients_100x100/" + foodImgName;
-                // ingredientItem.appendChild(foodImg);
             }
         })
 }
 
 function getRecipeSteps(e) {
     recipeInstructionsUl.innerHTML = "";
+    modalInstructionsUl.innerHTML = "";
     ingredientsUl.innerHTML = "";
+    modalIngredientsUl.innerHTML = "";
     let chosenRecipe = e.target.id
     console.log(chosenRecipe);
+    fireModal();
     let requestUrl = "https://api.spoonacular.com/recipes/" + chosenRecipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
@@ -196,12 +238,14 @@ function getRecipeSteps(e) {
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
                 recipeInstructionsUl.appendChild(instructionStep);
                 recipeInstructionsUl.style.listStyle = "none";
+                modalInstructionsUl.appendChild(instructionStep);
             }
             for (let i = 0; i < data.extendedIngredients.length; i++) {
                 let ingredient = document.createElement("li");
                 ingredient.style.listStyle = "none";
                 ingredient.innerText = data.extendedIngredients[i].original;
                 ingredientsUl.appendChild(ingredient);
+                modalIngredientsUl.appendChild(ingredient);
             }
         })
 }
@@ -255,12 +299,13 @@ function removePantryItem(e) {
 
 function setWeeklyPlan() {
     let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
-    console.log("mealPlan", mealPlan)
+    console.log("mealPlan", mealPlan);
     for (let i = 0; i < mealPlan.length; i++) {
         let mealPlanId = mealPlan[i].id
         recipeBoxArr.push(mealPlanId);
         console.log("mealPlanId", mealPlanId);
         localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+        getRecipeIngredients(mealPlanId);
     }
 }
 
@@ -280,14 +325,10 @@ function recalledRecipeSearch() {
                 recipeListEl.setAttribute("data", "inSearch")
                 recipeListEl.innerText = data.title;
                 dropZone[i].appendChild(recipeListEl)
-                // console.log(`this is dropZone${i}`, dropZone[i]);
-                // dropZone[i].appendChild(recipeListEl);
-                // console.log(`this is recipeList El ${i}`, recipeListEl)
                 recipeListEl.style.listStyle = "none";
                 recipeListEl.style.width = "85%"
                 recipeListEl.style.color = "var(--white)"
                 recipeListEl.setAttribute("id", data.id);
-
                 let recipeImg = document.createElement('img');
                 recipeImg.src = data.image;
                 recipeImg.style.width = "40%";
@@ -350,9 +391,9 @@ function drop(ev) {
 
 // }
 
-// function fireModal() {
-//     modal.style.display = "block";
-// }
+function fireModal() {
+    modal.style.display = "block";
+}
 
 function getLocation() {
     let locationSearch = document.getElementById("locationSearch").value;
@@ -413,17 +454,12 @@ function getForecast(key) {
             for (let i = 0; i < 5; i++) {
                 let epoch = data.DailyForecasts[i].EpochDate;
                 let date = new Date(epoch * 1000);
-                let year = date.getFullYear();
                 let month = date.getMonth();
                 let day = date.getDate();
                 let dayOfWeek = date.getDay()
                 let dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
                 let dayDisplay = dayArr[dayOfWeek];
-                // let dateDisplay = document.createElement('p');
-                // dateDisplay.innerText = date;
-                // weekDay[i].appendChild(dateDisplay);
                 dayNames[i].innerText = dayDisplay + " " + (month + 1) + "/" + day;
-                // dayNames[i].innerText = date;
                 let icon = data.DailyForecasts[i].Day.Icon;
                 let iconImg = document.createElement("img");
                 iconImg.setAttribute("src", "./assets/images/icons/" + icon + ".png");
@@ -437,6 +473,7 @@ function getForecast(key) {
             weatherButtonDiv.prepend(todayTemp);
         })
 }
+
 
 
 

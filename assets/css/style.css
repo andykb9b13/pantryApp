@@ -26,17 +26,91 @@
     color: var(--brown);
 }
 
-p{
+h1 {
+    color: var(--brown);
+    font-size: 5em;
+    color: var(--white);
+    text-shadow: var(--text-shadow);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h2 {
+    color: var(--white);
+    font-size: 2em;
+}
+
+
+
+#weatherButtonDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    background-color: var(--yellow);
     color: var(--red);
 }
 
-#recipeContainer{
-    text-align: center;
-    border: 2px solid var(--brown);
-    box-shadow: 5px 5px 5px var(--brown);
-    padding: 20px;
-    width: 20%;
+#locationSearchButton {
+    color: var(--white);
+    border-color: var(--white);
+}
+
+#locationSearchButton:hover {
     background-color: var(--white);
+    color: var(--lightblue);
+}
+
+li,
+p,
+button {
+    font-size: 1.3em;
+    color: var(--white);
+}
+
+#introParagraph {
+    color: var(--white);
+    text-align: center;
+    font-size: x-large;
+    background: var(--lightblue);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    border: var(--border);
+    padding: 15px;
+    margin: 20px 100px 20px 100px;
+}
+
+button {
+    background-color: transparent;
+    color: var(--white);
+    font-family: 'Inconsolata', monospace;
+    margin-bottom: 15px;
+    width: 60%;
+    border-color: var(--white);
+}
+
+.btn-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#makeListButton,
+#recipeSearchButton,
+#clearMealPlan,
+#myPantryButton {
+    color: var(--white);
+    border-color: var(--white);
+}
+
+#makeListButton:hover,
+#clearMealPlan:hover,
+#recipeSearchButton:hover,
+#myPantryButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
 }
 .dayOfWeek {
     border: 2px solid var(--brown);
@@ -49,7 +123,32 @@ main {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-#userWeek{
+
+#recipeContainer,
+#landingShopping,
+#landingPantry {
+    text-align: center;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    width: 40vw;
+    background-color: var(--lightblue);
+    border-radius: var(--border-radius);
+}
+
+#recipeSearchInput {
+    width: 80%;
+}
+
+.searchedRecipes {
+    transition: 0.2s;
+}
+
+.searchedRecipes:hover {
+    transform: translate(-5px, -5px);
+}
+
+#userWeek {
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -94,6 +193,7 @@ main {
     background-color: var(--lightblue);
     border-radius: var(--border-radius);
     margin-bottom: 20px;
+    padding: 20px;
 }
 
 #thePantry li:hover,
@@ -149,17 +249,24 @@ select{
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: var(--lightblue);
+    border-radius: var(--border-radius);
+    margin: 15% auto;
+    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
@@ -171,14 +278,59 @@ select{
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+/* Override Accordion Pico CSS */
+details {
+    border-bottom: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* Accordion arrow icon */
+details summary::after {
+    align-items: center;
+    transform: rotate(0deg);
+    display: flex;
+    width: 3rem;
+    background-size: 3rem;
+}
+
+/* Accordion arrow icon after being opened */
+details[open]>summary::after {
+    transform: rotate(180deg);
+    display: flex;
+    align-items: center;
+}
+
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
   }
+
+#pantryLandingButton {
+    color: var(--white);
+    border-color: var(--white);
+    width: 40%;
+}
+
+#shoppingListLandingButton {
+    color: var(--white);
+    border-color: var(--white);
+    width: 40%;
+}
+
+#pantryLandingButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#shoppingListLandingButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
+}
 
 #weatherButtonDiv {
     padding: 25px;
@@ -194,4 +346,28 @@ select{
     #pantry {
         width: 80vw;
     }
+}
+
+#weatherButtonDiv {
+    background-color: var(--lightblue);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 10px 10px 10px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+}
+
+#weatherh4 {
+    color: var(--white);
+}
+
+#saveShoppingListButton {
+    margin: auto;
+    padding: 25px;
+    width: 60%;
+}
+
+#saveShoppingListButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
 }
