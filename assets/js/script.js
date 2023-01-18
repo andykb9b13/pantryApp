@@ -72,12 +72,29 @@ function saveShoppingList() {
 
 function getShoppingList() {
     shoppingList = JSON.parse(localStorage.getItem("Shopping List")) || [];
+    console.log(shoppingList);
+    
     for (let item of shoppingList) {
         var shoppinglistitem = document.createElement('li');
+        shoppinglistitem.addEventListener("click", sendToPantry);
         shoppinglistitem.innerText = item;
         shoppinglistitem.style.listStyle = "none";
         shoppingListUl.appendChild(shoppinglistitem);
     }
+}
+
+function sendToPantry(e) {
+    console.log("This is E: ", e);
+    let targetIngredient = e.target.innerText;
+    console.log("This is the ingredient targeted: ", targetIngredient);
+    pantryArr.push(targetIngredient);
+    targetIngredientLi = document.createElement('li');
+    targetIngredientLi.style.listStyle = "none";
+    targetIngredientLi.innerText = targetIngredient;
+    myPantryUl.appendChild(targetIngredientLi);
+    shoppingListUl.removeChild(e.target);
+
+
 }
 
 saveShoppingListButton.addEventListener('click', saveShoppingList);
