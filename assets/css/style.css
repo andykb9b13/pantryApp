@@ -101,7 +101,11 @@ button {
     width: 60%;
     border-color: var(--white);
 }
-
+.btn-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 #makeListButton:hover{
     background-color: var(--white);
     color: var(--lightblue);
@@ -309,6 +313,28 @@ details[open]>summary::after {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#pantryLandingButton{
+    color: var(--white);
+    border-color: var(--white);
+    width:40%;
+}
+
+#shoppingListLandingButton{
+    color: var(--white);
+    border-color: var(--white);
+    width:40%;
+}
+
+#pantryLandingButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#shoppingListLandingButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
 }
 
 #weatherButtonDiv {
