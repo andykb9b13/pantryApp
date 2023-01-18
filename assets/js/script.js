@@ -47,6 +47,8 @@ let fullDate = dayjs().format('MM/DD/YYYY');
 let span = document.getElementsByClassName("close")[0];
 let dateEntry = document.getElementById("dateinput");
 let dayDivs = document.querySelectorAll(".dayOfWeek");
+let dayNames = document.querySelectorAll(".dayNames");
+let highLowTemp = document.querySelectorAll(".highLowTemp")
 
 // Display the current Date
 dateEntry.textContent = fullDate;
@@ -260,8 +262,6 @@ function removePantryItem(e) {
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
 getRecipeIngredienst() */
 function setWeeklyPlan() {
-    let dayNames = document.querySelectorAll(".dayNames");
-    let highLowTemp = document.querySelectorAll(".highLowTemp")
     let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
     for (let i = 0; i < mealPlan.length; i++) {
         let mealPlanId = mealPlan[i].id
@@ -320,6 +320,14 @@ function clearRecipeList() {
     }
     recipeBoxArr = [];
     localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+    for (let i = 0; i < dayNames.length; i++) {
+        dayNames[i].innerHTML = "";
+        highLowTemp[i].innerHTML = ""
+    }
+    highLowTempArr = [];
+    dayNamesArr = [];
+    localStorage.setItem("dayNames", JSON.stringify(dayNamesArr));
+    localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
 }
 
 // ************ Drag and Drop ********************
@@ -423,8 +431,7 @@ function getForecast(key) {
 function getRecalledWeather() {
     dayNamesArr = JSON.parse(localStorage.getItem("dayNames")) || [];
     highLowTempArr = JSON.parse(localStorage.getItem("dayTemp")) || [];
-    let dayNames = document.querySelectorAll(".dayNames");
-    let highLowTemp = document.querySelectorAll(".highLowTemp")
+
     for (let i = 0; i < dayNamesArr.length; i++) {
         dayNames[i].innerHTML = dayNamesArr[i];
     }
