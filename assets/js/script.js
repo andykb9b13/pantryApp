@@ -8,7 +8,6 @@ const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
-// const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 const modalInstructionsUl = document.getElementById("modalDisplay");
 const modalIngredientsUl = document.getElementById("modalIngredients");
 const ingredientsUl = document.getElementById("ingredientsUl");
@@ -38,6 +37,8 @@ let recipeBoxArr = [];
 let shoppingList = [];
 let ingredientList = [];
 let weeklyPlan = [];
+let highLowTempArr = [];
+let dayNamesArr = [];
 
 // *************** Variable DOM Elements ************
 let dropZone = document.querySelectorAll(".dropZone");
@@ -130,7 +131,6 @@ for (let day of dayDivs) {
 
 // Calls Spoonacular API to get recipes from user input
 function recipeSearch() {
-    // recipeInstructionsUl.innerHTML = "";
     recipeBoxUl.innerHTML = "";
     recipeSearchInput.value = "";
     let searchInput = document.getElementById("recipeSearchInput").value;
@@ -260,12 +260,24 @@ function removePantryItem(e) {
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
 getRecipeIngredienst() */
 function setWeeklyPlan() {
+    let dayNames = document.querySelectorAll(".dayNames");
+    let highLowTemp = document.querySelectorAll(".highLowTemp")
     let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
     for (let i = 0; i < mealPlan.length; i++) {
         let mealPlanId = mealPlan[i].id
         recipeBoxArr.push(mealPlanId);
         localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
         getRecipeIngredients(mealPlanId);
+    }
+    for (let day of dayNames) {
+        dayNamesArr.push(day.innerHTML);
+        console.log(day.innerHTML);
+        localStorage.setItem("dayNames", JSON.stringify(dayNamesArr));
+    }
+    for (let temp of highLowTemp) {
+        highLowTempArr.push(temp.innerHTML);
+        console.log(temp.innerHTML);
+        localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
     }
 }
 
@@ -408,6 +420,20 @@ function getForecast(key) {
         })
 }
 
+function getRecalledWeather() {
+    dayNamesArr = JSON.parse(localStorage.getItem("dayNames")) || [];
+    highLowTempArr = JSON.parse(localStorage.getItem("dayTemp")) || [];
+    let dayNames = document.querySelectorAll(".dayNames");
+    let highLowTemp = document.querySelectorAll(".highLowTemp")
+    for (let i = 0; i < dayNamesArr.length; i++) {
+        dayNames[i].innerHTML = dayNamesArr[i];
+    }
+    for (let i = 0; i < highLowTempArr.length; i++) {
+        highLowTemp[i].innerHTML = highLowTempArr[i];
+    }
+
+}
+
 // *************** Event Listeners ******************
 // shoppingListLandingButton.addEventListener("click", getShoppingList);
 // pantryLandingButton.addEventListener("click", checkPantry);
@@ -428,4 +454,5 @@ pantryInput.addEventListener("keyup", function (event) {
 checkPantry();
 getShoppingList();
 recalledRecipeSearch();
+getRecalledWeather();
 
