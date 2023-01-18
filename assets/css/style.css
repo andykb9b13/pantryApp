@@ -69,6 +69,11 @@ input {
     width: 60%;
 }
 
+#locationSearchButton{
+    color: var(--white);
+    border-color: var(--white);
+}
+
 #locationSearchButton:hover{
     background-color: var(--white);
     color: var(--lightblue);
@@ -106,9 +111,20 @@ button {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+#makeListButton{
+    color: var(--white);
+    border-color: var(--white);
+}
+
 #makeListButton:hover{
     background-color: var(--white);
     color: var(--lightblue);
+}
+
+#clearMealPlan{
+    color: var(--white);
+    border-color: var(--white);
 }
 
 #clearMealPlan:hover{
@@ -116,7 +132,22 @@ button {
     color: var(--lightblue);
 }
 
+#recipeSearchButton{
+    color: var(--white);
+    border-color: var(--white);
+}
+
 #recipeSearchButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#myPantryButton{
+    color: var(--white);
+    border-color: var(--white);
+}
+
+#myPantryButton:hover{
     background-color: var(--white);
     color: var(--lightblue);
 }
