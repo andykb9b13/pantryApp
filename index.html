@@ -24,50 +24,29 @@
                 <div id="pantryAndList">
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <header>
-
-
                             <h2>The Pantry</h2>
-
-                            <!-- added pantry input (AK)-->
                             <details>
                                 <summary><input id="pantryInput" type="text"></summary>
-                                <!-- added pantry ul (AK)-->
                                 <ul id="myPantryUl"></ul>
-                                <!-- added pantry button (AK) -->
                                 <button role="button" id="myPantryButton" class="contrast outline">Add to
                                     Pantry</button>
                             </details>
                         </header>
                     </div>
                     <div id="theShoppingListDiv">
-                        <div> <!-- <header id="shoppingListTitle"> -->
-                            <!-- Shopping List Accordion -->
-
+                        <div>
                             <h2>The Shopping List</h2>
-
                             <div>
                                 <details id="shoppingListTitle">
                                     <summary>
                                         <p>(click ingredient to add to pantry)</p>
                                     </summary>
-
-                                    <ul id="shoppingListList">
-                                    </ul>
-
-
-                                    <!-- </header> -->
-
-
-
                                     <ul id="shoppingListList">
                                     </ul>
                                     <button id="saveShoppingListButton">Save Shopping List</button>
                                 </details>
                             </div>
-
                         </div>
-
-
                     </div>
                     <div id="weatherButtonDiv">
                         <h3><span id="weatherTextDisplay"></span></h3>
@@ -98,46 +77,8 @@
                                 </div>
                             </div>
                             <div>
-
-                                <div id="recipeInstructions">
-                                    <!-- Recipe Accordion -->
-
-                                    <h2>Recipe Instructions</h2>
-
-
-                                    <ul id="recipeInstructionsUl"></ul>
-
-
-                                </div>
-
-                            </div>
-
-                            <div>
-
-                                <div id="ingredients">
-                                    <!-- Ingredients Accordion -->
-
-                                    <h2>Ingredients</h2>
-
-                                    <ul id="ingredientsUl"></ul>
-
-                                </div>
-
-                                <div id="ingredients">
-                                    <h2>Ingredients</h2>
-                                    <ul id="ingredientsUl"></ul>
-                                </div>
-                                <div id="ingredients">
-                                    <h2>Ingredients</h2>
-                                </div>
-
-                                <ul id="ingredientsUl"></ul>
-
-
-                            </div>
                         </details>
                     </div>
-
                 </div>
             </section>
             <section id="weekly-plan-section">
@@ -196,54 +137,26 @@
                             </header>
                         </div>
                     </div>
-                    <div class="dayOfWeek" id="saturdayDiv">
-                        <div class="weekDay">
-                            <header>
-                                <h2 class="dayNames">Saturday</h2>
-                                <div class="highLowTemp"></div>
-                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
-                                    here)</div>
-                            </header>
-                        </div>
-                    </div>
-                    <div class="dayOfWeek" id="sundayDiv">
-                        <div class="weekDay">
-                            <header>
-                                <h2 class="dayNames">Sunday</h2>
-                                <div class="highLowTemp"></div>
-                                <div class="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">(drop recipe
-                                    here)</div>
-                            </header>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
     </main>
-    <!-- The Modal -->
     <div id="myModal" class="modal">
-
-        <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <div>
                 <h2>Recipe Instructions:</h2>
                 <ul id="modalDisplay">
-
                 </ul>
                 <hr>
                 <ul id="modalIngredients">
-
                 </ul>
-
-
             </div>
         </div>
-
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
-    <!-- Added script (AK) -->
     <script src="assets/js/script.js"></script>
 </body>
 

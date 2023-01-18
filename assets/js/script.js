@@ -46,8 +46,12 @@ const dayOfWeekBtn = document.getElementById("daysSubmit");
 const locationSearchButton = document.getElementById("locationSearchButton");
 const displayWeatherText = document.getElementById("weatherTextDisplay");
 const makeListButton = document.getElementById("makeListButton");
+const shoppingListLandingButton = document.getElementById("shoppingListLandingButton")
+const pantryLandingButton = document.getElementById("pantryLandingButton")
 
+shoppingListLandingButton.addEventListener("click", getShoppingList)
 
+pantryLandingButton.addEventListener("click", checkPantry)
 
 var dateEntry = document.getElementById("dateinput");
 var fullDate = dayjs().format('MM/DD/YYYY');

@@ -164,7 +164,7 @@ button {
     justify-content: space-evenly;
 }
 
-#recipeContainer {
+#recipeContainer, #landingShopping, #landingPantry {
     text-align: center;
     border: var(--border);
     box-shadow: var(--box-shadow);
