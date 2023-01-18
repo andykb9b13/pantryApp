@@ -23,69 +23,75 @@
             <section id="pantry-shopping-section">
                 <div id="pantryAndList">
                     <div id="thePantry" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <!-- Pantry Accordion -->
-                        <details>
-                            <!-- <header> -->
-                            <summary>
-                                <h2>The Pantry</h2>
-                            </summary>
-                            <p>(click ingredient to remove from pantry)</p>
-                            <input id="pantryInput" type="text">
-                            <ul id="myPantryUl">
-                                <ul id="produce">Produce</ul>
-                                <ul id="meat">Meat</ul>
-                                <ul id="dairy">Dairy</ul>
+                        <header>
 
-                            </ul>
-                            <button role="button" id="myPantryButton" class="contrast outline">Add to
-                                Pantry</button>
-                            <!-- </header> -->
-                        </details>
+
+                            <h2>The Pantry</h2>
+
+                            <!-- added pantry input (AK)-->
+                            <details>
+                                <summary><input id="pantryInput" type="text"></summary>
+                                <!-- added pantry ul (AK)-->
+                                <ul id="myPantryUl"></ul>
+                                <!-- added pantry button (AK) -->
+                                <button role="button" id="myPantryButton" class="contrast outline">Add to
+                                    Pantry</button>
+                            </details>
+                        </header>
                     </div>
                     <div id="theShoppingListDiv">
-                        <div>
+                        <div> <!-- <header id="shoppingListTitle"> -->
+                            <!-- Shopping List Accordion -->
+
+                            <h2>The Shopping List</h2>
+
                             <details id="shoppingListTitle">
-                                <!-- <header id="shoppingListTitle"> -->
-                                <!-- Shopping List Accordion -->
-
                                 <summary>
-                                    <h2>The Shopping List</h2>
+                                    <p>(click ingredient to add to pantry)</p>
                                 </summary>
-                                <p>(click ingredient to add to pantry)</p>
 
-                                <!-- </header> -->
-                                <!-- <div> -->
                                 <ul id="shoppingListList">
                                 </ul>
 
-                                <!-- </div> -->
                             </details>
+                            <!-- </header> -->
+
+
+                            <div>
+                                <ul id="shoppingListList">
+                                </ul>
+
+                            </div>
                         </div>
-                        <button id="saveShoppingListButton">Save Shopping List</button>
                     </div>
                     <div id="weatherButtonDiv">
                         <h3><span id="weatherTextDisplay"></span></h3>
                         <h4 id="weatherh4">Get the weekly forecast so you can better plan your meals</h4>
                         <input type="text" id="locationSearch" placeholder="City ...">
-                        <button role="button" id="locationSearchButton" class="contrast outline">Get the Forecast</button>
+                        <button role="button" id="locationSearchButton" class="contrast outline">Get the
+                            Forecast</button>
                     </div>
+                    <button id="saveShoppingListButton">Save Shopping List</button>
+                </div>
+                <div id="weatherButtonDiv">
+                    <h3><span id="weatherTextDisplay"></span></h3>
+                    <h4 id="weatherh4">Get the weekly forecast so you can better plan your meals</h4>
+                    <input type="text" id="locationSearch" placeholder="City ...">
+                    <button role="button" id="locationSearchButton" class="contrast outline">Get the Forecast</button>
+                </div>
             </section>
         </div>
         <div id="main-plan-container">
             <section name="recipe-section">
                 <div id="recipeContainer">
-                    <!-- Recipe Accordion -->
-
                     <div>
-
-                        <!-- <header> -->
                         <details>
                             <summary>
-                                <h2>Find a Recipe</h2>
+                                <header>
+                                    <h2>Find a Recipe</h2>
+                                    <p>(drag recipe to weekly plan)</p>
+                                </header>
                             </summary>
-                            <p>(drag recipe to weekly plan)</p>
-
-                            <!-- </header> -->
                             <div>
                                 <div id="recipeSearchDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
                                     <input type="text" id="recipeSearchInput">
@@ -94,28 +100,45 @@
                                     <ul id="recipeBoxUl"></ul>
                                 </div>
                             </div>
+                            <div>
 
-                            <div id="recipeInstructions">
+                                <div id="recipeInstructions">
+                                    <!-- Recipe Accordion -->
 
-                                <h2>Recipe Instructions</h2>
+                                    <h2>Recipe Instructions</h2>
 
-                                <ul id="recipeInstructionsUl"></ul>
+
+                                    <ul id="recipeInstructionsUl"></ul>
+
+
+                                </div>
 
                             </div>
-                            <div id="ingredients">
-                                <h2>Ingredients</h2>
+
+                            <div>
+
+                                <div id="ingredients">
+                                    <!-- Ingredients Accordion -->
+
+                                    <h2>Ingredients</h2>
+
+                                    <ul id="ingredientsUl"></ul>
+
+                                </div>
+
+                                <div id="ingredients">
+                                    <h2>Ingredients</h2>
+                                    <ul id="ingredientsUl"></ul>
+                                </div>
+                                <div id="ingredients">
+                                    <h2>Ingredients</h2>
+                                </div>
+
                                 <ul id="ingredientsUl"></ul>
-                            </div>
-                            <div id="ingredients">
-                                <h2>Ingredients</h2>
-                                <ul id="ingredientsUl"></ul>
-                            </div>
-                            <div id="ingredients">
-                                <h2>Ingredients</h2>
+
+
                             </div>
                         </details>
-                        <ul id="ingredientsUl"></ul>
-
                     </div>
 
                 </div>
@@ -216,7 +239,7 @@
 
                 </ul>
 
-                
+
             </div>
         </div>
 
