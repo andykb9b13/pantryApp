@@ -69,12 +69,12 @@ input {
     width: 60%;
 }
 
-#locationSearchButton{
+#locationSearchButton {
     color: var(--white);
     border-color: var(--white);
 }
 
-#locationSearchButton:hover{
+#locationSearchButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
 }
@@ -106,48 +106,25 @@ button {
     width: 60%;
     border-color: var(--white);
 }
-.btn-list{
+
+.btn-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-#makeListButton{
+#makeListButton,
+#recipeSearchButton,
+#clearMealPlan,
+#myPantryButton {
     color: var(--white);
     border-color: var(--white);
 }
 
-#makeListButton:hover{
-    background-color: var(--white);
-    color: var(--lightblue);
-}
-
-#clearMealPlan{
-    color: var(--white);
-    border-color: var(--white);
-}
-
-#clearMealPlan:hover{
-    background-color: var(--white);
-    color: var(--lightblue);
-}
-
-#recipeSearchButton{
-    color: var(--white);
-    border-color: var(--white);
-}
-
-#recipeSearchButton:hover{
-    background-color: var(--white);
-    color: var(--lightblue);
-}
-
-#myPantryButton{
-    color: var(--white);
-    border-color: var(--white);
-}
-
-#myPantryButton:hover{
+#makeListButton:hover,
+#clearMealPlan:hover,
+#recipeSearchButton:hover,
+#myPantryButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
 }
@@ -164,7 +141,9 @@ button {
     justify-content: space-evenly;
 }
 
-#recipeContainer, #landingShopping, #landingPantry {
+#recipeContainer,
+#landingShopping,
+#landingPantry {
     text-align: center;
     border: var(--border);
     box-shadow: var(--box-shadow);
@@ -326,18 +305,18 @@ details {
 }
 
 /* Accordion arrow icon */
-details summary::after{
+details summary::after {
     align-items: center;
     transform: rotate(0deg);
     display: flex;
-  }
+}
 
 /* Accordion arrow icon after being opened */
 details[open]>summary::after {
     transform: rotate(180deg);
     display: flex;
     align-items: center;
-   }
+}
 
 .close:hover,
 .close:focus {
@@ -346,24 +325,24 @@ details[open]>summary::after {
     cursor: pointer;
 }
 
-#pantryLandingButton{
+#pantryLandingButton {
     color: var(--white);
     border-color: var(--white);
-    width:40%;
+    width: 40%;
 }
 
-#shoppingListLandingButton{
+#shoppingListLandingButton {
     color: var(--white);
     border-color: var(--white);
-    width:40%;
+    width: 40%;
 }
 
-#pantryLandingButton:hover{
+#pantryLandingButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
 }
 
-#shoppingListLandingButton:hover{
+#shoppingListLandingButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
 }
@@ -384,7 +363,7 @@ details[open]>summary::after {
     }
 }
 
-#weatherButtonDiv{
+#weatherButtonDiv {
     background-color: var(--lightblue);
     border-radius: 15px;
     padding: 25px;
@@ -396,14 +375,14 @@ details[open]>summary::after {
 #weatherh4 {
     color: var(--white);
 }
+
 #saveShoppingListButton {
     margin: auto;
     padding: 25px;
     width: 60%;
 }
 
-#saveShoppingListButton:hover{
+#saveShoppingListButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
 }
-
