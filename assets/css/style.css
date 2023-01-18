@@ -309,6 +309,8 @@ details summary::after {
     align-items: center;
     transform: rotate(0deg);
     display: flex;
+    width: 3rem;
+    background-size: 3rem;
 }
 
 /* Accordion arrow icon after being opened */
