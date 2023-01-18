@@ -49,9 +49,7 @@ h2 {
     font-size: 2em;
 }
 
-h2:nth-of-type(1) {
-    margin-bottom: 0px;
-}
+
 
 #weatherButtonDiv {
     display: flex;
@@ -71,6 +69,11 @@ input {
     width: 60%;
 }
 
+#locationSearchButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
 li,
 p,
 button {
@@ -78,7 +81,7 @@ button {
     color: var(--white);
 }
 
-p{
+#introParagraph {
     color: var(--white);
     text-align: center;
     font-size: x-large;
@@ -86,15 +89,32 @@ p{
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
     border: var(--border);
-    padding: 10px;
+    padding: 15px;
+    margin: 20px 100px 20px 100px;
 }
 
 button {
-    background-color: var(--brown);
-    color: var(--lightblue);
+    background-color: transparent;
+    color: var(--white);
     font-family: 'Inconsolata', monospace;
     margin-bottom: 15px;
-    width: 80%;
+    width: 60%;
+    border-color: var(--white);
+}
+
+#makeListButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#clearMealPlan:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#recipeSearchButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
 }
 
 #main-pantry-container {
@@ -270,10 +290,19 @@ details {
     margin-top: 20px;
 }
 
-/* Remove Accordion Arrows */
-details summary::after {
-    background-image: none;
-}
+/* Accordion arrow icon */
+details summary::after{
+    align-items: center;
+    transform: rotate(0deg);
+    display: flex;
+  }
+
+/* Accordion arrow icon after being opened */
+details[open]>summary::after {
+    transform: rotate(180deg);
+    display: flex;
+    align-items: center;
+   }
 
 .close:hover,
 .close:focus {
@@ -313,4 +342,11 @@ details summary::after {
 #saveShoppingListButton {
     margin: auto;
     padding: 25px;
+    width: 60%;
 }
+
+#saveShoppingListButton:hover{
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
