@@ -8,7 +8,7 @@ const shoppingListUl = document.getElementById("shoppingListList");
 const mealPlanUl = document.getElementById("mealPlanUl");
 const recipeBoxUl = document.getElementById("recipeBoxUl");
 const myPantryUl = document.getElementById("myPantryUl");
-const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
+// const recipeInstructionsUl = document.getElementById("recipeInstructionsUl");
 const modalInstructionsUl = document.getElementById("modalDisplay");
 const modalIngredientsUl = document.getElementById("modalIngredients");
 const ingredientsUl = document.getElementById("ingredientsUl");
@@ -130,7 +130,7 @@ for (let day of dayDivs) {
 
 // Calls Spoonacular API to get recipes from user input
 function recipeSearch() {
-    recipeInstructionsUl.innerHTML = "";
+    // recipeInstructionsUl.innerHTML = "";
     recipeBoxUl.innerHTML = "";
     recipeSearchInput.value = "";
     let searchInput = document.getElementById("recipeSearchInput").value;
@@ -205,11 +205,9 @@ function getRecipeIngredients(recipe) {
         })
 }
 
-// Calls Spoonacular and gets the individual recipe steps for the recipe clicked on.
+// Calls Spoonacular and gets the individual recipe steps for the recipe clicked on and display in modal.
 function getRecipeSteps(e) {
-    recipeInstructionsUl.innerHTML = "";
     modalInstructionsUl.innerHTML = "";
-    ingredientsUl.innerHTML = "";
     modalIngredientsUl.innerHTML = "";
     let chosenRecipe = e.target.id
     fireModal();
@@ -223,15 +221,12 @@ function getRecipeSteps(e) {
                 let instructionStep = document.createElement("li");
                 instructionStep.style.listStyle = "none";
                 instructionStep.innerText = (i + 1) + ". " + data.analyzedInstructions[0].steps[i].step;
-                recipeInstructionsUl.appendChild(instructionStep);
-                recipeInstructionsUl.style.listStyle = "none";
                 modalInstructionsUl.appendChild(instructionStep);
             }
             for (let i = 0; i < data.extendedIngredients.length; i++) {
                 let ingredient = document.createElement("li");
                 ingredient.style.listStyle = "none";
                 ingredient.innerText = data.extendedIngredients[i].original;
-                ingredientsUl.appendChild(ingredient);
                 modalIngredientsUl.appendChild(ingredient);
             }
         })
@@ -256,9 +251,9 @@ function addPantryItem() {
 function removePantryItem(e) {
     let item = e.target.id;
     let index = pantryArr.indexOf(item);
+    myPantryUl.removeChild(e.target);
     pantryArr.splice(index, 1);
     localStorage.setItem("pantry", JSON.stringify(pantryArr));
-    myPantryUl.removeChild(e.target);
 }
 
 /* When the makeListButton is clicked, this sends the recipe ids in the dayOfWeek divs to recipeBoxArr
@@ -414,8 +409,8 @@ function getForecast(key) {
 }
 
 // *************** Event Listeners ******************
-shoppingListLandingButton.addEventListener("click", getShoppingList);
-pantryLandingButton.addEventListener("click", checkPantry);
+// shoppingListLandingButton.addEventListener("click", getShoppingList);
+// pantryLandingButton.addEventListener("click", checkPantry);
 locationSearchButton.addEventListener("click", getLocation);
 saveShoppingListButton.addEventListener('click', saveShoppingList);
 makeListButton.addEventListener("click", setWeeklyPlan);
