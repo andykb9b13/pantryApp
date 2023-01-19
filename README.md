@@ -16,7 +16,8 @@ Pantry stores a list of ingredients that you currently have in your pantry at ho
 - Save the recipies, shopping list and pantry to local storage for easy recall, or clear and start new
 - Party On Wanye
 
-##!(https://[github].com/andykb9b13/project-awesome)
+# #!(https://github.com/andykb9b13/project-awesome)
+# #!(https://andykb9b13.github.io/project-awesome)
 
 ###APIs Used in the App
 ![Spoonacular](https://spoonacular.com/)
