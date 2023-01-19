@@ -477,4 +477,3 @@ checkPantry();
 getShoppingList();
 recalledRecipeSearch();
 getRecalledWeather();
-
