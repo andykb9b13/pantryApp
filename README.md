@@ -1,6 +1,6 @@
 # The Pantry
 
-_More_than_just_a_meal_planner_
+## More Than Just A Meal Planner
 
 ```
 Pantry stores a list of ingredients that you currently have in your pantry at home along with new items added by you, in you shopping list. The idea is that will keeping up with everything, so you will be more effective when shopping for the week. No more over/under buying. The App will alsp help you plan you meals for the week in addition to suggesting a verity of creative recipies. It also displays the weather for each day of the week so you may plan accordingly. No more planing on grilling when it's raining! It also intergrates a shopping list based on the recipies you have saved. The main idea is to help you be more organized in this fast paced world. It will help you save time and money while doing so.
@@ -16,9 +16,14 @@ Pantry stores a list of ingredients that you currently have in your pantry at ho
 - Save the recipies, shopping list and pantry to local storage for easy recall, or clear and start new
 - Party On Wanye
 
-# #!(https://github.com/andykb9b13/project-awesome)
-# #!(https://andykb9b13.github.io/project-awesome)
+## Screenshot of Application
+![Screenshot of app](assets/images/screenshot.png)
 
-###APIs Used in the App
-![Spoonacular](https://spoonacular.com/)
-![Accuweather](https://www.accuweather.com/)
+## Project Repo 
+[github repo](https://github.com/andykb9b13/project-awesome)
+## Live Site Link
+[Live Site Link](https://andykb9b13.github.io/project-awesome)
+
+## APIs Used in the App
+[Spoonacular](https://spoonacular.com/)
+[Accuweather](https://www.accuweather.com/)
