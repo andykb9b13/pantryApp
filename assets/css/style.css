@@ -381,10 +381,25 @@ details[open]>summary::after {
 #saveShoppingListButton {
     margin: auto;
     padding: 25px;
-    width: 60%;
+}
+#clearShoppingListButton{
+    margin: auto;
+    padding: 25px;
 }
 
 #saveShoppingListButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
+}
+
+#clearShoppingListButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#shoppingButtonDiv {
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
 }
