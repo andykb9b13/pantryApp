@@ -1,38 +1,29 @@
 :root {
-    --yellow: #F3DFC9;
+    --yellow: #BD8C55;
     --white: #FFF8EB;
     --red: #A92A2C;
     --lightblue: #587B85;
     --brown: #332822;
-    --border-radius: 15px;
-    --font-family: 'Shadows Into Light', cursive;
-    --box-shadow: 1px 1px 20px 6px var(--brown);
-    --text-shadow: 1px 1px 2px black;
-    --border: 1px solid var(--brown);
-    /* font-family: 'Inconsolata', monospace; */
-    /* font-family: 'Shadows Into Light', cursive; */
-}
+    font-family: 'Inconsolata', monospace;
+    font-family: 'Shadows Into Light', cursive;
+  }
 
-body {
+  body{
     background-image: url("https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-    text-shadow: var(--text-shadow);
-    background-size: 100%;
-    background-repeat: repeat-y;
-    font-family: var(--font-family);
-}
+  }
 
-main {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding-top: 0px;
-}
+  h1{
+    font-family: 'Inconsolata', monospace;
+    color: var(--brown);
+  }
+
+  h2{
+    color: var(--red);
+  }
 
 #titleBox {
     text-align: center;
     color: var(--brown);
-    padding-bottom: 0px;
 }
 
 h1 {
@@ -60,13 +51,6 @@ h2 {
 input {
     background-color: var(--yellow);
     color: var(--red);
-    font-family: 'Inconsolata', monospace;
-    text-shadow: 1px 1px 1px var(--brown);
-}
-
-#locationSearch,
-#locationSearchButton {
-    width: 60%;
 }
 
 #locationSearchButton {
@@ -128,14 +112,13 @@ button {
     background-color: var(--white);
     color: var(--lightblue);
 }
-
-#main-pantry-container {
-    display: flex;
-    justify-content: center;
-
+.dayOfWeek {
+    border: 2px solid var(--brown);
+    margin: 20px;
+    padding: 20px;
+    background-color: var(--yellow);
 }
-
-#main-plan-container {
+main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -168,39 +151,21 @@ button {
 #userWeek {
     display: flex;
     flex-direction: column;
-    width: 40vw;
-    border: var(--border);
-    box-shadow: var(--box-shadow);
-    background-color: var(--lightblue);
-    border-radius: var(--border-radius);
-    align-items: center;
+    width: 30%;
+    border: 2px solid var(--brown);
+    box-shadow: 5px 5px 5px var(--brown);
+    background-color: var(--white);   
 }
-
-#userWeek button {
-    align-items: center;
-}
-
-#userWeek h2 {
+#thePantry {
+    border: 2px solid var(--brown);
+    width: 20%;
+    box-shadow: 5px 5px 5px var(--brown);
     text-align: center;
-    text-shadow: var(--text-shadow)
-}
-
-.dayOfWeek {
-    border: var(--border);
-    margin: 20px;
-    padding: 20px;
-    background-color: var(--yellow);
-    border-radius: var(--border-radius);
-    width: 80%;
-    box-shadow: 1px 1px 3px 1px black;
-}
-
-.dayOfWeek h2 {
-    text-decoration: underline;
+    background-color: var(--white);
 }
 
 .weekDay {
-    text-align: center;
+  text-align: center;
 }
 
 .highLowTemp {
@@ -241,28 +206,47 @@ button {
 }
 
 #shoppingListTitle {
-    text-align: center;
+  text-align: center;
+}
+#theShoppingListDiv{
+    border: 2px solid var(--brown);
+    box-shadow: 5px 5px 5px var(--brown);
+    padding: 20px;
+    margin: 10px;
 }
 
-#daysSubmit,
-#mealSubmit {
+button{
+    background-color: var(--brown);
+    color: var(--lightblue);
+    font-family: 'Inconsolata', monospace;
+}
+
+#daysSubmit, 
+#mealSubmit{
     background-color: var(--brown);
     color: var(--lightblue);
 }
 
-select {
+input{
+    background-color: var(--yellow);
+    color: var(--red);
+        font-family: 'Inconsolata', monospace; 
+}
+
+select{
     background-color: var(--yellow);
     color: var(--red);
 }
 
+#theShoppingListDiv{
+    background-color: var(--yellow);
+}
+
 /* The Modal (background) */
 .modal {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
@@ -285,12 +269,11 @@ select {
     /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -325,7 +308,7 @@ details[open]>summary::after {
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
+  }
 
 #pantryLandingButton {
     color: var(--white);
