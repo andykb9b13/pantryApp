@@ -24,6 +24,8 @@ const makeListButton = document.getElementById("makeListButton");
 const shoppingListLandingButton = document.getElementById("shoppingListLandingButton")
 const pantryLandingButton = document.getElementById("pantryLandingButton");
 const locationSearchButton = document.getElementById("locationSearchButton");
+const clearShoppingListButton = document.getElementById("clearShoppingListButton");
+const clearPantryButton = document.getElementById("clearPantryButton");
 
 // *********************************************** 
 const scheduledMeal = document.getElementById("selectedMealSpot");
@@ -48,7 +50,7 @@ let span = document.getElementsByClassName("close")[0];
 let dateEntry = document.getElementById("dateinput");
 let dayDivs = document.querySelectorAll(".dayOfWeek");
 let dayNames = document.querySelectorAll(".dayNames");
-let highLowTemp = document.querySelectorAll(".highLowTemp")
+let highLowTemp = document.querySelectorAll(".highLowTemp");
 
 // Display the current Date
 dateEntry.textContent = fullDate;
@@ -59,7 +61,7 @@ function checkPantry() {
     pantryArr = JSON.parse(localStorage.getItem("pantry"));
     if (pantryArr === null) {
         pantryArr = [];
-        localStorage.setItem("pantry", JSON.stringify(pantryArr))
+        localStorage.setItem("pantry", JSON.stringify(pantryArr));
     } else {
         setPantryDisplay()
     }
@@ -73,7 +75,7 @@ function setPantryDisplay() {
         pantryItem.setAttribute("id", item)
         pantryItem.style.listStyle = "none";
         pantryItem.innerText = item;
-        pantryItem.addEventListener("click", removePantryItem)
+        pantryItem.addEventListener("click", removePantryItem);
         myPantryUl.appendChild(pantryItem);
     }
 }
@@ -134,8 +136,8 @@ for (let day of dayDivs) {
 // Calls Spoonacular API to get recipes from user input
 function recipeSearch() {
     recipeBoxUl.innerHTML = "";
-    recipeSearchInput.value = "";
-    let searchInput = document.getElementById("recipeSearchInput").value;
+    let searchInput = recipeSearchInput.value;
+    console.log(searchInput);
     let requestUrl = "https://api.spoonacular.com/recipes/complexSearch?apiKey=86559794390c4f9c8a3c8bba07f2d054&query=" + searchInput + "&number=5";
     fetch(requestUrl)
         .then(function (response) {
@@ -166,19 +168,19 @@ function recipeSearch() {
             }
             searchedRecipes = document.querySelectorAll(".searchedRecipes");
             console.log(searchedRecipes);
+            recipeSearchInput.value = "";
         })
 }
 
 // Calls Spoonacular for a recipe information using the recipe ID number saved in recipeListEl
 function getRecipeIngredients(recipe) {
+    console.log(recipe);
     let requestUrl = "https://api.spoonacular.com/recipes/" + recipe + "/information?apiKey=86559794390c4f9c8a3c8bba07f2d054";
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            recipeBoxArr.push(data);
-            localStorage.setItem("recipeBox", JSON.stringify(recipeBoxArr));
             let ingredientArray = [];
             for (let i = 0; i < data.extendedIngredients.length; i++) {
                 let ingredientName = data.extendedIngredients[i].name;
@@ -236,11 +238,12 @@ function getRecipeSteps(e) {
 
 // Creates the DOM elements for the pantryUL and sends an updated pantryArr to localStorage.
 function addPantryItem() {
+    console.log("im firing from add Pantry Item")
     let newPantryItem = document.createElement('li');
     newPantryItem.setAttribute("class", "pantryItem");
     newPantryItem.style.listStyle = "none";
-    newPantryItem.innerText = newPantryItemText;
     let newPantryItemText = pantryInput.value;
+    newPantryItem.innerText = newPantryItemText;
     newPantryItem.addEventListener("click", removePantryItem)
     myPantryUl.appendChild(newPantryItem);
     pantryArr.push(newPantryItemText);
@@ -260,7 +263,7 @@ function removePantryItem(e) {
 
 /* When the makeListButton is clicked, this sends the recipe ids in the dayOfWeek divs to recipeBoxArr
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
-getRecipeIngredienst() */
+getRecipeIngredienst(). The weather and days in the recipe cards are saved to local storage as well. */
 function setWeeklyPlan() {
     let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
     for (let i = 0; i < mealPlan.length; i++) {
@@ -313,7 +316,7 @@ function recalledRecipeSearch() {
 
 }
 
-// Clears the recipeBoxArr, sets it to localStorage and clears the dayOfWeek divs.
+// Clears the recipeBoxArr, highLowTempArr, and dayNamesArr and sets them to localStorage and clears the dayOfWeek divs.
 function clearRecipeList() {
     for (let i = 0; i < dropZone.length; i++) {
         dropZone[i].innerHTML = "(drop recipe here)";
@@ -330,6 +333,19 @@ function clearRecipeList() {
     localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
 }
 
+// clears the pantry when clearPantryButton is clicked.
+function clearPantry() {
+    pantryArr = [];
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    myPantryUl.innerHTML = "";
+}
+
+function clearShoppingList() {
+    shoppingList = [];
+    localStorage.setItem("Shopping List", JSON.stringify(shoppingList));
+    shoppingListUl.innerHTML = "";
+}
+
 // ************ Drag and Drop ********************
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
@@ -344,7 +360,6 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
     let droppedRecipe = document.getElementById(data);
-    console.log("this is the element from the drop", droppedRecipe)
     if (droppedRecipe.getAttribute("data") === "inSearch") {
         droppedRecipe.setAttribute("data", "inWeeklyPlan")
     }
@@ -442,14 +457,14 @@ function getRecalledWeather() {
 }
 
 // *************** Event Listeners ******************
-// shoppingListLandingButton.addEventListener("click", getShoppingList);
-// pantryLandingButton.addEventListener("click", checkPantry);
 locationSearchButton.addEventListener("click", getLocation);
 saveShoppingListButton.addEventListener('click', saveShoppingList);
 makeListButton.addEventListener("click", setWeeklyPlan);
 recipeSearchButton.addEventListener("click", recipeSearch);
 clearPlanButton.addEventListener("click", clearRecipeList);
-myPantryButton.addEventListener("click", addPantryItem)
+myPantryButton.addEventListener("click", addPantryItem);
+clearPantryButton.addEventListener("click", clearPantry);
+clearShoppingListButton.addEventListener("click", clearShoppingList);
 pantryInput.addEventListener("keyup", function (event) {
     if (event.code === "Enter") {
         event.preventDefault();

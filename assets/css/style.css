@@ -218,6 +218,7 @@ button {
     height: 40%;
 }
 
+
 #thePantry,
 #theShoppingListDiv {
     border: var(--border);
@@ -229,6 +230,7 @@ button {
     border-radius: var(--border-radius);
     margin-bottom: 20px;
     padding: 20px;
+    align-items: center;
 }
 
 #thePantry li:hover,
@@ -379,7 +381,11 @@ details[open]>summary::after {
 #saveShoppingListButton {
     margin: auto;
     padding: 25px;
-    width: 60%;
+}
+
+#clearShoppingListButton {
+    margin: auto;
+    padding: 25px;
 }
 
 #saveShoppingListButton:hover {
