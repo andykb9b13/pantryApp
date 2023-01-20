@@ -103,10 +103,11 @@ function getShoppingList() {
 /* This is called when an item in the shoppingList is clicked on. A DOM element is created 
 and appended to myPantry Ul. It is then removed from the shoppingList Ul.*/
 function sendToPantry(e) {
+    console.log("firing send to pantry", e.target);
     let targetIngredient = e.target.innerText;
     pantryArr.push(targetIngredient);
     localStorage.setItem("pantry", JSON.stringify(pantryArr));
-    let item = e.target.id;
+    let item = e.target.innerText;
     let index = shoppingList.indexOf(item);
     shoppingListUl.removeChild(e.target);
     shoppingList.splice(index, 1);
@@ -275,22 +276,25 @@ function removePantryItem(e) {
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
 getRecipeIngredienst(). The weather and days in the recipe cards are saved to local storage as well. */
 function setWeeklyPlan() {
-    let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
-    for (let i = 0; i < mealPlan.length; i++) {
-        let mealPlanId = mealPlan[i].id
-        recipeBoxArr.push(mealPlanId);
-        localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
-        getRecipeIngredients(mealPlanId);
-    }
-    for (let day of dayNames) {
-        dayNamesArr.push(day.innerHTML);
-        console.log(day.innerHTML);
-        localStorage.setItem("dayNames", JSON.stringify(dayNamesArr));
-    }
-    for (let temp of highLowTemp) {
-        highLowTempArr.push(temp.innerHTML);
-        console.log(temp.innerHTML);
-        localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
+    let setPlan = JSON.parse(localStorage.getItem("weeklyPlan"));
+    if (setPlan.length === 0) {
+        let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
+        for (let i = 0; i < mealPlan.length; i++) {
+            let mealPlanId = mealPlan[i].id
+            recipeBoxArr.push(mealPlanId);
+            localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+            getRecipeIngredients(mealPlanId);
+        }
+        for (let day of dayNames) {
+            dayNamesArr.push(day.innerHTML);
+            console.log(day.innerHTML);
+            localStorage.setItem("dayNames", JSON.stringify(dayNamesArr));
+        }
+        for (let temp of highLowTemp) {
+            highLowTempArr.push(temp.innerHTML);
+            console.log(temp.innerHTML);
+            localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
+        }
     }
 }
 
