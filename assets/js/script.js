@@ -38,7 +38,6 @@ let pantryArr = [];
 let recipeBoxArr = [];
 let shoppingList = [];
 let ingredientList = [];
-// let weeklyPlan = [];
 let highLowTempArr = [];
 let dayNamesArr = [];
 
@@ -135,7 +134,6 @@ when clicked for each div */
 for (let day of dayDivs) {
     day.addEventListener("click", function (e) {
         getRecipeSteps(e);
-        // weeklyPlan.push(e.target);
     })
 }
 
@@ -276,8 +274,9 @@ function removePantryItem(e) {
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
 getRecipeIngredienst(). The weather and days in the recipe cards are saved to local storage as well. */
 function setWeeklyPlan() {
-    let setPlan = JSON.parse(localStorage.getItem("weeklyPlan"));
-    if (setPlan.length === 0) {
+    let weeklyPlan = JSON.parse(localStorage.getItem("weeklyPlan"));
+    // if meal plan is already set, this will not fire
+    if (weeklyPlan.length === 0) {
         let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
         for (let i = 0; i < mealPlan.length; i++) {
             let mealPlanId = mealPlan[i].id
