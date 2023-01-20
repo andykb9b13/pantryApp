@@ -105,11 +105,16 @@ and appended to myPantry Ul. It is then removed from the shoppingList Ul.*/
 function sendToPantry(e) {
     let targetIngredient = e.target.innerText;
     pantryArr.push(targetIngredient);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    let item = e.target.id;
+    let index = shoppingList.indexOf(item);
+    shoppingListUl.removeChild(e.target);
+    shoppingList.splice(index, 1);
+    localStorage.setItem("Shopping List", JSON.stringify(shoppingList));
     let targetIngredientLi = document.createElement('li');
     targetIngredientLi.style.listStyle = "none";
     targetIngredientLi.innerText = targetIngredient;
     myPantryUl.appendChild(targetIngredientLi);
-    shoppingListUl.removeChild(e.target);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -323,8 +328,9 @@ function clearRecipeList() {
     }
     recipeBoxArr = [];
     localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+    let dayArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
     for (let i = 0; i < dayNames.length; i++) {
-        dayNames[i].innerHTML = "";
+        dayNames[i].innerHTML = dayArr[i];
         highLowTemp[i].innerHTML = ""
     }
     highLowTempArr = [];
