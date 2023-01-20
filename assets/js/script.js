@@ -38,7 +38,7 @@ let pantryArr = [];
 let recipeBoxArr = [];
 let shoppingList = [];
 let ingredientList = [];
-let weeklyPlan = [];
+// let weeklyPlan = [];
 let highLowTempArr = [];
 let dayNamesArr = [];
 
@@ -129,12 +129,12 @@ window.onclick = function (event) {
     }
 }
 
-/* Sets event an event listener that gets recipe steps and pushes to weeklyPlan array 
+/* Sets event an event listener that gets recipe steps
 when clicked for each div */
 for (let day of dayDivs) {
     day.addEventListener("click", function (e) {
         getRecipeSteps(e);
-        weeklyPlan.push(e.target);
+        // weeklyPlan.push(e.target);
     })
 }
 
@@ -226,6 +226,10 @@ function getRecipeSteps(e) {
             return response.json()
         })
         .then(function (data) {
+            console.log("data from recipe steps", data);
+            let instructionImage = document.createElement("img");
+            instructionImage.setAttribute("src", data.image);
+            modalInstructionsUl.prepend(instructionImage);
             for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
                 let instructionStep = document.createElement("li");
                 instructionStep.style.listStyle = "none";
@@ -238,6 +242,7 @@ function getRecipeSteps(e) {
                 ingredient.innerText = data.extendedIngredients[i].original;
                 modalIngredientsUl.appendChild(ingredient);
             }
+
         })
 }
 
@@ -467,6 +472,7 @@ locationSearchButton.addEventListener("click", getLocation);
 saveShoppingListButton.addEventListener('click', saveShoppingList);
 makeListButton.addEventListener("click", setWeeklyPlan);
 recipeSearchButton.addEventListener("click", recipeSearch);
+recipeBoxUl.addEventListener("click", getRecipeSteps);
 clearPlanButton.addEventListener("click", clearRecipeList);
 myPantryButton.addEventListener("click", addPantryItem);
 clearPantryButton.addEventListener("click", clearPantry);
