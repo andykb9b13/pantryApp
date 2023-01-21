@@ -119,14 +119,27 @@ button {
 #myPantryButton {
     color: var(--white);
     border-color: var(--white);
+    transition: 0.3s all;
 }
 
 #makeListButton:hover,
 #clearMealPlan:hover,
 #recipeSearchButton:hover,
-#myPantryButton:hover {
+#myPantryButton:hover,
+#clearPantryButton:hover {
     background-color: var(--white);
     color: var(--lightblue);
+}
+
+#makeListButton:active,
+#clearMealPlan:active,
+#recipeSearchButton:active,
+#myPantryButton:active,
+#clearPantryButton:active,
+#clearShoppingListButton:active,
+#saveShoppingListButton:active,
+#locationSearchButton:active {
+    box-shadow: 1px 1px 20px 6px var(--brown);
 }
 
 #main-pantry-container {
@@ -185,6 +198,11 @@ button {
     text-shadow: var(--text-shadow)
 }
 
+#userWeek p {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 .dayOfWeek {
     border: var(--border);
     margin: 20px;
@@ -218,6 +236,12 @@ button {
     height: 40%;
 }
 
+#pantryAndList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #thePantry,
 #theShoppingListDiv {
     border: var(--border);
@@ -242,6 +266,33 @@ button {
 
 #shoppingListTitle {
     text-align: center;
+}
+
+#saveShoppingListButton {
+    margin: auto;
+    padding: 25px;
+}
+
+#clearShoppingListButton {
+    margin: auto;
+    padding: 25px;
+}
+
+#saveShoppingListButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#clearShoppingListButton:hover {
+    background-color: var(--white);
+    color: var(--lightblue);
+}
+
+#shoppingButtonDiv {
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
 }
 
 #daysSubmit,
@@ -353,18 +404,6 @@ details[open]>summary::after {
     padding: 25px;
 }
 
-/* *********** Responsive Design **************** */
-@media screen and (max-width: 720px) {
-
-    #userWeek,
-    #recipeContainer,
-    #thePantry,
-    #theShoppingListDiv,
-    #pantry {
-        width: 80vw;
-    }
-}
-
 #weatherButtonDiv {
     background-color: var(--lightblue);
     border-radius: 15px;
@@ -378,28 +417,25 @@ details[open]>summary::after {
     color: var(--white);
 }
 
-#saveShoppingListButton {
-    margin: auto;
-    padding: 25px;
-}
-#clearShoppingListButton{
-    margin: auto;
-    padding: 25px;
+/* *********** Responsive Design **************** */
+@media screen and (max-width: 720px) {
+
+    #userWeek,
+    #recipeContainer,
+    #thePantry,
+    #theShoppingListDiv,
+    #pantry {
+        width: 80vw;
+    }
 }
 
-#saveShoppingListButton:hover {
-    background-color: var(--white);
-    color: var(--lightblue);
-}
+@media screen and (max-width: 460px) {
 
-#clearShoppingListButton:hover {
-    background-color: var(--white);
-    color: var(--lightblue);
-}
+    #clearShoppingListButton,
+    #saveShoppingListButton {
+        font-size: 1em;
+        width: 80%;
+    }
 
-#shoppingButtonDiv {
-    justify-content: space-evenly;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
+
 }

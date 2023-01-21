@@ -38,7 +38,6 @@ let pantryArr = [];
 let recipeBoxArr = [];
 let shoppingList = [];
 let ingredientList = [];
-let weeklyPlan = [];
 let highLowTempArr = [];
 let dayNamesArr = [];
 
@@ -103,13 +102,19 @@ function getShoppingList() {
 /* This is called when an item in the shoppingList is clicked on. A DOM element is created 
 and appended to myPantry Ul. It is then removed from the shoppingList Ul.*/
 function sendToPantry(e) {
+    console.log("firing send to pantry", e.target);
     let targetIngredient = e.target.innerText;
     pantryArr.push(targetIngredient);
+    localStorage.setItem("pantry", JSON.stringify(pantryArr));
+    let item = e.target.innerText;
+    let index = shoppingList.indexOf(item);
+    shoppingListUl.removeChild(e.target);
+    shoppingList.splice(index, 1);
+    localStorage.setItem("Shopping List", JSON.stringify(shoppingList));
     let targetIngredientLi = document.createElement('li');
     targetIngredientLi.style.listStyle = "none";
     targetIngredientLi.innerText = targetIngredient;
     myPantryUl.appendChild(targetIngredientLi);
-    shoppingListUl.removeChild(e.target);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -124,12 +129,11 @@ window.onclick = function (event) {
     }
 }
 
-/* Sets event an event listener that gets recipe steps and pushes to weeklyPlan array 
+/* Sets event an event listener that gets recipe steps
 when clicked for each div */
 for (let day of dayDivs) {
     day.addEventListener("click", function (e) {
         getRecipeSteps(e);
-        weeklyPlan.push(e.target);
     })
 }
 
@@ -221,6 +225,10 @@ function getRecipeSteps(e) {
             return response.json()
         })
         .then(function (data) {
+            console.log("data from recipe steps", data);
+            let instructionImage = document.createElement("img");
+            instructionImage.setAttribute("src", data.image);
+            modalInstructionsUl.prepend(instructionImage);
             for (let i = 0; i < data.analyzedInstructions[0].steps.length; i++) {
                 let instructionStep = document.createElement("li");
                 instructionStep.style.listStyle = "none";
@@ -233,6 +241,7 @@ function getRecipeSteps(e) {
                 ingredient.innerText = data.extendedIngredients[i].original;
                 modalIngredientsUl.appendChild(ingredient);
             }
+
         })
 }
 
@@ -265,22 +274,26 @@ function removePantryItem(e) {
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
 getRecipeIngredienst(). The weather and days in the recipe cards are saved to local storage as well. */
 function setWeeklyPlan() {
-    let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
-    for (let i = 0; i < mealPlan.length; i++) {
-        let mealPlanId = mealPlan[i].id
-        recipeBoxArr.push(mealPlanId);
-        localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
-        getRecipeIngredients(mealPlanId);
-    }
-    for (let day of dayNames) {
-        dayNamesArr.push(day.innerHTML);
-        console.log(day.innerHTML);
-        localStorage.setItem("dayNames", JSON.stringify(dayNamesArr));
-    }
-    for (let temp of highLowTemp) {
-        highLowTempArr.push(temp.innerHTML);
-        console.log(temp.innerHTML);
-        localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
+    let weeklyPlan = JSON.parse(localStorage.getItem("weeklyPlan"));
+    // if meal plan is already set, this will not fire
+    if (weeklyPlan.length === 0) {
+        let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
+        for (let i = 0; i < mealPlan.length; i++) {
+            let mealPlanId = mealPlan[i].id
+            recipeBoxArr.push(mealPlanId);
+            localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+            getRecipeIngredients(mealPlanId);
+        }
+        for (let day of dayNames) {
+            dayNamesArr.push(day.innerHTML);
+            console.log(day.innerHTML);
+            localStorage.setItem("dayNames", JSON.stringify(dayNamesArr));
+        }
+        for (let temp of highLowTemp) {
+            highLowTempArr.push(temp.innerHTML);
+            console.log(temp.innerHTML);
+            localStorage.setItem("dayTemp", JSON.stringify(highLowTempArr));
+        }
     }
 }
 
@@ -323,8 +336,9 @@ function clearRecipeList() {
     }
     recipeBoxArr = [];
     localStorage.setItem("weeklyPlan", JSON.stringify(recipeBoxArr));
+    let dayArr = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
     for (let i = 0; i < dayNames.length; i++) {
-        dayNames[i].innerHTML = "";
+        dayNames[i].innerHTML = dayArr[i];
         highLowTemp[i].innerHTML = ""
     }
     highLowTempArr = [];
@@ -461,6 +475,7 @@ locationSearchButton.addEventListener("click", getLocation);
 saveShoppingListButton.addEventListener('click', saveShoppingList);
 makeListButton.addEventListener("click", setWeeklyPlan);
 recipeSearchButton.addEventListener("click", recipeSearch);
+recipeBoxUl.addEventListener("click", getRecipeSteps);
 clearPlanButton.addEventListener("click", clearRecipeList);
 myPantryButton.addEventListener("click", addPantryItem);
 clearPantryButton.addEventListener("click", clearPantry);
