@@ -274,7 +274,7 @@ function removePantryItem(e) {
 then sends it to local storage. The ingredients for each recipe are called from Spoonacular using
 getRecipeIngredienst(). The weather and days in the recipe cards are saved to local storage as well. */
 function setWeeklyPlan() {
-    let weeklyPlan = JSON.parse(localStorage.getItem("weeklyPlan"));
+    let weeklyPlan = JSON.parse(localStorage.getItem("weeklyPlan")) || [];
     // if meal plan is already set, this will not fire
     if (weeklyPlan.length === 0) {
         let mealPlan = document.querySelectorAll("[data='inWeeklyPlan']");
